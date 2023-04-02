@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5524705983834613039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7258862792430120779}
+  - component: {fileID: 5328195376858633339}
+  - component: {fileID: -1083817126822838480}
+  m_Layer: 0
+  m_Name: Pistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7258862792430120779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524705983834613039}
+  m_LocalRotation: {x: -0.017740402, y: 0, z: 0, w: 0.9998427}
+  m_LocalPosition: {x: 0.483, y: -0.389, z: 0.643}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3071057995166627896}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -2.033, y: 0, z: 0}
+--- !u!114 &5328195376858633339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524705983834613039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61f0bb794b64914eac1641b3df4457f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistolPosition: {x: 0.483, y: -0.389, z: 0.643}
+  pistolRotation: {x: -2.033, y: 0, z: 0}
+  TotalAmmo: 40
+  AmmoCount: 10
+  RemainAmmo: 0
+  ShootingTime: 0.75
+  ReloadingTime: 1
+  Damage: 10
+  MaxDistance: 50
+  hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
+  bulletCount: 1
+  horizontalSpreadAngle: 5
+  verticalSpreadAngle: 5
+  Gun: {fileID: 5524705983834613039}
+--- !u!95 &-1083817126822838480
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524705983834613039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7456d7ed34e2dd4ea8bcad89f476ad8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &3248273478582460371
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7258862792430120779}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Name
+      value: Pistol_model
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+--- !u!4 &3071057995166627896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+  m_PrefabInstance: {fileID: 3248273478582460371}
+  m_PrefabAsset: {fileID: 0}
