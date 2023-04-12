@@ -7,7 +7,10 @@ public class GetWeaponEditor : Editor
     private InventoryBehaviour inventoryBehaviour;
     private string[] weaponNames;
     private int[] weaponIds;
-
+    private int TotalAmmo;
+    private int RemainAmmo;
+    private SerializedProperty TotalAmmoProperty;
+    private SerializedProperty RemainAmmoProperty;
     private SerializedProperty storeWeaponIDProperty;
 
     private void OnEnable()
@@ -17,6 +20,8 @@ public class GetWeaponEditor : Editor
 
         // Get reference to StoreWeaponID property
         storeWeaponIDProperty = serializedObject.FindProperty("StoreWeaponID");
+        TotalAmmoProperty = serializedObject.FindProperty("TotalAmmo");
+        RemainAmmoProperty = serializedObject.FindProperty("RemainAmmo");
 
         UpdateWeaponNames();
     }
@@ -63,7 +68,23 @@ public class GetWeaponEditor : Editor
         {
             storeWeaponIDProperty.intValue = selectedWeaponIndex;
             serializedObject.ApplyModifiedProperties();
+
+            // Get the GunController component of the selected weapon and set TotalAmmo and RemainAmmo
+            GameObject selectedWeapon = inventoryBehaviour.WeaponId[selectedWeaponIndex];
+            if (selectedWeapon != null)
+            {
+                GunController gunController = selectedWeapon.GetComponent<GunController>();
+                if (gunController != null)
+                {
+                    getWeapon.TotalAmmoSet = gunController.GetTotalAmmo();
+                    getWeapon.RemainAmmoSet = gunController.GetRemainAmmo();
+                }
+            }
         }
+
+        // Show the TotalAmmo and RemainAmmo fields
+        EditorGUILayout.PropertyField(TotalAmmoProperty);
+        EditorGUILayout.PropertyField(RemainAmmoProperty);
 
         serializedObject.ApplyModifiedProperties();
     }

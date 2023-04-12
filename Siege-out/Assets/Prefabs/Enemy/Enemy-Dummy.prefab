@@ -119,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6539867965644039573
 Transform:
   m_ObjectHideFlags: 0
@@ -231,9 +231,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 30
   attackType: 0
+  projectileType: 0
   damage: 20
   attackCD: 1.2
   projectileObject: {fileID: 0}
+  ProjectileSpeed: 5
+  AttackAngleMultiplier: 1
   maxTime: 0
   obstacleMask:
     serializedVersion: 2

@@ -1,25 +1,129 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using System.Linq;
+#if UNITY_EDITOR
+[UnityEditor.CustomEditor(typeof(InventoryBehaviour))]
+public class InventoryBehaviourEditor : UnityEditor.Editor
+{
+    private bool showWeaponIds = true;
+    private bool showDropWeaponIds = true;
+
+public override void OnInspectorGUI()
+{
+    base.OnInspectorGUI();
+
+    InventoryBehaviour inventory = (InventoryBehaviour)target;
+
+    EditorGUILayout.Space();
+
+    showWeaponIds = EditorGUILayout.Foldout(showWeaponIds, "IDs Manager", true, new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold, normal = { textColor = Color.red }});
+
+    if (showWeaponIds)
+    {
+        for (int i = 0; i < inventory.WeaponIds.Length; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Add", GUILayout.Width(60)))
+            {
+                var tempList = new List<GameObject>(inventory.WeaponIds);
+                tempList.Insert(i, null);
+                inventory.WeaponIds = tempList.ToArray();
+            }
+
+            inventory.WeaponIds[i] = (GameObject)EditorGUILayout.ObjectField(inventory.WeaponIds[i], typeof(GameObject), true);
+
+            if (GUILayout.Button("Remove", GUILayout.Width(60)))
+            {
+                var tempList = new List<GameObject>(inventory.WeaponIds);
+                tempList.RemoveAt(i);
+                inventory.WeaponIds = tempList.ToArray();
+
+                if (i >= inventory.WeaponIds.Length)
+                {
+                    i--;
+                }
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+
+    EditorGUILayout.Space();
+
+    showDropWeaponIds = EditorGUILayout.Foldout(showDropWeaponIds, "Drop IDs Manager", true, new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold, normal = { textColor = Color.red }});
+
+    if (showDropWeaponIds)
+    {
+        for (int i = 0; i < inventory.DropWeaponId.Length; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Add", GUILayout.Width(60)))
+            {
+                var tempList = new List<GameObject>(inventory.DropWeaponId);
+                tempList.Insert(i, null);
+                inventory.DropWeaponId = tempList.ToArray();
+            }
+
+            inventory.DropWeaponId[i] = (GameObject)EditorGUILayout.ObjectField(inventory.DropWeaponId[i], typeof(GameObject), true);
+
+            if (GUILayout.Button("Remove", GUILayout.Width(60)))
+            {
+                var tempList = new List<GameObject>(inventory.DropWeaponId);
+                tempList.RemoveAt(i);
+                inventory.DropWeaponId = tempList.ToArray();
+
+                if (i >= inventory.DropWeaponId.Length)
+                {
+                    i--;
+                }
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+    }
+        if (GUI.changed)
+    {
+        EditorUtility.SetDirty(inventory);
+    }
+}
+}
+#endif
 public class InventoryBehaviour : MonoBehaviour
 {
     public event System.Action<int> WeaponIdChanged;
-    
+
 
     private int currentUsingId = 0;
-    [SerializeField] private float scrollCooldown = 0.5f;
+
     private float lastScrollTime = 0f;
     int scrollNumber = 0;
-
+    [Header("Item Settings")]
+    [SerializeField]
     public GameObject[] WeaponId;
-
+    [Header("Note for DropWeaponId: Must Match the Item from WeaponId")]
+    [SerializeField]
+    public GameObject[] DropWeaponId;
+    [Header("Inventory Settings")]
     public int[,] Inventory = new int[3, 3] { { 0, 0, 0 }, { 1, 0, 0 }, { 2, 0, 0 } };
+    [SerializeField] private float scrollCooldown = 0.5f;
     [SerializeField] private GameObject FirstPersonCharacter;
     [SerializeField] private int[] InitialInventorySlot = new int[3];
     private bool isPickUp = false;
+    public GameObject[] WeaponIds
+    {
+        get { return WeaponId; }
+        set { WeaponId = value; }
+    }
+    public GameObject[] DropWeaponIds
+    {
+        get { return DropWeaponId; }
+        set { DropWeaponId = value; }
+    }
     private void UpdateInventory()
     {
         for (int i = 0; i < 3; i++)

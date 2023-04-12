@@ -16,6 +16,8 @@ public class EnemyControllerEditor : Editor
     SerializedProperty maxTime;
     SerializedProperty ProjectileSpeed;
     SerializedProperty AttackAngleMultiplier;
+    SerializedProperty isAreaDamage;
+    SerializedProperty AOERadius;
     SerializedProperty obstacleMask;
 
     private void OnEnable()
@@ -29,6 +31,8 @@ public class EnemyControllerEditor : Editor
         maxTime = serializedObject.FindProperty("maxTime");
         ProjectileSpeed = serializedObject.FindProperty("ProjectileSpeed");
         AttackAngleMultiplier = serializedObject.FindProperty("AttackAngleMultiplier");
+        isAreaDamage = serializedObject.FindProperty("isAreaDamage");
+        AOERadius = serializedObject.FindProperty("AOERadius");
         obstacleMask = serializedObject.FindProperty("obstacleMask");
     }
 
@@ -54,6 +58,11 @@ public class EnemyControllerEditor : Editor
             EditorGUILayout.PropertyField(maxTime);
             EditorGUILayout.PropertyField(obstacleMask);
             EditorGUILayout.PropertyField(ProjectileSpeed);
+            EditorGUILayout.PropertyField(isAreaDamage);
+            if(isAreaDamage.boolValue == true)
+            {
+                EditorGUILayout.PropertyField(AOERadius);
+            }
             if (projectileType.enumValueIndex == (int)EnemyController.ProjectileType.InstantForce)
             {
                 

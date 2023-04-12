@@ -38,7 +38,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private ParticleSystem MuzzleFlash;
     [SerializeField] private AudioClip ShootSound;
     [SerializeField] private AudioClip ReloadSound;
-
+    [HideInInspector]public bool isOut = false;
     private float ReloadCD = 0;
     private bool isActive = false;
     private float ActiveTime = 0;
@@ -97,6 +97,13 @@ public class GunController : MonoBehaviour
     private void Update()
 
     {
+        if(isOut == false && RemainAmmo <=0 && TotalAmmo <= 0)
+        {
+            isOut = true;
+        } else if(isOut == true)
+        {
+            isOut = false;
+        }
         if (isActive == false && SwitchingCD > 0) 
         { 
             SetActive(); 

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject ParticleEffect;
     private float damage;
     private GameObject target;
     private LayerMask obstacleMask;
     private GameObject enemy;
     private float speed;
     private Rigidbody rb;
+    
+    private float AOE;
 
     private void FixedUpdate()
     {
@@ -20,12 +23,21 @@ public class Projectile : MonoBehaviour
            
         }
     }
-
+    public void SetSpeed(float Speed)
+    {
+        speed = Speed;
+    }
     public void SetDamage(float damage)
     {
         this.damage = damage;
     }
-
+    public void SetAOE(bool isAoe, float Aoe)
+    {
+        if(isAoe == true)
+        {
+            AOE = Aoe;
+        }
+    }
     public void SetTarget(GameObject target, GameObject enemy)
     {
         this.target = target;
@@ -86,16 +98,55 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
         {
+            Debug.Log("Wall Hit");
+            if (ParticleEffect && AOE > 0)
+            {
+                GameObject particleObject = Instantiate(ParticleEffect, transform.position, Quaternion.identity);
+
+                // Detach the particle effect from the projectile so it can continue playing
+                particleObject.transform.parent = null;
+                Destroy(particleObject, 5);
+            }
+            Collider[] colliders = Physics.OverlapSphere(transform.position, AOE);
+
+            foreach (Collider collider in colliders)
+            {
+                
+                // Check if the collider has a component that implements the IDamageable interface
+                if (collider.gameObject == target)
+                {
+                    IDamageable damageable = collider.gameObject.GetComponent<IDamageable>();
+
+                    if (damageable != null)
+                    {
+                        // Calculate the distance between the hit point and the target's position
+                        float distance = Vector3.Distance(transform.position, collider.gameObject.transform.position);
+
+                        if (distance <= AOE)
+                        {
+                            // If the target is within the area of effect, deal damage to it
+                            damageable.TakeDamage(damage);
+                        }
+                    }
+                }
+            }
             Destroy(gameObject);
         }
         else if (other.gameObject == target)
         {
+            GameObject particleObject = Instantiate(ParticleEffect, transform.position, Quaternion.identity);
+
+            // Detach the particle effect from the projectile so it can continue playing
+            particleObject.transform.parent = null;
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(damage);
+
+                    damageable.TakeDamage(damage);
+
                 Destroy(gameObject);
             }
         }

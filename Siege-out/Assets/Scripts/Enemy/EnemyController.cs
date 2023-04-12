@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float ProjectileSpeed = 5f;
     [SerializeField] private float AttackAngleMultiplier = 1f;
     [SerializeField] private float maxTime;
+    [SerializeField] private bool isAreaDamage = false;
+    [SerializeField] private float AOERadius = 1f;
     [SerializeField]
     private LayerMask obstacleMask;
     public enum AttackType
@@ -104,8 +106,9 @@ public class EnemyController : MonoBehaviour
                 {
                     projectileScript.SetTarget(target.gameObject, gameObject);
                     projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
-                    
+                    projectileScript.SetSpeed(ProjectileSpeed);
                     projectileScript.SetDamage(damage);
+                    projectileScript.SetAOE(isAreaDamage, AOERadius);
                     projectileScript.SetObstacleMask(obstacleMask);
                     projectileScript.ShootStraight(maxTime);
                 }
@@ -120,6 +123,7 @@ public class EnemyController : MonoBehaviour
                     projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
                     rb.transform.LookAt(target.position);
                     projectileScript.SetDamage(damage);
+                    projectileScript.SetAOE(isAreaDamage, AOERadius);
                     projectileScript.SetObstacleMask(obstacleMask);
                     // Calculate the distance to the target
                     float distance = Vector3.Distance(rb.position, target.position);
@@ -127,7 +131,7 @@ public class EnemyController : MonoBehaviour
                     // Calculate the modified speed and angle
                     float modifiedSpeed = ProjectileSpeed * Mathf.Clamp(distance / 10f, 0.5f, 2f);
                     float modifiedAngle = AttackAngleMultiplier * Mathf.Clamp(distance / 10f, 0.5f, 2f);
-
+                    projectileScript.SetSpeed(ProjectileSpeed);
                     // Apply the force to the rigidbody
                     rb.AddForce(transform.forward * modifiedSpeed, ForceMode.Impulse);
                     rb.AddForce(transform.up * modifiedAngle, ForceMode.Impulse);

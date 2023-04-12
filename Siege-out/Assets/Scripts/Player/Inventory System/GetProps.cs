@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GetProps : MonoBehaviour
 {
+
     private GameObject player;
         [SerializeField]
     private PropType propType;
@@ -20,7 +21,7 @@ public class GetProps : MonoBehaviour
         TargetItem,
         Objective
     }
-
+  
     private void Update()
     {
         if(isNotVaild == true)
