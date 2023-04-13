@@ -1,4 +1,5 @@
 using UnityEditor;
+#if UNITY_EDITOR
 [CustomEditor(typeof(Interactable),true)]
 public class InteractableEditor : Editor
 {
@@ -37,3 +38,4 @@ public class InteractableEditor : Editor
        
     }
 }
+#endif

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEditor;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(EnemyController))]
 public class EnemyControllerEditor : Editor
 {
@@ -73,3 +73,4 @@ public class EnemyControllerEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(GetWeapon))]
 public class GetWeaponEditor : Editor
 {
@@ -99,3 +99,4 @@ public class GetWeaponEditor : Editor
         return "No Weapon Selected";
     }
 }
+#endif

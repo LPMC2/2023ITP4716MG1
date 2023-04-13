@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 [CustomEditor(typeof(Spawner))]
 public class SpawnerEditor : Editor
 {
@@ -46,3 +47,4 @@ public class SpawnerEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

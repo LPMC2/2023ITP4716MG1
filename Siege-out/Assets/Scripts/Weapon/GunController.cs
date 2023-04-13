@@ -27,6 +27,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private int bulletCount = 1;
     [SerializeField] private float horizontalSpreadAngle = 1f;
     [SerializeField] private float verticalSpreadAngle = 1f;
+    [SerializeField] private bool isPiercing = false;
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
     private Vector3 OriginalPosition;
@@ -51,7 +52,11 @@ public class GunController : MonoBehaviour
     private float iceRadius = 2f;
     private float iceThickness = 2f;
     private AudioSource audioSource;
-
+    private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
+    public float GetDamage()
+    {
+        return Damage;
+    }
     public int GetTotalAmmo()
     {
         return TotalAmmo;
@@ -73,7 +78,10 @@ public class GunController : MonoBehaviour
     {
         RemainAmmo = Ch_RemainAmmo;
     }
-  
+  public float GetShootingTime()
+    {
+        return ShootingTime;
+    }
     private void Start()
     {
         GetSound();
@@ -247,11 +255,17 @@ public class GunController : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-
+        
         isShoot = true;
         RemainAmmo--;
-        muzzleFlashLight.SetActive(true);
-        MuzzleFlash.Play();
+        if (muzzleFlashLight != null)
+        {
+            muzzleFlashLight.SetActive(true);
+        }
+        if (MuzzleFlash != null)
+        {
+            MuzzleFlash.Play();
+        }
         if (audioSource != null)
         {
             audioSource.clip = ShootSound;
@@ -305,13 +319,26 @@ public class GunController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    
                     Debug.Log("Hit enemy, dealt " + Damage + " damage.");
                     HealthBehaviour healthBehaviour = hit.collider.GetComponent<HealthBehaviour>();
-                    healthBehaviour.TakeDamage(Damage);
+                    if (!isPiercing || !hitEnemies.Contains(hit.collider.gameObject))
+                    {
+                        healthBehaviour.TakeDamage(Damage);
+                        hitEnemies.Add(hit.collider.gameObject);
+                    }
                     if (Gun.name == "RayFreezer")
                     {
                         AddFreezeMeter(hit.collider.gameObject);
                         CreateIceAroundEnemy(hit.collider.gameObject);
+                    }
+                    if (!isPiercing || i == bulletCount - 1)
+                    {
+                        hitEnemies.Clear();
+                    }
+                    if (isPiercing == true)
+                    {
+                        continue;
                     }
                 }
                 if (hit.collider.CompareTag("Ice"))
@@ -329,8 +356,14 @@ public class GunController : MonoBehaviour
         
         StartCoroutine(StartRecoil());
         yield return new WaitForSeconds(ShootingTime*0.1f);
-        MuzzleFlash.Stop();
-        muzzleFlashLight.SetActive(false);
+        if (MuzzleFlash != null)
+        {
+            MuzzleFlash.Stop();
+        }
+        if (muzzleFlashLight != null)
+        {
+            muzzleFlashLight.SetActive(false);
+        }
         yield return new WaitForSeconds(ShootingTime*0.9f);
         isShoot = false;
         

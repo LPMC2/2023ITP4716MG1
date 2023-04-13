@@ -167,7 +167,7 @@ MonoBehaviour:
   damage: 10
   attackCD: 0.8
   projectileObject: {fileID: 8412791854856054736, guid: 802b792517f9d2943ad371df91430860, type: 3}
-  ProjectileSpeed: 5
+  ProjectileSpeed: 3000
   AttackAngleMultiplier: 1
   maxTime: 10
   isAreaDamage: 1
