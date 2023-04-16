@@ -30,6 +30,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private bool isPiercing = false;
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
+    [SerializeField] private float BulletSpreadMultiplier = 1f;
     private Vector3 OriginalPosition;
     [Header("Other Settings")]
     [SerializeField] private GameObject hitFX;
@@ -134,12 +135,14 @@ public class GunController : MonoBehaviour
         if(ActiveTime == 0)
         {
             Animator gunAnimator = Gun.GetComponent<Animator>();
+            if (gunAnimator != null)
+            {
 
+                float speedMultiplier = 1.0f / SwitchingCD;
+                gunAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
 
-            float speedMultiplier = 1.0f / SwitchingCD;
-            gunAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
-
-            gunAnimator.Play("LoadUp");
+                gunAnimator.Play("LoadUp");
+            }
         }
         ActiveTime += Time.deltaTime;
         if(ActiveTime >= SwitchingCD)
@@ -231,19 +234,28 @@ public class GunController : MonoBehaviour
 
     IEnumerator StartRecoil()
     {
-        Gun.GetComponent<Animator>().Play("GunRecoil");
+        Animator gunAnimatorRecoil = Gun.GetComponent<Animator>();
+        if (gunAnimatorRecoil != null)
+        {
+            gunAnimatorRecoil.GetComponent<Animator>().Play("GunRecoil");
+        }
         yield return new WaitForSeconds(ShootingTime);
-        Gun.GetComponent<Animator>().Play("Recoil_idle");
+        if (gunAnimatorRecoil != null)
+        {
+            gunAnimatorRecoil.GetComponent<Animator>().Play("Recoil_idle");
+        }
     }
     IEnumerator StartReload()
     {
         Animator gunAnimator = Gun.GetComponent<Animator>();
+        if (gunAnimator != null)
+        {
 
+            float speedMultiplier = 1.0f / ReloadingTime;
+            gunAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
 
-        float speedMultiplier = 1.0f / ReloadingTime;
-        gunAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
-
-        gunAnimator.Play("Reload");
+            gunAnimator.Play("Reload");
+        }
         yield return new WaitForSeconds(ReloadingTime);
         
 
@@ -268,8 +280,8 @@ public class GunController : MonoBehaviour
         }
         if (audioSource != null)
         {
-            audioSource.clip = ShootSound;
-            audioSource.Play();
+           
+            audioSource.PlayOneShot(ShootSound, 1);
         }
         
         UpdateInv();
@@ -384,8 +396,8 @@ public class GunController : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(transform.localPosition, AimPosition, Time.deltaTime * 5f);
                 if (isAim == false)
                 {
-                    horizontalSpreadAngle /= 2f;
-                    verticalSpreadAngle /= 2f;
+                    horizontalSpreadAngle *= BulletSpreadMultiplier;
+                    verticalSpreadAngle *= BulletSpreadMultiplier;
                     aim.SetActive(false);
                     isAim = true;
                 }
@@ -395,8 +407,8 @@ public class GunController : MonoBehaviour
                 transform.localPosition = Vector3.Lerp(transform.localPosition, OriginalPosition, Time.deltaTime * 5f);
                 if (isAim == true)
                 {
-                    horizontalSpreadAngle *= 2f;
-                    verticalSpreadAngle *= 2f;
+                    horizontalSpreadAngle /= BulletSpreadMultiplier;
+                    verticalSpreadAngle /= BulletSpreadMultiplier;
                     aim.SetActive(true);
                     isAim = false;
                 }
@@ -407,8 +419,8 @@ public class GunController : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition, OriginalPosition, Time.deltaTime * 5f);
             if (isAim == true)
             {
-                horizontalSpreadAngle *= 2f;
-                verticalSpreadAngle *= 2f;
+                horizontalSpreadAngle /= BulletSpreadMultiplier;
+                verticalSpreadAngle /= BulletSpreadMultiplier;
                 aim.SetActive(true);
                 isAim = false;
             }

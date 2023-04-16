@@ -152,7 +152,9 @@ MonoBehaviour:
   bulletCount: 1
   horizontalSpreadAngle: 1
   verticalSpreadAngle: 1
+  isPiercing: 0
   AimPosition: {x: -0.005, y: -0.933, z: 0.7}
+  BulletSpreadMultiplier: 0.8
   hitFX: {fileID: 0}
   Gun: {fileID: 8551341407869777067}
   SwitchingCD: 0.1
@@ -160,6 +162,7 @@ MonoBehaviour:
   MuzzleFlash: {fileID: 8241924943209914552, guid: 362a819054f2ae447987b8975499a141, type: 3}
   ShootSound: {fileID: 0}
   ReloadSound: {fileID: 0}
+  isOut: 0
 --- !u!82 &-3425338397183917550
 AudioSource:
   m_ObjectHideFlags: 0

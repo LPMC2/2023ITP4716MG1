@@ -11,8 +11,8 @@ public class GetWeapon : MonoBehaviour
     private int CurrentSlot;
     public int StoreWeaponID;
     private InventoryBehaviour inventoryBehaviour;
-    [ReadOnly,SerializeField] private int RemainAmmo;
-    [ReadOnly, SerializeField] private int TotalAmmo;
+    [SerializeField] private int RemainAmmo;
+    [SerializeField] private int TotalAmmo;
     private void Start()
     {
         player = GameObject.Find("FPSController");

@@ -95,6 +95,7 @@ public override void OnInspectorGUI()
 #endif
 public class InventoryBehaviour : MonoBehaviour
 {
+#pragma warning disable CS0067
     public event System.Action<int> WeaponIdChanged;
 
 

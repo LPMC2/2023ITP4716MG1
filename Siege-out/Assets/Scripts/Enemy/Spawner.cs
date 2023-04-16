@@ -38,6 +38,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnCounter = 0;
         InvokeRepeating("Spawn", 0f, SpawnTime);
     }
 
