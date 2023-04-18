@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 #if UNITY_EDITOR
 [CustomEditor(typeof(EnemyController))]
 public class EnemyControllerEditor : Editor

@@ -6,7 +6,10 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class MainGame : MonoBehaviour
 {
     [Header("Game Function")]
-    [SerializeField, ReadOnly] private int GameProcessID = 0;
+#if UNITY_EDITOR
+[ReadOnly] 
+#endif
+    [SerializeField] private int GameProcessID = 0;
     [SerializeField] private int RequiredItemCount = 7;
     [SerializeField] private GameObject SiegeMode1;
     [SerializeField] private GameObject SiegeMode2;

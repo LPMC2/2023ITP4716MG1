@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using PathCreation;
 
 namespace PathCreation.Examples
 {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [CustomEditor(typeof(PathSceneTool), true)]
     public class PathSceneToolEditor : Editor
     {

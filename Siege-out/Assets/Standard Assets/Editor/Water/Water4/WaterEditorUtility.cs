@@ -1,4 +1,5 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 class WaterEditorUtility
@@ -73,3 +74,4 @@ class WaterEditorUtility
 		
 	}	*/
 }
+#endif

@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class GunController : MonoBehaviour
 {
 
-    
+  
     private Animator anim;
-    
 
 
     [Header("Gun Clip Settings")]
+
+
     [SerializeField] private int TotalAmmo;
 
      [SerializeField] private int AmmoCount;
 
     [SerializeField] private int RemainAmmo;
     [SerializeField] private float ReloadingTime;
+    [SerializeField] private UnityEvent ReloadFunction;
     [Header("Gun Attack Settings")]
-    [SerializeField] private float ShootingTime;
+ 
 
-    
+    [SerializeField] private float ShootingTime;
 
     [SerializeField] private float Damage;
     [SerializeField] private float Range;
@@ -28,6 +30,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private float horizontalSpreadAngle = 1f;
     [SerializeField] private float verticalSpreadAngle = 1f;
     [SerializeField] private bool isPiercing = false;
+    [SerializeField] private UnityEvent HitFunction;
+    [SerializeField] private UnityEvent ShootFunction;
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
     [SerializeField] private float BulletSpreadMultiplier = 1f;
@@ -41,6 +45,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioClip ShootSound;
     [SerializeField] private AudioClip ReloadSound;
     [HideInInspector]public bool isOut = false;
+
+
     private float ReloadCD = 0;
     private bool isActive = false;
     private float ActiveTime = 0;
@@ -50,8 +56,7 @@ public class GunController : MonoBehaviour
     private bool isShoot = false;
     private bool isReload = false;
     private bool isAim = false;
-    private float iceRadius = 2f;
-    private float iceThickness = 2f;
+
     private AudioSource audioSource;
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
     public float GetDamage()
@@ -247,6 +252,7 @@ public class GunController : MonoBehaviour
     }
     IEnumerator StartReload()
     {
+        ReloadFunction.Invoke();
         Animator gunAnimator = Gun.GetComponent<Animator>();
         if (gunAnimator != null)
         {
@@ -267,7 +273,7 @@ public class GunController : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        
+        ShootFunction.Invoke();
         isShoot = true;
         RemainAmmo--;
         if (muzzleFlashLight != null)
@@ -331,8 +337,8 @@ public class GunController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    
-                    Debug.Log("Hit enemy, dealt " + Damage + " damage.");
+
+                    HitFunction.Invoke();
                     HealthBehaviour healthBehaviour = hit.collider.GetComponent<HealthBehaviour>();
                     if (!isPiercing || !hitEnemies.Contains(hit.collider.gameObject))
                     {
@@ -341,8 +347,7 @@ public class GunController : MonoBehaviour
                     }
                     if (Gun.name == "RayFreezer")
                     {
-                        AddFreezeMeter(hit.collider.gameObject);
-                        CreateIceAroundEnemy(hit.collider.gameObject);
+
                     }
                     if (!isPiercing || i == bulletCount - 1)
                     {
@@ -357,8 +362,7 @@ public class GunController : MonoBehaviour
                 {
                     if (Gun.name == "RayFreezer")
                     {
-                        CreateIce(hit);
-                        MergeIce(hit);
+
                     }
                 }
 
@@ -432,57 +436,5 @@ public class GunController : MonoBehaviour
         InventoryBehaviour Inventory = Player.GetComponent<InventoryBehaviour>();
         Inventory.UpdateSlotTexts(RemainAmmo, TotalAmmo);
     }
-    private void CreateIce(RaycastHit hit)
-    {
-        Collider[] colliders = Physics.OverlapSphere(hit.point, iceRadius, LayerMask.GetMask("Ice"));
-        if (colliders.Length == 0)
-        {
-            GameObject ice = Instantiate(hitFX, hit.point, Quaternion.identity);
-            ice.transform.localScale = new Vector3(iceRadius, iceThickness, iceRadius);
-        }
-    }
 
-    // Merge ice if hit object is ice
-    private void MergeIce(RaycastHit hit)
-    {
-        //Ice ice = hit.collider.GetComponent<Ice>();
-        //if (ice != null)
-        //{
-        //    ice.Merge();
-        //}
-    }
-
-    // Add a freeze meter and slow down enemy
-    private void AddFreezeMeter(GameObject enemy)
-    {
-        //FreezeBehaviour freezeBehaviour = enemy.GetComponent<FreezeBehaviour>();
-        //if (freezeBehaviour != null)
-        //{
-        //    //freezeBehaviour.AddFreezeMeter();
-        //    SetMove(enemy, 1, 1, freezeBehaviour.GetFreezePercentage());
-        //    CreateIceAroundEnemy(enemy);
-        //}
-    }
-
-    // Set the move speed of an enemy based on freeze percentage
-    private void SetMove(GameObject enemy, float runSpeed, float walkSpeed, float freezePercentage)
-    {
-        walkSpeed *= freezePercentage;
-        runSpeed *= freezePercentage;
-        AIController aiController = enemy.GetComponent<AIController>();
-
-    }
-
-    // Create ice around an enemy
-    private void CreateIceAroundEnemy(GameObject enemy)
-    {
-        Vector3 position = enemy.transform.position;
-        position.y -= enemy.GetComponent<CharacterController>().height / 2;
-        GameObject ice = Instantiate(hitFX, position, Quaternion.identity);
-        ice.transform.localScale = new Vector3(iceRadius, iceThickness, iceRadius);
-        Vector3 topPosition = position;
-        topPosition.y += enemy.GetComponent<CharacterController>().height;
-        ice = Instantiate(hitFX, topPosition, Quaternion.identity);
-        ice.transform.localScale = new Vector3(iceRadius, iceThickness, iceRadius);
-    }
 }

@@ -49,7 +49,10 @@ public class GetWeapon : MonoBehaviour
     }
     private int num;
     private GameObject DropweaponObject;
-    [ReadOnly] public bool isOriginal = false;
+#if UNITY_EDITOR
+[ReadOnly] 
+#endif
+public bool isOriginal = false;
     private int[] store = new int[2];
     public void ObtainWeapon()
     {

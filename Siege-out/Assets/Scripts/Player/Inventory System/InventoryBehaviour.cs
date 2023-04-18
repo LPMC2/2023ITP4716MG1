@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Linq;
 #if UNITY_EDITOR
 [UnityEditor.CustomEditor(typeof(InventoryBehaviour))]
@@ -174,6 +176,9 @@ public class InventoryBehaviour : MonoBehaviour
 
    
         GameObject canvas = GameObject.Find("PlayerUI");
+        if (canvas != null) {
+            Debug.Log("PlayerUI Found");
+        }
         if (canvas != null)
         {
             slotTexts[0] = canvas.transform.Find("Slot1/Clip").GetComponent<Text>();

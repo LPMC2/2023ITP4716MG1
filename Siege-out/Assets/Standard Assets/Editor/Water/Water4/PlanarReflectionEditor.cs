@@ -1,4 +1,5 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 
 
@@ -63,3 +64,4 @@ namespace UnityStandardAssets.Water
 
     }
 }
+#endif

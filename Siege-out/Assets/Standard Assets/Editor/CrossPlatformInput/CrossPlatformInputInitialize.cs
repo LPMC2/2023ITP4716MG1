@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace UnityStandardAssets.CrossPlatformInput.Inspector
@@ -131,3 +132,4 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
         }
     }
 }
+#endif

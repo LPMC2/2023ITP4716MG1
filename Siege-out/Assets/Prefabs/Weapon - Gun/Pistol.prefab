@@ -83,6 +83,9 @@ MonoBehaviour:
   AmmoCount: 10
   RemainAmmo: 10
   ReloadingTime: 1.2
+  ReloadFunction:
+    m_PersistentCalls:
+      m_Calls: []
   ShootingTime: 0.75
   Damage: 25
   Range: 100
@@ -90,6 +93,12 @@ MonoBehaviour:
   horizontalSpreadAngle: 2
   verticalSpreadAngle: 2
   isPiercing: 0
+  HitFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  ShootFunction:
+    m_PersistentCalls:
+      m_Calls: []
   AimPosition: {x: -0.0255, y: -0.361, z: 0.765}
   BulletSpreadMultiplier: 0.5
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
