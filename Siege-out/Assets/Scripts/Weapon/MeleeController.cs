@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class MeleeController : MonoBehaviour
 {
-    public GameObject Weapon;
+    [Header("Attack Settings")]
     [SerializeField] private float AttackSpeed;
     [SerializeField] private float AttackCD = 0;
     [SerializeField] private float Damage;
@@ -13,12 +13,17 @@ public class MeleeController : MonoBehaviour
     [SerializeField] private float maxDistance = 1f;
     [SerializeField] private AudioClip AttackSound;
     private AudioSource audioSource;
+    [Header("Customization Settings")]
+    [SerializeField] private UnityEvent AttackFunction;
+    [SerializeField] private UnityEvent<GameObject> HitFunction;
     public enum AttackModeType
     {
         Sword,
         Knife,
         HeavyStrike
     }
+    [Header("Animation Settings")]
+    public GameObject Weapon;
     [SerializeField] private AttackModeType AttackMode;
     private bool isAttack = false;
     private void Start()
@@ -60,7 +65,7 @@ public class MeleeController : MonoBehaviour
 
     private void hitbox()
     {
-
+        AttackFunction.Invoke();
         // Calculate the area of effect
         // Calculate the area of effect
         float halfWidth = hitboxSizeX / 2f;
@@ -95,6 +100,7 @@ public class MeleeController : MonoBehaviour
         Debug.DrawRay(corners[3], corners[7] - corners[3], Color.red, 2f);
         foreach (RaycastHit hit in hits)
         {
+            HitFunction.Invoke(hit.collider.gameObject);
             if (hit.collider.CompareTag("Enemy"))
             {
                 if (!hitObjects.Contains(hit.collider.gameObject)) // Check if the object has already been hit

@@ -31,7 +31,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private float horizontalSpreadAngle = 1f;
     [SerializeField] private float verticalSpreadAngle = 1f;
     [SerializeField] private bool isPiercing = false;
-    [SerializeField] private UnityEvent HitFunction;
+    [SerializeField] private UnityEvent<GameObject> HitFunction;
     [SerializeField] private UnityEvent ShootFunction;
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
@@ -320,6 +320,7 @@ public class GunController : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.transform.position, spreadDirection, out hit, Range, layerMask))
             {
+                HitFunction.Invoke(hit.collider.gameObject);
                 if (hit.collider.CompareTag("Projectile"))
                 {
                     continue;
@@ -341,8 +342,6 @@ public class GunController : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("Enemy"))
                 {
-
-                    HitFunction.Invoke();
                     HealthBehaviour healthBehaviour = hit.collider.GetComponent<HealthBehaviour>();
                     if (!isPiercing || !hitEnemies.Contains(hit.collider.gameObject))
                     {
@@ -362,13 +361,7 @@ public class GunController : MonoBehaviour
                         continue;
                     }
                 }
-                if (hit.collider.CompareTag("Ice"))
-                {
-                    if (Gun.name == "RayFreezer")
-                    {
-
-                    }
-                }
+               
 
             }
         }

@@ -164,7 +164,6 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: -0.005, y: -0.933, z: 0.7}
   BulletSpreadMultiplier: 0.8
-  canvas: {fileID: 2888078455319972296, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
   hitFX: {fileID: 0}
   Gun: {fileID: 8551341407869777067}
   SwitchingCD: 0.1
@@ -443,6 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8551341407869777064}
   - component: {fileID: 8551341407869777065}
+  - component: {fileID: 5330386748399431170}
   m_Layer: 0
   m_Name: Ray_Freezer
   m_TagString: Untagged
@@ -486,6 +486,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5330386748399431170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551341407869777067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e904c21d727a0e54c95c3e45d6736d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetRotation: {x: 0, y: 0, z: 0}
+  SetScale: {x: 2, y: 2, z: 2}
 --- !u!1 &8551341407930788128
 GameObject:
   m_ObjectHideFlags: 0

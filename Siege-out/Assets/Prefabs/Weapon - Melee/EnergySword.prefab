@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b80deec6c7f25f14e84555432bd32740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 3386095169239103428}
   AttackSpeed: 1
   AttackCD: 0.1
   Damage: 50
@@ -68,6 +67,13 @@ MonoBehaviour:
   hitboxSizeY: 2
   maxDistance: 2
   AttackSound: {fileID: 8300000, guid: 8c06de7b29b994f4a94e1ef34dac4641, type: 3}
+  AttackFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  HitFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  Weapon: {fileID: 3386095169239103428}
   AttackMode: 0
 --- !u!95 &1890334669069167107
 Animator:
@@ -184,6 +190,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2374759369609566856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294206772597995571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e904c21d727a0e54c95c3e45d6736d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetRotation: {x: 0, y: 0, z: 0}
+  SetScale: {x: 3, y: 3, z: 3}
 --- !u!1001 &5024228087133799778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+--- !u!1 &5294206772597995571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+  m_PrefabInstance: {fileID: 5024228087133799778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4770189063923425929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: acbb0e45330a8d4468546620649a848a, type: 3}

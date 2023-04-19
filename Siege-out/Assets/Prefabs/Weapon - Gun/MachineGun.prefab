@@ -19,6 +19,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3975029312433471174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918557245949558577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e904c21d727a0e54c95c3e45d6736d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetRotation: {x: 0.22936007, y: 134.11421, z: 14.178952}
+  SetScale: {x: 1.1, y: 1.1, z: 1.1}
 --- !u!1 &8611356977426518939
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +115,6 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: 0.25, y: -2.08, z: 3.06}
   BulletSpreadMultiplier: 0.4
-  canvas: {fileID: 2888078455319972296, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 6918557245949558577}
   SwitchingCD: 1.5

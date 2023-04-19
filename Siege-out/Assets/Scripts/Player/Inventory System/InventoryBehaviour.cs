@@ -116,7 +116,8 @@ public class InventoryBehaviour : MonoBehaviour
     [SerializeField] private float scrollCooldown = 0.5f;
     [SerializeField] private GameObject FirstPersonCharacter;
     [SerializeField] private int[] InitialInventorySlot = new int[3];
-
+    private GameObject slotTracker;
+    Transform[] camSlotTransforms = new Transform[3];
     private bool isPickUp = false;
     public GameObject[] WeaponIds
     {
@@ -172,6 +173,10 @@ public class InventoryBehaviour : MonoBehaviour
 
     void Start()
     {
+
+        camSlotTransforms[0] = canvas.transform.Find("SlotTracker/CamSlot1").transform;
+        camSlotTransforms[1] = canvas.transform.Find("SlotTracker/CamSlot2").transform;
+        camSlotTransforms[2] = canvas.transform.Find("SlotTracker/CamSlot3").transform;
 
         UpdateInventory();
 
@@ -278,6 +283,65 @@ public class InventoryBehaviour : MonoBehaviour
 
         int weaponId = Inventory[slot, 0];
         GameObject weapon = Instantiate(WeaponId[weaponId]);
+        if(weapon != null)
+        {
+            if(weapon.transform.childCount > 0)
+            {
+                
+                Transform childTransform = weapon.transform.GetChild(0);
+                Debug.Log(childTransform.gameObject + " - 1");
+                TransformSetup transformSetup = childTransform.gameObject.GetComponent<TransformSetup>();
+                Vector3 rotate = transformSetup.getRotation();
+                Vector3 scale = transformSetup.getScale();
+                switch (currentUsingId)
+                {
+                    case 0:
+
+                        for (int i = camSlotTransforms[0].childCount - 1; i >= 0; i--)
+                        {
+                            Destroy(camSlotTransforms[0].GetChild(i).gameObject);
+                        }
+
+                        // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.5f, -0.59f, 6f), Quaternion.Euler(rotate));
+                        
+                        slotTracker.transform.SetParent(camSlotTransforms[0]);
+                        slotTracker.transform.localPosition = new Vector3(-0.5f, -0.59f, 6f);
+                        slotTracker.transform.localScale = scale;
+                        break;
+                    case 1:
+                        
+                        for (int i = camSlotTransforms[1].childCount - 1; i >= 0; i--)
+                            {
+                                Destroy(camSlotTransforms[1].GetChild(i).gameObject);
+                            }
+
+
+                        // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.25f  , -0.59f, 6f), Quaternion.Euler(rotate));
+                        slotTracker.transform.SetParent(camSlotTransforms[1]);
+                        slotTracker.transform.localPosition = new Vector3(-0.25f, -0.59f, 6f);
+                        slotTracker.transform.localScale = scale;
+
+
+                        break;
+                    case 2:
+
+                            for (int i = camSlotTransforms[2].childCount - 1; i >= 0; i--)
+                            {
+                                Destroy(camSlotTransforms[2].GetChild(i).gameObject);
+                            }
+
+
+                            // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.584000027f, -0.59f, 6f), Quaternion.Euler(rotate));
+                            slotTracker.transform.SetParent(camSlotTransforms[2]);
+                            slotTracker.transform.localPosition = new Vector3(-0.584000027f, -0.59f, 6f);
+                        slotTracker.transform.localScale = scale;
+                        break;
+                }
+            }
+        }
         weapon.transform.SetParent(FirstPersonCharacter.transform);
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
