@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dd98e81b893ab4e95ebf6d1a15d2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StoreWeaponID: 6
+  StoreWeaponID: 7
   RemainAmmo: 200
   TotalAmmo: 400
   isOriginal: 0
