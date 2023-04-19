@@ -102,7 +102,7 @@ public class InventoryBehaviour : MonoBehaviour
     public GameObject canvas;
    [SerializeField] private Text[] slotTexts = new Text[3];
     private int currentUsingId = 0;
-
+    private Image crosshair;
     private float lastScrollTime = 0f;
     int scrollNumber = 0;
     [Header("Item Settings")]
@@ -185,6 +185,7 @@ public class InventoryBehaviour : MonoBehaviour
             slotTexts[0] = canvas.transform.Find("Slot1/Clip").GetComponent<Text>();
             slotTexts[1] = canvas.transform.Find("Slot2/Clip").GetComponent<Text>();
             slotTexts[2] = canvas.transform.Find("Slot3/Clip").GetComponent<Text>();
+            crosshair = canvas.transform.Find("Aim").GetComponent<Image>();
         }
         Setup();
         
@@ -302,7 +303,17 @@ public class InventoryBehaviour : MonoBehaviour
         { UpdateSlotTexts(0, 0); }
         isPickUp = false;
     }
+    public void setCrossHairState(bool isActive)
+    {
+        if(isActive == true)
+        {
+            crosshair.gameObject.SetActive(true);
+        } else
+        {
+            crosshair.gameObject.SetActive(false);
+        }
 
+    }
     public void UpdateSlotTexts(int remainAmmo, int totalAmmo)
     {
        

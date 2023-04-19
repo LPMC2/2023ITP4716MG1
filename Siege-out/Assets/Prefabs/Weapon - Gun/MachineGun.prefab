@@ -101,7 +101,7 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: 0.25, y: -2.08, z: 3.06}
   BulletSpreadMultiplier: 0.4
-  canvas: {fileID: 2888078455319971893, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
+  canvas: {fileID: 2888078455319972296, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 6918557245949558577}
   SwitchingCD: 1.5

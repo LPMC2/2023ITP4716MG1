@@ -64,6 +64,9 @@ MonoBehaviour:
   AmmoCount: 200
   RemainAmmo: 200
   ReloadingTime: 4.5
+  ReloadFunction:
+    m_PersistentCalls:
+      m_Calls: []
   ShootingTime: 0.05
   Damage: 10
   Range: 10
@@ -71,8 +74,15 @@ MonoBehaviour:
   horizontalSpreadAngle: 10
   verticalSpreadAngle: 10
   isPiercing: 1
+  HitFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  ShootFunction:
+    m_PersistentCalls:
+      m_Calls: []
   AimPosition: {x: -0.0125, y: -1.1, z: 1.75}
   BulletSpreadMultiplier: 0.9
+  canvas: {fileID: 2888078455319972296, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
   hitFX: {fileID: 0}
   Gun: {fileID: 2829946225544818338}
   SwitchingCD: 1
@@ -81,7 +91,6 @@ MonoBehaviour:
   ShootSound: {fileID: 8300000, guid: 5d349bcb5bc19ff41ab71a89b4e79244, type: 3}
   ReloadSound: {fileID: 8300000, guid: 776cf48853457814584ee67401858aab, type: 3}
   isOut: 0
-  canvas: {fileID: 2888078455319971893, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
 --- !u!82 &5865258621661551009
 AudioSource:
   m_ObjectHideFlags: 0

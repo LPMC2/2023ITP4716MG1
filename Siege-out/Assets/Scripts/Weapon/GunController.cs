@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 public class GunController : MonoBehaviour
 {
 
@@ -37,7 +38,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private float BulletSpreadMultiplier = 1f;
     private Vector3 OriginalPosition;
     [Header("Other Settings")]
-    public Canvas canvas;
+   
     [SerializeField] private GameObject hitFX;
     public GameObject Gun;
     [SerializeField] private float SwitchingCD;
@@ -46,8 +47,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioClip ShootSound;
     [SerializeField] private AudioClip ReloadSound;
     [HideInInspector]public bool isOut = false;
-
-
+    private GameObject Player;
+    private InventoryBehaviour Inventory;
     private float ReloadCD = 0;
     private bool isActive = false;
     private float ActiveTime = 0;
@@ -91,6 +92,8 @@ public class GunController : MonoBehaviour
     }
     private void Start()
     {
+        Player = GameObject.Find("FPSController");
+        Inventory = Player.GetComponent<InventoryBehaviour>();
         GetSound();
         MuzzleFlash.Stop();
         OriginalPosition = transform.localPosition;
@@ -391,7 +394,7 @@ public class GunController : MonoBehaviour
     private void Aim()
     {
 
-        GameObject aim = canvas.transform.Find("Aim").gameObject;
+       
 
         if (isReload == false)
         {
@@ -403,7 +406,7 @@ public class GunController : MonoBehaviour
                 {
                     horizontalSpreadAngle *= BulletSpreadMultiplier;
                     verticalSpreadAngle *= BulletSpreadMultiplier;
-                    aim.SetActive(false);
+                    Inventory.setCrossHairState(false);
                     isAim = true;
                 }
             }
@@ -414,7 +417,7 @@ public class GunController : MonoBehaviour
                 {
                     horizontalSpreadAngle /= BulletSpreadMultiplier;
                     verticalSpreadAngle /= BulletSpreadMultiplier;
-                    aim.SetActive(true);
+                    Inventory.setCrossHairState(true);
                     isAim = false;
                 }
             }
@@ -426,15 +429,14 @@ public class GunController : MonoBehaviour
             {
                 horizontalSpreadAngle /= BulletSpreadMultiplier;
                 verticalSpreadAngle /= BulletSpreadMultiplier;
-                aim.SetActive(true);
+                Inventory.setCrossHairState(true);
                 isAim = false;
             }
         }
     }
     private void UpdateInv()
     {
-        GameObject Player = GameObject.Find("FPSController");
-        InventoryBehaviour Inventory = Player.GetComponent<InventoryBehaviour>();
+
         Inventory.UpdateSlotTexts(RemainAmmo, TotalAmmo);
     }
 

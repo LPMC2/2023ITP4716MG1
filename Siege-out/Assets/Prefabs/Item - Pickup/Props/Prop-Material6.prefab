@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 1
-  promptMessage: Press G to pickup the Material !
+  promptMessage: Press E to pickup the Material !
 --- !u!114 &753793475972802861
 MonoBehaviour:
   m_ObjectHideFlags: 0

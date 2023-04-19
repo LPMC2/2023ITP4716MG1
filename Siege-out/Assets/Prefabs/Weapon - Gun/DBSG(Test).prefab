@@ -48,6 +48,9 @@ MonoBehaviour:
   AmmoCount: 2
   RemainAmmo: 2
   ReloadingTime: 3
+  ReloadFunction:
+    m_PersistentCalls:
+      m_Calls: []
   ShootingTime: 0.4
   Damage: 30
   Range: 0
@@ -55,8 +58,15 @@ MonoBehaviour:
   horizontalSpreadAngle: 10
   verticalSpreadAngle: 10
   isPiercing: 0
+  HitFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  ShootFunction:
+    m_PersistentCalls:
+      m_Calls: []
   AimPosition: {x: -0.301, y: -0.488, z: 1.06}
   BulletSpreadMultiplier: 1
+  canvas: {fileID: 2888078455319972296, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 8881633605385757836}
   SwitchingCD: 0.5
@@ -65,7 +75,6 @@ MonoBehaviour:
   ShootSound: {fileID: 0}
   ReloadSound: {fileID: 0}
   isOut: 0
-  canvas: {fileID: 2888078455319971893, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
 --- !u!95 &4287565256615787029
 Animator:
   serializedVersion: 3

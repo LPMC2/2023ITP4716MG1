@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 1
-  promptMessage: Press G to get Ammo
+  promptMessage: Press E to get Ammo
 --- !u!114 &82193630619199138
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 1
-  promptMessage: 'Press G to get
+  promptMessage: 'Press E to get
 
     Pistol'
 --- !u!65 &2303252548804742503

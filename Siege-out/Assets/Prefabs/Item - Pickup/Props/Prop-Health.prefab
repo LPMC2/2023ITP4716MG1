@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 1
-  promptMessage: Press G to get Health Regeneration
+  promptMessage: Press E to get Health Regeneration
 --- !u!114 &2078061780136043282
 MonoBehaviour:
   m_ObjectHideFlags: 0
