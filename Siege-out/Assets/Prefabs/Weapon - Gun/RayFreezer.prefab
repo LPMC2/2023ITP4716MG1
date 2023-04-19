@@ -163,6 +163,7 @@ MonoBehaviour:
   ShootSound: {fileID: 0}
   ReloadSound: {fileID: 0}
   isOut: 0
+  canvas: {fileID: 2888078455319971893, guid: 4052848613f057542b37a959e0d1b8ef, type: 3}
 --- !u!82 &-3425338397183917550
 AudioSource:
   m_ObjectHideFlags: 0

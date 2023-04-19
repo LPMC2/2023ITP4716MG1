@@ -99,8 +99,8 @@ public class InventoryBehaviour : MonoBehaviour
 {
 #pragma warning disable CS0067
     public event System.Action<int> WeaponIdChanged;
-
-
+    public GameObject canvas;
+   [SerializeField] private Text[] slotTexts = new Text[3];
     private int currentUsingId = 0;
 
     private float lastScrollTime = 0f;
@@ -116,6 +116,7 @@ public class InventoryBehaviour : MonoBehaviour
     [SerializeField] private float scrollCooldown = 0.5f;
     [SerializeField] private GameObject FirstPersonCharacter;
     [SerializeField] private int[] InitialInventorySlot = new int[3];
+
     private bool isPickUp = false;
     public GameObject[] WeaponIds
     {
@@ -167,7 +168,7 @@ public class InventoryBehaviour : MonoBehaviour
         Inventory[currentUsingId, 2] = ammoAmount;
     }
 
-    private Text[] slotTexts = new Text[3];
+    
 
     void Start()
     {
@@ -175,7 +176,7 @@ public class InventoryBehaviour : MonoBehaviour
         UpdateInventory();
 
    
-        GameObject canvas = GameObject.Find("PlayerUI");
+        
         if (canvas != null) {
             Debug.Log("PlayerUI Found");
         }

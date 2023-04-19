@@ -37,6 +37,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private float BulletSpreadMultiplier = 1f;
     private Vector3 OriginalPosition;
     [Header("Other Settings")]
+    public Canvas canvas;
     [SerializeField] private GameObject hitFX;
     public GameObject Gun;
     [SerializeField] private float SwitchingCD;
@@ -389,7 +390,7 @@ public class GunController : MonoBehaviour
     }
     private void Aim()
     {
-        GameObject canvas = GameObject.Find("PlayerUI");
+
         GameObject aim = canvas.transform.Find("Aim").gameObject;
 
         if (isReload == false)
