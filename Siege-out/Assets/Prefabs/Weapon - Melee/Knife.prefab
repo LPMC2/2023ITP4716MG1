@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetPosition: {x: 0.335, y: -0.264, z: 1.434}
-  SetRotation: {x: 1.294, y: 0.5765, z: 24.0129}
+  SetRotation: {x: 1.294, y: 0.5765, z: 30}
   SetScale: {x: 1, y: 1, z: 1}
 --- !u!1 &5201682038720778396
 GameObject:

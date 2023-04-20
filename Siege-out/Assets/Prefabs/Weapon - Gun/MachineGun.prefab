@@ -115,7 +115,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   AimPosition: {x: 0.25, y: -2.08, z: 3.06}
-  BulletSpreadMultiplier: 0.4
+  BulletSpreadMultiplier: 0.3
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 6918557245949558577}
   SwitchingCD: 1.5
