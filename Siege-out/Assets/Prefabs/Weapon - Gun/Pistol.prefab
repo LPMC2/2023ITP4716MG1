@@ -31,8 +31,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e904c21d727a0e54c95c3e45d6736d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetRotation: {x: 317.54816, y: 297.22556, z: 348.11014}
-  SetScale: {x: 4, y: 4, z: 4}
+  SetPosition: {x: 0.092, y: -0.1, z: 0.97}
+  SetRotation: {x: 332.7, y: 129.656, z: 3.3147}
+  SetScale: {x: 1, y: 1, z: 1}
 --- !u!1 &1316749435118010086
 GameObject:
   m_ObjectHideFlags: 0

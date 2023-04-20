@@ -73,7 +73,7 @@ public class MainGame : MonoBehaviour
                     WorkBrenchName.SetActive(true);
                     CurrentItemCount = 0;
                     RequiredItemCount = 1;
-                    WordString = "¢i¢i¢i¢i¢i¢i¢i¢i¢i¢i";
+                    WordString = "||||||||||";
                     GameProcessID++;
                     
                 }

@@ -293,6 +293,7 @@ public class InventoryBehaviour : MonoBehaviour
                 TransformSetup transformSetup = childTransform.gameObject.GetComponent<TransformSetup>();
                 Vector3 rotate = transformSetup.getRotation();
                 Vector3 scale = transformSetup.getScale();
+                Vector3 position = transformSetup.getPosition();
                 switch (currentUsingId)
                 {
                     case 0:
@@ -303,10 +304,10 @@ public class InventoryBehaviour : MonoBehaviour
                         }
 
                         // Instantiate the child object and set its parent to the CamSlot1 GameObject
-                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.5f, -0.59f, 6f), Quaternion.Euler(rotate));
+                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
                         
                         slotTracker.transform.SetParent(camSlotTransforms[0]);
-                        slotTracker.transform.localPosition = new Vector3(-0.5f, -0.59f, 6f);
+                        slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
                         break;
                     case 1:
@@ -318,9 +319,9 @@ public class InventoryBehaviour : MonoBehaviour
 
 
                         // Instantiate the child object and set its parent to the CamSlot1 GameObject
-                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.25f  , -0.59f, 6f), Quaternion.Euler(rotate));
+                        slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
                         slotTracker.transform.SetParent(camSlotTransforms[1]);
-                        slotTracker.transform.localPosition = new Vector3(-0.25f, -0.59f, 6f);
+                        slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
 
 
@@ -334,9 +335,9 @@ public class InventoryBehaviour : MonoBehaviour
 
 
                             // Instantiate the child object and set its parent to the CamSlot1 GameObject
-                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(-0.584000027f, -0.59f, 6f), Quaternion.Euler(rotate));
+                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
                             slotTracker.transform.SetParent(camSlotTransforms[2]);
-                            slotTracker.transform.localPosition = new Vector3(-0.584000027f, -0.59f, 6f);
+                            slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
                         break;
                 }

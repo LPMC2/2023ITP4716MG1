@@ -38,6 +38,10 @@ public class GetWeapon : MonoBehaviour
         get { return RemainAmmo; }
         set { RemainAmmo = value; }
     }
+    public int getStoreWeaponID()
+    {
+        return StoreWeaponID;
+    }
     private void OnValidate()
     {
         // Show the name of the weapon corresponding to the ObtainWeaponID value
@@ -71,9 +75,11 @@ public bool isOriginal = false;
         Transform firstPersonController = player.transform.GetChild(0);
         Transform WeaponTransform = firstPersonController.GetChild(0);
         GunController PlayergunController = WeaponTransform.GetComponent<GunController>();
+
         if (gunController != null)
         {
             isSword = false;
+
 
             store[1] = TotalAmmo;
             store[0] = RemainAmmo;
@@ -86,16 +92,19 @@ public bool isOriginal = false;
         } else
         {
             isSword = true;
+
         }
         if (DropweaponObject != null)
         {
             GameObject DroppedWeapon = Instantiate(DropweaponObject);
             DroppedWeapon.transform.position = gameObject.transform.position;
             GetWeapon getWeapon = DroppedWeapon.GetComponent<GetWeapon>();
-            
-            getWeapon.RemainAmmo = RemainAmmo;
-            getWeapon.TotalAmmo = TotalAmmo;
-
+            if (isSword == false)
+            {
+                getWeapon.RemainAmmo = RemainAmmo;
+                getWeapon.TotalAmmo = TotalAmmo;
+            }
+            if(getWeapon.getStoreWeaponID() == 0) { Destroy(DroppedWeapon); }
             inventoryBehaviour.SetInventorySlot(CurrentSlot, StoreWeaponID, store[0], store[1], isSword);
             inventoryBehaviour.EquipWeapon(CurrentSlot);
 
