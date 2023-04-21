@@ -28,7 +28,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float SpawnTime;
     [SerializeField] private int SpawnCountLimit = 10;
     [SerializeField] private int SpawnAmout = 1;
-    [SerializeField, ReadOnly] private int SpawnCounter = 0;
+#if UNITY_EDITOR
+[ReadOnly]
+#endif
+    [SerializeField] private int SpawnCounter = 0;
     private int CurrentCounter;
     public List<MonsterData> Monsters
     {

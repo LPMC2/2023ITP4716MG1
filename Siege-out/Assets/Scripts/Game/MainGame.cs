@@ -13,6 +13,7 @@ public class MainGame : MonoBehaviour
     [SerializeField] private int RequiredItemCount = 7;
     [SerializeField] private GameObject SiegeMode1;
     [SerializeField] private GameObject SiegeMode2;
+    [SerializeField] private bool isCursor = false;
     private float GameTime;
     private int CurrentItemCount = 0;
     private PlayerUI playerUI;
@@ -33,6 +34,10 @@ public class MainGame : MonoBehaviour
     public int GetGameID()
     {
         return GameProcessID;
+    }
+    public void setCursor(bool BooleanDetect)
+    {
+        isCursor = BooleanDetect;
     }
     void Start()
     {
@@ -58,6 +63,15 @@ public class MainGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isCursor == false && Cursor.visible == true )
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        } else if (isCursor == true && Cursor.visible == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         switch(GameProcessID)
         {
             case 0:
@@ -135,21 +149,21 @@ public class MainGame : MonoBehaviour
     {
         if (isChose == false && GameProcessID ==2)
         {
-            FpsController.enabled = false;
+            
             Time.timeScale = 0.0f;
                 uiCanvasGroup.alpha = 1.0f;
                 uiCanvasGroup.interactable = true;
                 uiCanvasGroup.blocksRaycasts = true;
 
 
-            Cursor.visible = true;
+            setCursor(true);
             CurrentItemCount++;
             SiegeMenuUI.SetActive(true);
          if(Cursor.visible)
             {
                 Debug.Log("is visible");
             }
-            FpsController.enabled = true;
+          
         }
     }
     public void setMode1()
@@ -162,7 +176,7 @@ public class MainGame : MonoBehaviour
         uiCanvasGroup.alpha = 0.0f;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
-    
+        setCursor(false);
     }
     public void setMode2()
     {
@@ -175,7 +189,7 @@ public class MainGame : MonoBehaviour
         uiCanvasGroup.alpha = 0.0f;
         uiCanvasGroup.interactable = false;
         uiCanvasGroup.blocksRaycasts = false;
-   
+        setCursor(false);
     }
 
 }

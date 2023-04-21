@@ -99,10 +99,12 @@ public class InventoryBehaviour : MonoBehaviour
 {
 #pragma warning disable CS0067
     public event System.Action<int> WeaponIdChanged;
+    [Header("Other Settings")]
     public GameObject canvas;
     [SerializeField] private Sprite SlotNormal;
     [SerializeField] private Sprite SlotSelect;
-   [SerializeField] private Text[] slotTexts = new Text[3];
+    [SerializeField] private Camera gunCamera;
+    [SerializeField] private Text[] slotTexts = new Text[3];
     private int currentUsingId = 0;
     private Image crosshair;
     private float lastScrollTime = 0f;
@@ -187,10 +189,6 @@ public class InventoryBehaviour : MonoBehaviour
         UpdateInventory();
 
    
-        
-        if (canvas != null) {
-            Debug.Log("PlayerUI Found");
-        }
         if (canvas != null)
         {
             slotTexts[0] = canvas.transform.Find("Slot1/Clip").GetComponent<Text>();
@@ -265,7 +263,9 @@ public class InventoryBehaviour : MonoBehaviour
 
     public void EquipWeapon(int slot)
     {
-
+        gunCamera.enabled = false;
+        gunCamera.enabled = true;
+        gunCamera.Render();
         GunController currentWeaponController = GetComponentInChildren<GunController>();
         if (currentWeaponController != null)
         {
@@ -315,7 +315,11 @@ public class InventoryBehaviour : MonoBehaviour
 
                         // Instantiate the child object and set its parent to the CamSlot1 GameObject
                         slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
-                        
+                        slotTracker.layer = LayerMask.NameToLayer("Default");
+                        foreach (Transform child in slotTracker.transform)
+                        {
+                            child.gameObject.layer = LayerMask.NameToLayer("Default");
+                        }
                         slotTracker.transform.SetParent(camSlotTransforms[0]);
                         slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
@@ -330,6 +334,11 @@ public class InventoryBehaviour : MonoBehaviour
 
                         // Instantiate the child object and set its parent to the CamSlot1 GameObject
                         slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
+                        slotTracker.layer = LayerMask.NameToLayer("Default");
+                        foreach (Transform child in slotTracker.transform)
+                        {
+                            child.gameObject.layer = LayerMask.NameToLayer("Default");
+                        }
                         slotTracker.transform.SetParent(camSlotTransforms[1]);
                         slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
@@ -346,7 +355,12 @@ public class InventoryBehaviour : MonoBehaviour
 
                             // Instantiate the child object and set its parent to the CamSlot1 GameObject
                             slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
-                            slotTracker.transform.SetParent(camSlotTransforms[2]);
+                        slotTracker.layer = LayerMask.NameToLayer("Default");
+                        foreach (Transform child in slotTracker.transform)
+                        {
+                            child.gameObject.layer = LayerMask.NameToLayer("Default");
+                        }
+                        slotTracker.transform.SetParent(camSlotTransforms[2]);
                             slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
                         slotTracker.transform.localScale = scale;
                         break;
