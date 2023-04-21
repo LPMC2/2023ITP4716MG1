@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: -5982323319572816626}
   - component: {fileID: 744993755552222777}
   - component: {fileID: 7609984584940341942}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,9 +159,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4593130486874181694, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3959607030643234853, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921820741023791406, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0acc5fc79372be4498de77f6d6867f7, type: 3}

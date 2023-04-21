@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float SpawnTime;
     [SerializeField] private int SpawnCountLimit = 10;
     [SerializeField] private int SpawnAmout = 1;
-    private int SpawnCounter = 0;
+    [SerializeField, ReadOnly] private int SpawnCounter = 0;
     private int CurrentCounter;
     public List<MonsterData> Monsters
     {
@@ -42,28 +42,22 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("Spawn", 0f, SpawnTime);
     }
 
-
+    public void rmSpawnCounter()
+    {
+        SpawnCounter--;
+        if(SpawnCounter < 0) { SpawnCounter = 0; }
+    }
     private List<GameObject> spawnedMonsters = new List<GameObject>(); // List to keep track of spawned monsters
 
     void Spawn()
     {
-        CurrentCounter = 0;
-        for (int amount = 0; amount < IdList.Count; amount++)
+
+        if (SpawnCounter < SpawnCountLimit)
         {
-            foreach (int id in IdList)
-            {
-                if (IdList[amount] == IdList[id] && amount != id)
-                {
-                    CurrentCounter++;
-                }
-            }
-        }
-        if (CurrentCounter < SpawnCountLimit && SpawnCounter < SpawnCountLimit)
-        {
-            CurrentCounter = SpawnCounter;
+           
             for (int i = 0; i < SpawnAmout; i++)
             {
-                if (CurrentCounter < SpawnCountLimit && SpawnCounter < SpawnCountLimit)
+                if (SpawnCounter < SpawnCountLimit)
                 {
 
 
@@ -75,16 +69,17 @@ public class Spawner : MonoBehaviour
                             GameObject newMonster = Instantiate(monsterData.Monster, spawnPosition, Quaternion.identity) as GameObject;
                             Physics.IgnoreCollision(newMonster.GetComponent<Collider>(), GetComponent<Collider>());
                             MonsterId monsterId = newMonster.GetComponent<MonsterId>();
+                            if(newMonster != null)
+                            {
+                                SpawnCounter++;
+                            }
                             if (monsterId != null)
                             {
                                 IdList.Add(monsterId.GetID());
+                                
                             }
-                            AIController aiController = newMonster.GetComponent<AIController>();
-                            if (aiController != null)
-                            {
-                               
-                            }
-                            SpawnCounter++;
+
+                            
                             spawnedMonsters.Add(newMonster); // Add the spawned monster to the list
                             break;
                         }

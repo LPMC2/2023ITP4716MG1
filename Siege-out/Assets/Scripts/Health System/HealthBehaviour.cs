@@ -17,9 +17,11 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     [Header("Player Only Settings")]
     public Image frontHealthBar;
     public Image backHealthBar;
+    private GameObject SpawnerObject;
     // Start is called before the first frame update
     void Start()
     {
+        SpawnerObject = GameObject.Find("Monster Spawner");
         initialHealth = health;
     }
 
@@ -74,7 +76,11 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
             }
             else
             {
-                
+                if(gameObject.CompareTag("Enemy"))
+                {
+                    Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
+                    spawnerObj.rmSpawnCounter();
+                }
                 Destroy(gameObject);
             }
         }
@@ -136,6 +142,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
             healthBarSlider.value = Mathf.Lerp(healthBarSlider.value, health, lerpSpeed * Time.deltaTime);
             healthBarUI.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
+
     }
     private void UpdateHealthUI()
     {

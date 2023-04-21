@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4745074682721410984}
   - component: {fileID: 1890334669069167107}
   - component: {fileID: 7193849591927034549}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnergySword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,9 +256,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1014268425052216762, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 666602370706033372, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: acbb0e45330a8d4468546620649a848a, type: 3}
       propertyPath: m_Name
       value: Claymore
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444558461230370346, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742780737561719692, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487167654232718067, guid: acbb0e45330a8d4468546620649a848a, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acbb0e45330a8d4468546620649a848a, type: 3}

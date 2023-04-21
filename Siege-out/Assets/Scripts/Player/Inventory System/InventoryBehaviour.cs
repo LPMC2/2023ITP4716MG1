@@ -100,6 +100,8 @@ public class InventoryBehaviour : MonoBehaviour
 #pragma warning disable CS0067
     public event System.Action<int> WeaponIdChanged;
     public GameObject canvas;
+    [SerializeField] private Sprite SlotNormal;
+    [SerializeField] private Sprite SlotSelect;
    [SerializeField] private Text[] slotTexts = new Text[3];
     private int currentUsingId = 0;
     private Image crosshair;
@@ -118,6 +120,7 @@ public class InventoryBehaviour : MonoBehaviour
     [SerializeField] private int[] InitialInventorySlot = new int[3];
     private GameObject slotTracker;
     Transform[] camSlotTransforms = new Transform[3];
+    Transform[] OutlineSlotTransforms = new Transform[3];
     private bool isPickUp = false;
     public GameObject[] WeaponIds
     {
@@ -177,6 +180,9 @@ public class InventoryBehaviour : MonoBehaviour
         camSlotTransforms[0] = canvas.transform.Find("SlotTracker/CamSlot1").transform;
         camSlotTransforms[1] = canvas.transform.Find("SlotTracker/CamSlot2").transform;
         camSlotTransforms[2] = canvas.transform.Find("SlotTracker/CamSlot3").transform;
+        OutlineSlotTransforms[0] = canvas.transform.Find("Slot1/BgSlot1").transform;
+        OutlineSlotTransforms[1] = canvas.transform.Find("Slot2/BgSlot2").transform;
+        OutlineSlotTransforms[2] = canvas.transform.Find("Slot3/BgSlot3").transform;
 
         UpdateInventory();
 
@@ -259,6 +265,7 @@ public class InventoryBehaviour : MonoBehaviour
 
     public void EquipWeapon(int slot)
     {
+
         GunController currentWeaponController = GetComponentInChildren<GunController>();
         if (currentWeaponController != null)
         {
@@ -275,7 +282,10 @@ public class InventoryBehaviour : MonoBehaviour
 
         foreach (Transform child in FirstPersonCharacter.transform)
         {
-            Destroy(child.gameObject);
+            if (child.gameObject.GetComponent<GunController>() != null || child.gameObject.GetComponent<MeleeController>() != null)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         // Update the currentUsingId variable after updating the slot text for the previous weapon
@@ -388,6 +398,20 @@ public class InventoryBehaviour : MonoBehaviour
         
         for (int i = 0; i < 3; i++)
         {
+            if (OutlineSlotTransforms[i] != null)
+            {
+                Image image = OutlineSlotTransforms[i].GetComponent<Image>();
+                if (i == currentUsingId)
+                {
+                    image.sprite = SlotSelect;
+                    image.transform.localScale = new Vector3(1.19f, 1.2f, 1.2f);
+                }
+                else
+                {
+                    image.sprite = SlotNormal;
+                    image.transform.localScale = new Vector3(1.2524f, 1.2524f, 1.2524f);
+                }
+            }
             int weaponId = Inventory[i, 0];
             GameObject weapon = WeaponId[weaponId];
             GunController IDBehaviour = weapon.GetComponent<GunController>();

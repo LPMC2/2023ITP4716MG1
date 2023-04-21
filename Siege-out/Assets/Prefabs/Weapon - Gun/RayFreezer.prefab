@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8551341407452450130}
   - component: {fileID: 8551341407452450128}
   - component: {fileID: 8551341407452450131}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -3802499106369058237}
   - component: {fileID: 8551341407582578300}
   - component: {fileID: -3425338397183917550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RayFreezer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 8551341407820000427}
   - component: {fileID: 8551341407820000425}
   - component: {fileID: 8551341407820000424}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_right 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 8551341407820626976}
   - component: {fileID: 8551341407820626982}
   - component: {fileID: 8551341407820626977}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun_Stock_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 8551341407869777064}
   - component: {fileID: 8551341407869777065}
   - component: {fileID: 5330386748399431170}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ray_Freezer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 8551341407930788129}
   - component: {fileID: 8551341407930788135}
   - component: {fileID: 8551341407930788134}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head(Not Scope)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 8551341408047184396}
   - component: {fileID: 8551341408047184498}
   - component: {fileID: 8551341408047184397}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_right 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 8551341408088353135}
   - component: {fileID: 8551341408088353133}
   - component: {fileID: 8551341408088353132}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 8551341408180080206}
   - component: {fileID: 8551341408180080204}
   - component: {fileID: 8551341408180080207}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 8551341408344791349}
   - component: {fileID: 8551341408344791355}
   - component: {fileID: 8551341408344791354}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger_Inner_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 8551341408592381843}
   - component: {fileID: 8551341408592381841}
   - component: {fileID: 8551341408592381840}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 8551341408703643328}
   - component: {fileID: 8551341408703643334}
   - component: {fileID: 8551341408703643329}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 8551341408820743960}
   - component: {fileID: 8551341408820743966}
   - component: {fileID: 8551341408820743961}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 8551341408864943056}
   - component: {fileID: 8551341408864943062}
   - component: {fileID: 8551341408864943057}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 8551341408944521723}
   - component: {fileID: 8551341408944521721}
   - component: {fileID: 8551341408944521720}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body_Decoration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1338,7 +1338,7 @@ GameObject:
   - component: {fileID: 8551341408960644636}
   - component: {fileID: 8551341408960644610}
   - component: {fileID: 8551341408960644637}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Clip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   - component: {fileID: 8551341409044846868}
   - component: {fileID: 8551341409044846874}
   - component: {fileID: 8551341409044846869}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,7 +1504,7 @@ GameObject:
   - component: {fileID: 8551341409088867798}
   - component: {fileID: 8551341409088867796}
   - component: {fileID: 8551341409088867799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 8551341409167603158}
   - component: {fileID: 8551341409167603156}
   - component: {fileID: 8551341409167603159}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Snowflake_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1675,7 +1675,7 @@ GameObject:
   - component: {fileID: 8551341409267405988}
   - component: {fileID: 8551341409267405994}
   - component: {fileID: 8551341409267405989}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Handle_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,7 +1759,7 @@ GameObject:
   - component: {fileID: 8551341409390509394}
   - component: {fileID: 8551341409390509392}
   - component: {fileID: 8551341409390509395}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1841,7 +1841,7 @@ GameObject:
   - component: {fileID: 8551341409436711944}
   - component: {fileID: 8551341409436711950}
   - component: {fileID: 8551341409436711945}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Handle_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,7 +1923,7 @@ GameObject:
   - component: {fileID: 8551341409488549341}
   - component: {fileID: 8551341409488549315}
   - component: {fileID: 8551341409488549314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head_Front&Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 8551341409567638880}
   - component: {fileID: 8551341409567638886}
   - component: {fileID: 8551341409567638881}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun_Stock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2134,6 +2134,10 @@ PrefabInstance:
       value: MuzzleFlash
       objectReference: {fileID: 0}
     - target: {fileID: 1967996603127813122, guid: 74e57a2cf36ac3a40be9818ee142bed0, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967996603127813122, guid: 74e57a2cf36ac3a40be9818ee142bed0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2203,6 +2207,10 @@ PrefabInstance:
     - target: {fileID: 6000528792287603255, guid: 362a819054f2ae447987b8975499a141, type: 3}
       propertyPath: m_Name
       value: Ice_Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000528792287603255, guid: 362a819054f2ae447987b8975499a141, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6000528792287603255, guid: 362a819054f2ae447987b8975499a141, type: 3}
       propertyPath: m_IsActive

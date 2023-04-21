@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1316749435118010104}
   - component: {fileID: 1316749435118010105}
   - component: {fileID: -577965170409371455}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuzzleFlashPraticle
       objectReference: {fileID: 0}
+    - target: {fileID: 571340168756646625, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3798509493274077679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
       propertyPath: playOnAwake
       value: 1
@@ -337,9 +341,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7862391691550088030, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1916899210259106318, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 52361805505633545, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
       propertyPath: m_Name
       value: Pistol_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144394004440419581, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391d35c6f0e46c04b97ed14a9bbb0313, type: 3}
@@ -407,6 +431,10 @@ PrefabInstance:
     - target: {fileID: 1967996603127813122, guid: 74e57a2cf36ac3a40be9818ee142bed0, type: 3}
       propertyPath: m_Name
       value: MuzzleLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967996603127813122, guid: 74e57a2cf36ac3a40be9818ee142bed0, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1967996603127813122, guid: 74e57a2cf36ac3a40be9818ee142bed0, type: 3}
       propertyPath: m_IsActive
