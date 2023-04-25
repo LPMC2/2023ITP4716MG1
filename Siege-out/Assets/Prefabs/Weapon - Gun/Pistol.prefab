@@ -60,7 +60,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316749435118010086}
-  m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
+  m_LocalRotation: {x: 0.002007169, y: 0, z: 0, w: 0.99999803}
   m_LocalPosition: {x: 0.467, y: -0.481, z: 0.769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -68,7 +68,7 @@ Transform:
   - {fileID: 5450047026959950917}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.23, y: 0, z: 0}
 --- !u!114 &1316749435118010104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,8 +114,9 @@ MonoBehaviour:
   ShootFunction:
     m_PersistentCalls:
       m_Calls: []
-  AimPosition: {x: -0.0255, y: -0.361, z: 0.765}
+  AimPosition: {x: -0.0262, y: -0.351, z: 0.5}
   BulletSpreadMultiplier: 0.5
+  SpeedMultiplier: 0.95
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 1240287873935565395}
   SwitchingCD: 0.5

@@ -16,6 +16,7 @@ public class MeleeController : MonoBehaviour
     [Header("Customization Settings")]
     [SerializeField] private UnityEvent AttackFunction;
     [SerializeField] private UnityEvent<GameObject> HitFunction;
+    private GameObject Player;
     public enum AttackModeType
     {
         Sword,
@@ -26,9 +27,14 @@ public class MeleeController : MonoBehaviour
     public GameObject Weapon;
     [SerializeField] private AttackModeType AttackMode;
     private bool isAttack = false;
+    [Header("Other Settings")]
+    [SerializeField] private float SpeedMultiplier = 1f;
     private void Start()
     {
+        Player = GameObject.Find("FPSController");
         audioSource = GetComponent<AudioSource>();
+        PlayerMotor playerMotor = Player.GetComponent<PlayerMotor>();
+        playerMotor.setSpeed(SpeedMultiplier);
     }
     void Update()
     {
@@ -132,29 +138,32 @@ public class MeleeController : MonoBehaviour
     {
        
         Animator weaponAnimator = Weapon.GetComponent<Animator>();
-        float speedMultiplier = (1.0f / AttackSpeed);
-        weaponAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
-        switch (AttackMode)
+        if (weaponAnimator != null)
         {
-            case AttackModeType.Sword:
-                Weapon.GetComponent<Animator>().Play("SwordSwing");
-                break;
-            case AttackModeType.Knife:
-                Weapon.GetComponent<Animator>().Play("KnifeSwing");
-                break;
-            case AttackModeType.HeavyStrike:
-                Weapon.GetComponent<Animator>().Play("HeavySwing");
-                break;
-            default:
-                Debug.LogWarning("Invalid AttackMode: " + AttackMode);
-                break;
+            float speedMultiplier = (1.0f / AttackSpeed);
+            weaponAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
+            switch (AttackMode)
+            {
+                case AttackModeType.Sword:
+                    Weapon.GetComponent<Animator>().Play("SwordSwing");
+                    break;
+                case AttackModeType.Knife:
+                    Weapon.GetComponent<Animator>().Play("KnifeSwing");
+                    break;
+                case AttackModeType.HeavyStrike:
+                    Weapon.GetComponent<Animator>().Play("HeavySwing");
+                    break;
+                default:
+                    Debug.LogWarning("Invalid AttackMode: " + AttackMode);
+                    break;
+            }
+
+
+
+
+            yield return new WaitForSeconds(weaponAnimator.GetCurrentAnimatorStateInfo(0).length / speedMultiplier);
+            Weapon.GetComponent<Animator>().Play("Idle");
         }
-
- 
-
-        
-        yield return new WaitForSeconds(weaponAnimator.GetCurrentAnimatorStateInfo(0).length / speedMultiplier);
-        Weapon.GetComponent<Animator>().Play("Idle");
     }
 
 

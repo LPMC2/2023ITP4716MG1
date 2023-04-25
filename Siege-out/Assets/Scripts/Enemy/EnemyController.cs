@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] public AttackType attackType;
     [SerializeField] public ProjectileType projectileType;
     [SerializeField] private float damage;
+    [SerializeField] private float preAttackCD;
     [SerializeField] private float attackCD;
   
     [SerializeField] private GameObject projectileObject;
@@ -17,10 +18,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float ProjectileSpeed = 5f;
     [SerializeField] private float AttackAngleMultiplier = 1f;
     [SerializeField] private float maxTime;
+    [SerializeField] private Vector3 ProjectileOffset;
     [SerializeField] private bool isAreaDamage = false;
     [SerializeField] private float AOERadius = 1f;
     [SerializeField]
     private LayerMask obstacleMask;
+    private Animator enemyAnimator;
+    [Header("Animation")]
+    [SerializeField] private GameObject AnimateObject;
     public enum AttackType
     {
         Melee,
@@ -32,7 +37,18 @@ public class EnemyController : MonoBehaviour
         InstantForce
     }
     public ProjectileType CurrentAttackType { get; set; }
-
+    public void changeAttackType(int type)
+    {
+        switch (type) {
+            case 1:
+        
+                attackType = AttackType.Melee;
+                break;
+            case 2:
+                attackType = AttackType.Ranged;
+                break;
+        }
+    }
     Transform target;
     NavMeshAgent agent;
     // Start is called before the first frame update
@@ -40,8 +56,33 @@ public class EnemyController : MonoBehaviour
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        if (AnimateObject != null)
+        {
+            enemyAnimator = AnimateObject.GetComponent<Animator>();
+        }
     }
-
+    public void setAttackData(float switchDamage, float switchAttackCD, float switchPreAttackCD)
+    {
+        damage = switchDamage;
+        attackCD = switchAttackCD;
+        preAttackCD = switchPreAttackCD;
+    }
+    public float getDamage()
+    {
+        return damage;
+    }
+    public float getAttackCD()
+    {
+        return attackCD;
+    }
+    public float getPreAttackCD()
+    {
+        return preAttackCD;
+    }
+    public Transform getTarget()
+    {
+        return target;
+    } 
     // Update is called once per frame
     void Update()
     {
@@ -51,18 +92,45 @@ public class EnemyController : MonoBehaviour
             agent.SetDestination(target.position);
             if (distance <= agent.stoppingDistance)
             {
+
                 //Attack the target
                 FaceTarget();
                 StartAttack();
+            } else if (distance > agent.stoppingDistance)
+            {
+                if (AnimateObject != null)
+                {
+                    
+                    StartCoroutine(PlayWalkAnimation());
+                }
             }
 
         }
+        else
+        {
+            if (enemyAnimator != null)
+            {
+                enemyAnimator.Play("Idle");
+            }
+        }
+    }
+    private IEnumerator PlayWalkAnimation()
+    {
+        while (true)
+        {
+            if (enemyAnimator != null)
+            {
+                // Play the "Walk" animation clip
+                float distance = Vector3.Distance(target.position, transform.position);
+                if (distance > agent.stoppingDistance)
+                {
+                    enemyAnimator.Play("Walk");
+                }
+            }
 
-
-
-        
-        
-       
+            // Wait until the animation clip ends
+            yield return new WaitForSeconds(enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
+        }
     }
     void FaceTarget()
     {
@@ -86,25 +154,46 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
-       
+
         if (attackType == AttackType.Melee)
         {
+            if (enemyAnimator != null)
+            {
+                // Play the "Walk" animation clip
+                enemyAnimator.Play("Idle");
+                float speedMultiplier = 1.0f / attackCD;
+                enemyAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
+                enemyAnimator.Play("AttackMelee");
+            }
+            yield return new WaitForSeconds(preAttackCD);
             IDamageable damageable = target.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
             }
+
         }
         else if (attackType == AttackType.Ranged)
         {
+            if (enemyAnimator != null)
+            {
+                // Play the "Walk" animation clip
+                enemyAnimator.Play("Idle");
+                float speedMultiplier = 1.0f / attackCD;
+                enemyAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
+                Debug.Log("ATTACK");
+                enemyAnimator.Play("AttackRanged");
+            }
+            yield return new WaitForSeconds(preAttackCD);
             if (projectileType == ProjectileType.StraightForward)
             {
 
-                GameObject projectileInstance = Instantiate(projectileObject, transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(projectileObject, transform.position + transform.TransformDirection(ProjectileOffset), Quaternion.identity);
                 Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                 if (projectileScript != null)
                 {
                     projectileScript.SetTarget(target.gameObject, gameObject);
+                    projectileInstance.transform.LookAt(target.position);
                     projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
                     projectileScript.SetSpeed(ProjectileSpeed);
                     projectileScript.SetDamage(damage);

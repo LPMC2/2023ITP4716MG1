@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 150
   healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
+  healthbarOffset: {x: 0, y: 1, z: 0}
   chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
@@ -165,16 +166,19 @@ MonoBehaviour:
   attackType: 1
   projectileType: 0
   damage: 10
+  preAttackCD: 0
   attackCD: 0.8
   projectileObject: {fileID: 8412791854856054736, guid: 802b792517f9d2943ad371df91430860, type: 3}
   ProjectileSpeed: 3000
   AttackAngleMultiplier: 1
   maxTime: 10
+  ProjectileOffset: {x: 0, y: 0, z: 0}
   isAreaDamage: 1
   AOERadius: 2
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  AnimateObject: {fileID: 0}
 --- !u!195 &3672682339476223114
 NavMeshAgent:
   m_ObjectHideFlags: 0

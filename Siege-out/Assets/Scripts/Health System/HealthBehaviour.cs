@@ -9,6 +9,8 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     private float initialHealth;
     private float damage = 0;
     public GameObject healthBarPrefab;
+    [SerializeField] private Vector3 healthbarOffset;
+    [SerializeField] private float DeathTime = 5f;
     private GameObject healthBarUI;
     private Slider healthBarSlider;
     private float lerpSpeed = 0.1f;
@@ -18,11 +20,13 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     public Image frontHealthBar;
     public Image backHealthBar;
     private GameObject SpawnerObject;
+    private Animator MobAnimator;
     // Start is called before the first frame update
     void Start()
     {
         SpawnerObject = GameObject.Find("Monster Spawner");
         initialHealth = health;
+        
     }
 
     public void SetDamage(float damageAmount)
@@ -81,7 +85,19 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                     Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
                     spawnerObj.rmSpawnCounter();
                 }
-                Destroy(gameObject);
+                MobAnimator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+                if (MobAnimator != null)
+                {
+                    EnemyController enemyController = GetComponent<EnemyController>();
+                    enemyController.enabled = false;
+                    MobAnimator.Play("Death");
+                   
+                    Destroy(gameObject, DeathTime);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         if (gameObject.CompareTag("Player"))
@@ -101,7 +117,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                
                 healthBarUI = Instantiate(healthBarPrefab, transform.position, Quaternion.identity) as GameObject;
                 healthBarUI.transform.SetParent(transform);
-                healthBarUI.transform.localPosition = new Vector3(0, 1, 0); // Set the position to be above the enemy's head
+                healthBarUI.transform.localPosition = new Vector3(healthbarOffset.x, healthbarOffset.y, healthbarOffset.z); // Set the position to be above the enemy's head
                 if (gameObject.CompareTag("TargetWall"))
                 {
                     healthBarUI.transform.localPosition = new Vector3(0f, 0.18f, -0.9f);

@@ -114,8 +114,9 @@ MonoBehaviour:
   ShootFunction:
     m_PersistentCalls:
       m_Calls: []
-  AimPosition: {x: 0.25, y: -2.08, z: 3.06}
+  AimPosition: {x: 0.25, y: -2.08, z: 1.86}
   BulletSpreadMultiplier: 0.3
+  SpeedMultiplier: 0.4
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 6918557245949558577}
   SwitchingCD: 1.5
@@ -238,6 +239,18 @@ PrefabInstance:
     - target: {fileID: 8450712812053168679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450712812053168679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3706868
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450712812053168679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3706868
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450712812053168679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.3706868
       objectReference: {fileID: 0}
     - target: {fileID: 8450712812053168679, guid: 85901198c48deb348ab00b3a63a1b158, type: 3}
       propertyPath: m_LocalPosition.x

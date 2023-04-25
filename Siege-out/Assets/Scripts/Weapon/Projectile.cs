@@ -104,11 +104,14 @@ public class Projectile : MonoBehaviour
             Debug.Log("Wall Hit");
             if (ParticleEffect && AOE > 0)
             {
-                GameObject particleObject = Instantiate(ParticleEffect, transform.position, Quaternion.identity);
+                if (ParticleEffect != null)
+                {
+                    GameObject particleObject = Instantiate(ParticleEffect, transform.position, Quaternion.identity);
 
-                // Detach the particle effect from the projectile so it can continue playing
-                particleObject.transform.parent = null;
-                Destroy(particleObject, 5);
+                    // Detach the particle effect from the projectile so it can continue playing
+                    particleObject.transform.parent = null;
+                    Destroy(particleObject, 5);
+                }
             }
             Collider[] colliders = Physics.OverlapSphere(transform.position, AOE);
 

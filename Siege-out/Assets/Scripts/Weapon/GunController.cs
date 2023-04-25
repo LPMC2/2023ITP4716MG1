@@ -38,7 +38,7 @@ public class GunController : MonoBehaviour
     [SerializeField] private float BulletSpreadMultiplier = 1f;
     private Vector3 OriginalPosition;
     [Header("Other Settings")]
-   
+    [SerializeField] private float SpeedMultiplier = 1f;
     [SerializeField] private GameObject hitFX;
     public GameObject Gun;
     [SerializeField] private float SwitchingCD;
@@ -97,7 +97,8 @@ public class GunController : MonoBehaviour
         GetSound();
         MuzzleFlash.Stop();
         OriginalPosition = transform.localPosition;
-
+        PlayerMotor playerMotor = Player.GetComponent<PlayerMotor>();
+        playerMotor.setSpeed(SpeedMultiplier);
     }
     private void GetSound()
     {

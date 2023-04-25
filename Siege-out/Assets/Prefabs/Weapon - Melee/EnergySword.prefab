@@ -75,6 +75,7 @@ MonoBehaviour:
       m_Calls: []
   Weapon: {fileID: 3386095169239103428}
   AttackMode: 0
+  SpeedMultiplier: 0.8
 --- !u!95 &1890334669069167107
 Animator:
   serializedVersion: 3

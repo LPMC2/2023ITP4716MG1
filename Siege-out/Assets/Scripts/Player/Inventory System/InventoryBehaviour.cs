@@ -140,7 +140,88 @@ public class InventoryBehaviour : MonoBehaviour
         {
             Inventory[i, 0] = InitialInventorySlot[i];
         }
-    }
+        for (int i = 0; i < 3; i++)
+        {
+            int weaponId = Inventory[i, 0];
+            GameObject weapon = WeaponId[weaponId];
+            if (weapon != null)
+            {
+                if (weapon.transform.childCount > 0)
+                {
+
+
+                    Transform childTransform = weapon.transform.GetChild(0);
+
+                    TransformSetup transformSetup = childTransform.gameObject.GetComponent<TransformSetup>();
+                    Vector3 rotate = transformSetup.getRotation();
+                    Vector3 scale = transformSetup.getScale();
+                    Vector3 position = transformSetup.getPosition();
+
+                    switch (i)
+                    {
+                        case 0:
+
+                            for (int n = camSlotTransforms[0].childCount - 1; n >= 0; n--)
+                            {
+                                Destroy(camSlotTransforms[0].GetChild(n).gameObject);
+                            }
+
+                            // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
+                            slotTracker.layer = LayerMask.NameToLayer("Default");
+                            foreach (Transform child in slotTracker.transform)
+                            {
+                                child.gameObject.layer = LayerMask.NameToLayer("Default");
+                            }
+                            slotTracker.transform.SetParent(camSlotTransforms[0]);
+                            slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
+                            slotTracker.transform.localScale = scale;
+                            break;
+                        case 1:
+
+                            for (int n = camSlotTransforms[1].childCount - 1; n >= 0; n--)
+                            {
+                                Destroy(camSlotTransforms[1].GetChild(n).gameObject);
+                            }
+
+
+                            // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
+                            slotTracker.layer = LayerMask.NameToLayer("Default");
+                            foreach (Transform child in slotTracker.transform)
+                            {
+                                child.gameObject.layer = LayerMask.NameToLayer("Default");
+                            }
+                            slotTracker.transform.SetParent(camSlotTransforms[1]);
+                            slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
+                            slotTracker.transform.localScale = scale;
+
+
+                            break;
+                        case 2:
+
+                            for (int n = camSlotTransforms[2].childCount - 1; n >= 0; n--)
+                            {
+                                Destroy(camSlotTransforms[2].GetChild(n).gameObject);
+                            }
+
+
+                            // Instantiate the child object and set its parent to the CamSlot1 GameObject
+                            slotTracker = Instantiate(childTransform.gameObject, new Vector3(position.x, position.y, position.z), Quaternion.Euler(rotate));
+                            slotTracker.layer = LayerMask.NameToLayer("Default");
+                            foreach (Transform child in slotTracker.transform)
+                            {
+                                child.gameObject.layer = LayerMask.NameToLayer("Default");
+                            }
+                            slotTracker.transform.SetParent(camSlotTransforms[2]);
+                            slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
+                            slotTracker.transform.localScale = scale;
+                            break;
+                    }
+                }
+            }
+        }
+        }
     public void SetInventorySlot(int currentID, int id, int rAmmo, int tAmmo, bool IsSword)
     {
         if (IsSword  == false) { 
@@ -282,7 +363,7 @@ public class InventoryBehaviour : MonoBehaviour
 
         foreach (Transform child in FirstPersonCharacter.transform)
         {
-            if (child.gameObject.GetComponent<GunController>() != null || child.gameObject.GetComponent<MeleeController>() != null)
+            if (child.gameObject.GetComponent<GunController>() != null || child.gameObject.GetComponent<MeleeController>() != null || child.gameObject.GetComponent<GetWeapon>() != null)
             {
                 Destroy(child.gameObject);
             }
@@ -299,7 +380,7 @@ public class InventoryBehaviour : MonoBehaviour
             {
                 
                 Transform childTransform = weapon.transform.GetChild(0);
-                Debug.Log(childTransform.gameObject + " - 1");
+                
                 TransformSetup transformSetup = childTransform.gameObject.GetComponent<TransformSetup>();
                 Vector3 rotate = transformSetup.getRotation();
                 Vector3 scale = transformSetup.getScale();

@@ -14,6 +14,7 @@ public class EnemyControllerEditor : Editor
     SerializedProperty projectileType;
     SerializedProperty damage;
     SerializedProperty attackCD;
+    SerializedProperty preAttackCD;
     SerializedProperty projectileObject;
     SerializedProperty maxTime;
     SerializedProperty ProjectileSpeed;
@@ -21,7 +22,8 @@ public class EnemyControllerEditor : Editor
     SerializedProperty isAreaDamage;
     SerializedProperty AOERadius;
     SerializedProperty obstacleMask;
-
+    SerializedProperty projectileOffset;
+     SerializedProperty animateObject;
     private void OnEnable()
     {
         lookRadius = serializedObject.FindProperty("lookRadius");
@@ -29,6 +31,7 @@ public class EnemyControllerEditor : Editor
         projectileType = serializedObject.FindProperty("projectileType");
         damage = serializedObject.FindProperty("damage");
         attackCD = serializedObject.FindProperty("attackCD");
+        preAttackCD = serializedObject.FindProperty("preAttackCD");
         projectileObject = serializedObject.FindProperty("projectileObject");
         maxTime = serializedObject.FindProperty("maxTime");
         ProjectileSpeed = serializedObject.FindProperty("ProjectileSpeed");
@@ -36,6 +39,8 @@ public class EnemyControllerEditor : Editor
         isAreaDamage = serializedObject.FindProperty("isAreaDamage");
         AOERadius = serializedObject.FindProperty("AOERadius");
         obstacleMask = serializedObject.FindProperty("obstacleMask");
+        projectileOffset = serializedObject.FindProperty("ProjectileOffset");
+        animateObject = serializedObject.FindProperty("AnimateObject");
     }
 
     public override void OnInspectorGUI()
@@ -46,18 +51,15 @@ public class EnemyControllerEditor : Editor
 
         EditorGUILayout.PropertyField(attackType);
 
-        if (attackType.enumValueIndex == (int)EnemyController.AttackType.Melee)
-        {
             EditorGUILayout.PropertyField(damage);
+            EditorGUILayout.PropertyField(preAttackCD);
             EditorGUILayout.PropertyField(attackCD);
-        }
-        else if (attackType.enumValueIndex == (int)EnemyController.AttackType.Ranged)
+        if (attackType.enumValueIndex == (int)EnemyController.AttackType.Ranged)
         {
-            EditorGUILayout.PropertyField(damage);
-            EditorGUILayout.PropertyField(attackCD);
             EditorGUILayout.PropertyField(projectileType);
             EditorGUILayout.PropertyField(projectileObject);
             EditorGUILayout.PropertyField(maxTime);
+            EditorGUILayout.PropertyField(projectileOffset);
             EditorGUILayout.PropertyField(obstacleMask);
             EditorGUILayout.PropertyField(ProjectileSpeed);
             EditorGUILayout.PropertyField(isAreaDamage);
@@ -71,7 +73,7 @@ public class EnemyControllerEditor : Editor
                 EditorGUILayout.PropertyField(AttackAngleMultiplier);
             }
         }
-
+        EditorGUILayout.PropertyField(animateObject);
         serializedObject.ApplyModifiedProperties();
     }
 }

@@ -10,7 +10,7 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("UpdateCameraPosition", 0.1f, 0.1f);
     }
     void Update()
     {
@@ -25,7 +25,7 @@ public class FollowPlayer : MonoBehaviour
     }
     // Update is called once per frame
     private Vector3 offset = new Vector3(0, 0, 0);
-    void LateUpdate()
+    void UpdateCameraPosition()
     {
         transform.position = player.transform.position + offset;
     }

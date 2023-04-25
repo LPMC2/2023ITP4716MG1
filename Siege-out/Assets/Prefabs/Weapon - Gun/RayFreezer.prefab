@@ -164,6 +164,7 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: -0.005, y: -0.933, z: 0.7}
   BulletSpreadMultiplier: 0.8
+  SpeedMultiplier: 0.7
   hitFX: {fileID: 0}
   Gun: {fileID: 8551341407869777067}
   SwitchingCD: 0.1

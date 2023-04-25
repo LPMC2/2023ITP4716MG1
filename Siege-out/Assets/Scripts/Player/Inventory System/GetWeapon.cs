@@ -73,7 +73,7 @@ public bool isOriginal = false;
        
         GunController gunController = weaponObject.GetComponent<GunController>();
         Transform firstPersonController = player.transform.GetChild(0);
-        Transform WeaponTransform = firstPersonController.GetChild(0);
+        Transform WeaponTransform = firstPersonController.GetChild(1);
         GunController PlayergunController = WeaponTransform.GetComponent<GunController>();
 
         if (gunController != null)
@@ -85,8 +85,10 @@ public bool isOriginal = false;
             store[0] = RemainAmmo;
             if (PlayergunController != null)
             {
+
                 TotalAmmo = PlayergunController.GetTotalAmmo();
                 RemainAmmo = PlayergunController.GetRemainAmmo();
+
             }
             
         } else

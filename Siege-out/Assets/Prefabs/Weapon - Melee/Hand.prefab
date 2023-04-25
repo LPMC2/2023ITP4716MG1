@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104368931145536940}
   - component: {fileID: 4738186067498597169}
+  - component: {fileID: 8755327686711642311}
   m_Layer: 11
   m_Name: Hand
   m_TagString: Untagged
@@ -47,3 +48,31 @@ MonoBehaviour:
   RemainAmmo: 0
   TotalAmmo: 0
   isOriginal: 0
+--- !u!114 &8755327686711642311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4901705918802149363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80deec6c7f25f14e84555432bd32740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSpeed: 0
+  AttackCD: 1
+  Damage: 0
+  hitboxSizeX: 0
+  hitboxSizeY: 0
+  maxDistance: 0
+  AttackSound: {fileID: 0}
+  AttackFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  HitFunction:
+    m_PersistentCalls:
+      m_Calls: []
+  Weapon: {fileID: 4901705918802149363}
+  AttackMode: 0
+  SpeedMultiplier: 1
