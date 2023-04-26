@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 11891640}
   - component: {fileID: 11891639}
   - component: {fileID: 11891638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2060,7 +2060,7 @@ GameObject:
   - component: {fileID: 285797293}
   - component: {fileID: 285797292}
   - component: {fileID: 285797291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2186,7 +2186,7 @@ GameObject:
   - component: {fileID: 295552827}
   - component: {fileID: 295552826}
   - component: {fileID: 295552825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (45)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2347,6 +2347,10 @@ PrefabInstance:
     - target: {fileID: 8662372224842791299, guid: 69ccd33f281846446b1c8f11dfdb905f, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.5706562
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662372225039772613, guid: 69ccd33f281846446b1c8f11dfdb905f, type: 3}
+      propertyPath: m_Text
+      value: Pick up / Interact
       objectReference: {fileID: 0}
     - target: {fileID: 8662372225169020831, guid: 69ccd33f281846446b1c8f11dfdb905f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2640,7 +2644,7 @@ GameObject:
   - component: {fileID: 341643650}
   - component: {fileID: 341643649}
   - component: {fileID: 341643648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3511,7 +3515,7 @@ GameObject:
   - component: {fileID: 547387640}
   - component: {fileID: 547387639}
   - component: {fileID: 547387638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4064,7 +4068,7 @@ GameObject:
   - component: {fileID: 612556639}
   - component: {fileID: 612556638}
   - component: {fileID: 612556637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4160,7 +4164,7 @@ GameObject:
   - component: {fileID: 616311341}
   - component: {fileID: 616311340}
   - component: {fileID: 616311339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4515,7 +4519,7 @@ GameObject:
   - component: {fileID: 656995399}
   - component: {fileID: 656995398}
   - component: {fileID: 656995397}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4611,7 +4615,7 @@ GameObject:
   - component: {fileID: 659956974}
   - component: {fileID: 659956973}
   - component: {fileID: 659956972}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5455,7 +5459,7 @@ GameObject:
   - component: {fileID: 732078456}
   - component: {fileID: 732078455}
   - component: {fileID: 732078454}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6545,7 +6549,7 @@ GameObject:
   - component: {fileID: 830189948}
   - component: {fileID: 830189947}
   - component: {fileID: 830189946}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6737,7 +6741,7 @@ GameObject:
   - component: {fileID: 852524005}
   - component: {fileID: 852524004}
   - component: {fileID: 852524003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6851,7 +6855,7 @@ GameObject:
   - component: {fileID: 862684499}
   - component: {fileID: 862684498}
   - component: {fileID: 862684497}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7648,7 +7652,7 @@ GameObject:
   - component: {fileID: 980956264}
   - component: {fileID: 980956263}
   - component: {fileID: 980956262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8492,7 +8496,7 @@ GameObject:
   - component: {fileID: 1133369396}
   - component: {fileID: 1133369395}
   - component: {fileID: 1133369394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8637,7 +8641,7 @@ GameObject:
   - component: {fileID: 1146275532}
   - component: {fileID: 1146275531}
   - component: {fileID: 1146275530}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9514,7 +9518,7 @@ GameObject:
   - component: {fileID: 1251138708}
   - component: {fileID: 1251138707}
   - component: {fileID: 1251138706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9610,7 +9614,7 @@ GameObject:
   - component: {fileID: 1251702973}
   - component: {fileID: 1251702972}
   - component: {fileID: 1251702971}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9706,7 +9710,7 @@ GameObject:
   - component: {fileID: 1278357349}
   - component: {fileID: 1278357348}
   - component: {fileID: 1278357347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9965,7 +9969,7 @@ GameObject:
   - component: {fileID: 1340486539}
   - component: {fileID: 1340486538}
   - component: {fileID: 1340486537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10700,7 +10704,7 @@ GameObject:
   - component: {fileID: 1392488397}
   - component: {fileID: 1392488396}
   - component: {fileID: 1392488395}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10974,7 +10978,7 @@ GameObject:
   - component: {fileID: 1466136450}
   - component: {fileID: 1466136449}
   - component: {fileID: 1466136448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12030,7 +12034,7 @@ GameObject:
   - component: {fileID: 1652127734}
   - component: {fileID: 1652127733}
   - component: {fileID: 1652127732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12696,7 +12700,7 @@ GameObject:
   - component: {fileID: 1721012563}
   - component: {fileID: 1721012562}
   - component: {fileID: 1721012561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12792,7 +12796,7 @@ GameObject:
   - component: {fileID: 1725940704}
   - component: {fileID: 1725940703}
   - component: {fileID: 1725940702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13002,7 +13006,7 @@ GameObject:
   - component: {fileID: 1731574866}
   - component: {fileID: 1731574865}
   - component: {fileID: 1731574864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13194,7 +13198,7 @@ GameObject:
   - component: {fileID: 1737494907}
   - component: {fileID: 1737494906}
   - component: {fileID: 1737494905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13756,7 +13760,7 @@ GameObject:
   - component: {fileID: 1770018712}
   - component: {fileID: 1770018711}
   - component: {fileID: 1770018710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14289,7 +14293,7 @@ GameObject:
   - component: {fileID: 1845999704}
   - component: {fileID: 1845999703}
   - component: {fileID: 1845999702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14458,7 +14462,7 @@ GameObject:
   - component: {fileID: 1865084385}
   - component: {fileID: 1865084384}
   - component: {fileID: 1865084383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14862,7 +14866,7 @@ GameObject:
   - component: {fileID: 1952112293}
   - component: {fileID: 1952112292}
   - component: {fileID: 1952112291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (46)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15254,7 +15258,7 @@ GameObject:
   - component: {fileID: 1981339223}
   - component: {fileID: 1981339222}
   - component: {fileID: 1981339221}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15355,7 +15359,7 @@ GameObject:
   - component: {fileID: 1997697753}
   - component: {fileID: 1997697752}
   - component: {fileID: 1997697751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15537,7 +15541,7 @@ GameObject:
   - component: {fileID: 2037993779}
   - component: {fileID: 2037993778}
   - component: {fileID: 2037993777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16207,7 +16211,7 @@ GameObject:
   - component: {fileID: 2100941764}
   - component: {fileID: 2100941763}
   - component: {fileID: 2100941762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16809,7 +16813,7 @@ GameObject:
   - component: {fileID: 2141710851}
   - component: {fileID: 2141710850}
   - component: {fileID: 2141710849}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Can not pick up box (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19372,7 +19376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1265182799794365477, guid: c262e96a3118e2643a11c8f972475061, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.4
+      value: 50.26
       objectReference: {fileID: 0}
     - target: {fileID: 1265182799794365477, guid: c262e96a3118e2643a11c8f972475061, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19380,7 +19384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1265182799794365477, guid: c262e96a3118e2643a11c8f972475061, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.9
+      value: -40.66
       objectReference: {fileID: 0}
     - target: {fileID: 1265182799794365477, guid: c262e96a3118e2643a11c8f972475061, type: 3}
       propertyPath: m_LocalRotation.w
