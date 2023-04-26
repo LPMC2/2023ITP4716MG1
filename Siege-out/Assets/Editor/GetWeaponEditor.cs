@@ -46,7 +46,7 @@ public class GetWeaponEditor : Editor
 
         for (int i = 0; i < inventoryBehaviour.WeaponId.Length; i++)
         {
-            weaponNames[i] = $"{i} - {inventoryBehaviour.WeaponId[i].name}";
+            weaponNames[i] = $"{i + 1} - {inventoryBehaviour.WeaponId[i].name}";
             weaponIds[i] = i;
         }
 

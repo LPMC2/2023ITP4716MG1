@@ -19,10 +19,17 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private float footstepDelay = 0.5f;
     [SerializeField] private AudioClip JumpSound;         
     [SerializeField] private AudioClip LandSound;
-
+#if UNITY_EDITOR
+[ReadOnly]
+#endif
+    [SerializeField] private bool isWalking = false;
     private AudioSource PlayerAudioSource;
     private bool isJumped = false;
     private Vector2 smoothInput;
+#if UNITY_EDITOR
+[ReadOnly]
+#endif
+    [SerializeField] private float Walktime;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +52,20 @@ public class PlayerMotor : MonoBehaviour
             PlayerAudioSource.Play();
             isJumped = false;
         }
+        if(isWalking == true)
+        {
+            if (Walktime == 0)
+            {
+                PlayFootStepSound();
+            }
+            Walktime += Time.deltaTime;
+            if(Walktime >= footstepDelay)
+            {
+
+                isWalking = false;
+                Walktime = 0;
+            }
+        }
     }
     public void Sprint()
     {
@@ -62,14 +83,18 @@ public class PlayerMotor : MonoBehaviour
             controller.Move(transform.TransformDirection(moveDirection) * (speed - speedMultiplier) * Time.deltaTime);
         if (moveDirection.magnitude > 0.0f)
         {
-            PlayFootStepSound();
+            if (isWalking == false)
+            {
+                
+                isWalking = true;
+            }
         }
         playerVelocity.y += gravity * Time.deltaTime * 2;
         if (isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2f;
         controller.Move(playerVelocity * Time.deltaTime);
     }
-
+   
     private bool isPlayingFootstep = false;
     private void PlayFootStepSound()
     {
@@ -77,7 +102,7 @@ public class PlayerMotor : MonoBehaviour
         {
             return;
         }
-   
+        
             int n = Random.Range(1, FootstepSounds.Length);
             PlayerAudioSource.clip = FootstepSounds[n];
             PlayerAudioSource.PlayOneShot(PlayerAudioSource.clip);

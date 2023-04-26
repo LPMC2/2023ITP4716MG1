@@ -16,17 +16,19 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     private float lerpSpeed = 0.1f;
     private float lerpTimer;
     [SerializeField] private float chipSpeed = 2f;
+    [SerializeField] private AudioClip HurtSound;
     [Header("Player Only Settings")]
     public Image frontHealthBar;
     public Image backHealthBar;
     private GameObject SpawnerObject;
     private Animator MobAnimator;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         SpawnerObject = GameObject.Find("Monster Spawner");
         initialHealth = health;
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetDamage(float damageAmount)
@@ -60,6 +62,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(HurtSound, 1);
+        }
         health -= damage;
         AIController aiController = gameObject.GetComponent<AIController>();
         if (aiController != null)

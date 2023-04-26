@@ -11,9 +11,12 @@ public class Projectile : MonoBehaviour
     private GameObject enemy;
     private float speed;
     private Rigidbody rb;
-    
+    private GameObject nearestDesturctable;
     private float AOE;
-
+    public void setDestructable(GameObject targetobject)
+    {
+        nearestDesturctable = targetobject;
+    }
     private void FixedUpdate()
     {
 
@@ -98,10 +101,18 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
+        if (other.gameObject == nearestDesturctable)
+        {
+            Destructable destructable = nearestDesturctable.GetComponent<Destructable>();
+            if (destructable != null)
+            {
+                destructable.takeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
         if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
         {
-            Debug.Log("Wall Hit");
+            
             if (ParticleEffect && AOE > 0)
             {
                 if (ParticleEffect != null)
@@ -117,7 +128,7 @@ public class Projectile : MonoBehaviour
 
             foreach (Collider collider in colliders)
             {
-                
+
                 // Check if the collider has a component that implements the IDamageable interface
                 if (collider.gameObject == target)
                 {

@@ -13,16 +13,18 @@ public class MainGame : MonoBehaviour
     [SerializeField] private int RequiredItemCount = 7;
     [SerializeField] private GameObject SiegeMode1;
     [SerializeField] private GameObject SiegeMode2;
-    [SerializeField] private bool isCursor = false;
+    [SerializeField] private GameObject Boss;
     private float GameTime;
     private int CurrentItemCount = 0;
     private PlayerUI playerUI;
     private string WordString = "";
     [Header("Player & Enemy")]
+    [SerializeField] private GameObject PlayerCamera;
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Target1;
     [SerializeField] private GameObject Target2;
     [Header("Game UI")]
+   
     [SerializeField] private GameObject SiegeMenuUI;
     [SerializeField] private GameObject WorkBrenchName;
     public CanvasGroup uiCanvasGroup;
@@ -37,10 +39,21 @@ public class MainGame : MonoBehaviour
     }
     public void setCursor(bool BooleanDetect)
     {
-        isCursor = BooleanDetect;
+        if(BooleanDetect == false)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            
+        }
+        if(BooleanDetect == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
     void Start()
     {
+        setCursor(false);
         FpsController = Player.GetComponent<FirstPersonController>();
         playerUI = GetComponent<PlayerUI>();
         WorkBrenchName.SetActive(false);
@@ -63,15 +76,7 @@ public class MainGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCursor == false && Cursor.visible == true )
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        } else if (isCursor == true && Cursor.visible == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+
         switch(GameProcessID)
         {
             case 0:
@@ -88,6 +93,7 @@ public class MainGame : MonoBehaviour
                     CurrentItemCount = 0;
                     RequiredItemCount = 1;
                     WordString = "||||||||||";
+                    Boss.SetActive(true);
                     GameProcessID++;
                     
                 }
@@ -165,6 +171,22 @@ public class MainGame : MonoBehaviour
             }
           
         }
+    }
+    public void GamePause()
+    {
+        setCursor(true);
+        FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
+        followPlayer.enabled = false;
+        Time.timeScale = 0f;
+       
+    }
+    public void GameResume()
+    {
+        setCursor(false);
+        FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
+        followPlayer.enabled = true;
+        Time.timeScale = 1.0f;
+        
     }
     public void setMode1()
     {

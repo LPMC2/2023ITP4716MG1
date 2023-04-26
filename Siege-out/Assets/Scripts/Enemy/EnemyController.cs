@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask obstacleMask;
     private Animator enemyAnimator;
+    private GameObject nearestDestructible;
     [Header("Animation")]
     [SerializeField] private GameObject AnimateObject;
     public enum AttackType
@@ -86,11 +87,23 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Destructable[] destructibles = FindObjectsOfType<Destructable>();
+        float closestDistance = agent.stoppingDistance;
+        foreach (Destructable destructable in destructibles)
+        {
+            float enemydistance = Vector3.Distance(transform.position, destructable.transform.position);
+
+            if (enemydistance <= closestDistance)
+            {
+                closestDistance = enemydistance;
+                nearestDestructible = destructable.gameObject;
+            }
+        }
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance ||(nearestDestructible != null && (Vector3.Distance(transform.position, nearestDestructible.transform.position) <= closestDistance)))
             {
 
                 //Attack the target
@@ -104,7 +117,6 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(PlayWalkAnimation());
                 }
             }
-
         }
         else
         {
@@ -124,7 +136,11 @@ public class EnemyController : MonoBehaviour
                 float distance = Vector3.Distance(target.position, transform.position);
                 if (distance > agent.stoppingDistance)
                 {
-                    enemyAnimator.Play("Walk");
+                    HealthBehaviour healthBehaviour = GetComponent<HealthBehaviour>();
+                    if (healthBehaviour.GetHealth() > 0)
+                    {
+                        enemyAnimator.Play("Walk");
+                    }
                 }
             }
 
@@ -160,7 +176,7 @@ public class EnemyController : MonoBehaviour
             if (enemyAnimator != null)
             {
                 // Play the "Walk" animation clip
-                enemyAnimator.Play("Idle");
+             
                 float speedMultiplier = 1.0f / attackCD;
                 enemyAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
                 enemyAnimator.Play("AttackMelee");
@@ -171,6 +187,14 @@ public class EnemyController : MonoBehaviour
             {
                 damageable.TakeDamage(damage);
             }
+            if (nearestDestructible != null)
+            {
+                Destructable destructable = nearestDestructible.GetComponent<Destructable>();
+                if (destructable != null)
+                {
+                    destructable.takeDamage(damage);
+                }
+            }
 
         }
         else if (attackType == AttackType.Ranged)
@@ -178,10 +202,10 @@ public class EnemyController : MonoBehaviour
             if (enemyAnimator != null)
             {
                 // Play the "Walk" animation clip
-                enemyAnimator.Play("Idle");
+                
                 float speedMultiplier = 1.0f / attackCD;
                 enemyAnimator.SetFloat("SpeedMultiplier", speedMultiplier);
-                Debug.Log("ATTACK");
+                
                 enemyAnimator.Play("AttackRanged");
             }
             yield return new WaitForSeconds(preAttackCD);
@@ -196,6 +220,7 @@ public class EnemyController : MonoBehaviour
                     projectileInstance.transform.LookAt(target.position);
                     projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
                     projectileScript.SetSpeed(ProjectileSpeed);
+                    projectileScript.setDestructable(nearestDestructible);
                     projectileScript.SetDamage(damage);
                     projectileScript.SetAOE(isAreaDamage, AOERadius);
                     projectileScript.SetObstacleMask(obstacleMask);
@@ -204,13 +229,14 @@ public class EnemyController : MonoBehaviour
             }
             else if (projectileType == ProjectileType.InstantForce)
             {
-                Rigidbody rb = Instantiate(projectileObject, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                Rigidbody rb = Instantiate(projectileObject, transform.position + transform.TransformDirection(ProjectileOffset), Quaternion.identity).GetComponent<Rigidbody>();
                 Projectile projectileScript = rb.GetComponent<Projectile>();
                 if (projectileScript != null)
                 {
                     projectileScript.SetTarget(target.gameObject, gameObject);
                     projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
                     rb.transform.LookAt(target.position);
+                    projectileScript.setDestructable(nearestDestructible);
                     projectileScript.SetDamage(damage);
                     projectileScript.SetAOE(isAreaDamage, AOERadius);
                     projectileScript.SetObstacleMask(obstacleMask);

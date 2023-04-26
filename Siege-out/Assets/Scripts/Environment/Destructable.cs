@@ -22,24 +22,27 @@ public class Destructable : MonoBehaviour
         Durability -= force;
         if (Durability <= 0 && isDestroyed == false)
         {
-            GameObject shattered = Instantiate(destroyedVersion, transform.position,transform.rotation) as GameObject;
-
-            foreach (Transform child in shattered.transform)
+            if (destroyedVersion != null)
             {
+                GameObject shattered = Instantiate(destroyedVersion, transform.position, transform.rotation) as GameObject;
 
-                MeshCollider meshCollider = child.GetComponent<MeshCollider>();
-                if (meshCollider)
+                foreach (Transform child in shattered.transform)
                 {
-                    Quaternion rotation = Quaternion.Euler(child.rotation.eulerAngles);
-                    meshCollider.sharedMesh = null;
-                    meshCollider.sharedMesh = child.GetComponent<MeshFilter>().mesh;
-                    meshCollider.transform.rotation = rotation;
-                    child.GetComponent<MeshFilter>().mesh.RecalculateNormals();
-                }
-                Rigidbody rb = child.GetComponent<Rigidbody>();
-                if (rb)
-                {
-                    rb.AddForce(hit.transform.forward * force * 10, ForceMode.Impulse);
+
+                    MeshCollider meshCollider = child.GetComponent<MeshCollider>();
+                    if (meshCollider)
+                    {
+                        Quaternion rotation = Quaternion.Euler(child.rotation.eulerAngles);
+                        meshCollider.sharedMesh = null;
+                        meshCollider.sharedMesh = child.GetComponent<MeshFilter>().mesh;
+                        meshCollider.transform.rotation = rotation;
+                        child.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+                    }
+                    Rigidbody rb = child.GetComponent<Rigidbody>();
+                    if (rb)
+                    {
+                        rb.AddForce(hit.transform.forward * force * 10, ForceMode.Impulse);
+                    }
                 }
             }
 
@@ -59,27 +62,61 @@ public class Destructable : MonoBehaviour
             }
         }
     }
+    public void takeDamage(float damage)
+    {
+        Durability -= damage;
+        if (Durability <= 0 && isDestroyed == false)
+        {
+            if (destroyedVersion != null)
+            {
+                GameObject shattered = Instantiate(destroyedVersion, transform.position, transform.rotation) as GameObject;
+
+                foreach (Transform child in shattered.transform)
+                {
+
+                    MeshCollider meshCollider = child.GetComponent<MeshCollider>();
+                    if (meshCollider)
+                    {
+                        Quaternion rotation = Quaternion.Euler(child.rotation.eulerAngles);
+                        meshCollider.sharedMesh = null;
+                        meshCollider.sharedMesh = child.GetComponent<MeshFilter>().mesh;
+                        meshCollider.transform.rotation = rotation;
+                        child.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+                    }
+                    Rigidbody rb = child.GetComponent<Rigidbody>();
+                    if (rb)
+                    {
+                        rb.AddForce(transform.forward * damage * 10, ForceMode.Impulse);
+                    }
+                }
+            }
+            isDestroyed = true;
+            PlaySoundAndDestroy();
+            Destroy(gameObject);
+        }
+    }
     public void PlaySoundAndDestroy()
     {
-        // Create a new empty game object at the position of the original object
-        GameObject soundObject = new GameObject("SoundObject");
-        soundObject.transform.position = transform.position;
+        if (DestroyedSound != null)
+        {
+            // Create a new empty game object at the position of the original object
+            GameObject soundObject = new GameObject("SoundObject");
+            soundObject.transform.position = transform.position;
 
-        // Add an AudioSource component to the new game object
-        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
-        if (audioSource)
-        {
-            // Set the audio clip and play it
-            audioSource.clip = DestroyedSound;
-            audioSource.Play();
-            Destroy(soundObject, DestroyedSound.length);
-        } else
-        {
-            Destroy(soundObject);
+            // Add an AudioSource component to the new game object
+            AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+            if (audioSource)
+            {
+                // Set the audio clip and play it
+                audioSource.clip = DestroyedSound;
+                audioSource.Play();
+                Destroy(soundObject, DestroyedSound.length);
+            }
+            else
+            {
+                Destroy(soundObject);
+            }
         }
-        // Destroy the original object
-
-        // Destroy the sound object after the sound has finished playing
       
     }
 }

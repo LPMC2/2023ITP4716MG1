@@ -12,14 +12,13 @@ public class SpawnerEditor : Editor
     private SerializedProperty spawnCountLimitProperty;
     private SerializedProperty spawnAmountProperty;
     private SerializedProperty monstersProperty;
-    private SerializedProperty spCountProperty;
+
     private void OnEnable()
     {
         spawnTimeProperty = serializedObject.FindProperty("SpawnTime");
         spawnCountLimitProperty = serializedObject.FindProperty("SpawnCountLimit");
         spawnAmountProperty = serializedObject.FindProperty("SpawnAmout");
         monstersProperty = serializedObject.FindProperty("monsters");
-        spCountProperty = serializedObject.FindProperty("SpawnCounter");
     }
 
     public override void OnInspectorGUI()
@@ -32,7 +31,6 @@ public class SpawnerEditor : Editor
         EditorGUILayout.PropertyField(spawnCountLimitProperty);
         EditorGUILayout.PropertyField(spawnAmountProperty);
         EditorGUILayout.PropertyField(monstersProperty);
-        EditorGUILayout.PropertyField(spCountProperty);
         for (int i = 0; i < monstersProperty.arraySize; i++)
         {
             SerializedProperty monsterDataProperty = monstersProperty.GetArrayElementAtIndex(i);
