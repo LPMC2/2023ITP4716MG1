@@ -25,8 +25,11 @@ public class EnemyController : MonoBehaviour
     private LayerMask obstacleMask;
     private Animator enemyAnimator;
     private GameObject nearestDestructible;
-    [Header("Animation")]
+    [Header("Animation & Sound")]
     [SerializeField] private GameObject AnimateObject;
+    [SerializeField] private AudioClip AttackSound;
+    [SerializeField] private AudioClip DeathSound;
+    private AudioSource audioSource;
     public enum AttackType
     {
         Melee,
@@ -55,6 +58,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         if (AnimateObject != null)
@@ -83,7 +87,15 @@ public class EnemyController : MonoBehaviour
     public Transform getTarget()
     {
         return target;
-    } 
+    }
+    public void playDeathSound()
+    {
+        if (DeathSound != null && audioSource != null)
+        {
+            audioSource.clip = DeathSound;
+            audioSource.Play();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -97,6 +109,7 @@ public class EnemyController : MonoBehaviour
             {
                 closestDistance = enemydistance;
                 nearestDestructible = destructable.gameObject;
+             
             }
         }
         float distance = Vector3.Distance(target.position, transform.position);
@@ -173,6 +186,11 @@ public class EnemyController : MonoBehaviour
 
         if (attackType == AttackType.Melee)
         {
+                if (DeathSound != null && audioSource != null)
+                {
+                    audioSource.clip = AttackSound;
+                    audioSource.Play();
+                }
             if (enemyAnimator != null)
             {
                 // Play the "Walk" animation clip
@@ -199,6 +217,11 @@ public class EnemyController : MonoBehaviour
         }
         else if (attackType == AttackType.Ranged)
         {
+                if (DeathSound != null && audioSource != null)
+                {
+                    audioSource.clip = AttackSound;
+                    audioSource.Play();
+                }
             if (enemyAnimator != null)
             {
                 // Play the "Walk" animation clip

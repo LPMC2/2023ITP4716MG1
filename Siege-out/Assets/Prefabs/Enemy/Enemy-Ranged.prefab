@@ -68,6 +68,7 @@ MonoBehaviour:
   DeathTime: 1
   chipSpeed: 2
   HurtSound: {fileID: 8300000, guid: c173f1ed0b429554baeef2f83e509344, type: 3}
+  Invincible: 0
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
 --- !u!114 &-7652981702255938716
@@ -86,13 +87,13 @@ MonoBehaviour:
   attackType: 1
   projectileType: 1
   damage: 20
-  preAttackCD: 0.4
-  attackCD: 0.8
+  preAttackCD: 0.6
+  attackCD: 1.2
   projectileObject: {fileID: 8412791854856054736, guid: 802b792517f9d2943ad371df91430860, type: 3}
   ProjectileSpeed: 20
   AttackAngleMultiplier: 1.5
   maxTime: 10
-  ProjectileOffset: {x: 0, y: 1.35, z: 0.2}
+  ProjectileOffset: {x: 0, y: 1.25, z: 0.2}
   isAreaDamage: 0
   AOERadius: 2
   obstacleMask:
@@ -288,16 +289,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.93172
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.93172
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.93172
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.23
+      value: -0.21321
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.79
+      value: -0.889
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.09
+      value: -0.066101
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 30a59602f8265aa4cb19b31ac23c713a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -184,6 +184,30 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.051886797
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.5384846
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.20391388
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.6981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.1517244
       objectReference: {fileID: 0}

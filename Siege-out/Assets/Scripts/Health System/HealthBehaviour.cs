@@ -17,6 +17,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     private float lerpTimer;
     [SerializeField] private float chipSpeed = 2f;
     [SerializeField] private AudioClip HurtSound;
+    [SerializeField] private bool Invincible = false;
     [Header("Player Only Settings")]
     public Image frontHealthBar;
     public Image backHealthBar;
@@ -45,7 +46,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     {
         return initialHealth;
     }
-
+    public void HealthSetter(float healthAMT)
+    {
+        health = healthAMT;
+    }
     public void SetHealth(float healthAmount)
     {
         health += healthAmount;
@@ -66,7 +70,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         {
             audioSource.PlayOneShot(HurtSound, 1);
         }
-        health -= damage;
+        if (Invincible == false)
+        {
+            health -= damage;
+        }
         AIController aiController = gameObject.GetComponent<AIController>();
         if (aiController != null)
         {
@@ -82,7 +89,9 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         {
             if (gameObject.CompareTag("Player"))
             {
-                Debug.Log("You died!");
+                MainGame mainGame = GameObject.Find("MainGame").GetComponent<MainGame>();
+                mainGame.loseGame();
+               
             }
             else
             {
@@ -97,7 +106,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                     EnemyController enemyController = GetComponent<EnemyController>();
                     enemyController.enabled = false;
                     MobAnimator.Play("Death");
-                   
+                    enemyController.playDeathSound();
                     Destroy(gameObject, DeathTime);
                 }
                 else

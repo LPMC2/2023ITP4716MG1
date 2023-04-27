@@ -155,7 +155,7 @@ MonoBehaviour:
   bulletCount: 1
   horizontalSpreadAngle: 1
   verticalSpreadAngle: 1
-  isPiercing: 0
+  isPiercing: 1
   HitFunction:
     m_PersistentCalls:
       m_Calls: []

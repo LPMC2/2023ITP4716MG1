@@ -123,7 +123,7 @@ MonoBehaviour:
   muzzleFlashLight: {fileID: 4401445908718220362}
   MuzzleFlash: {fileID: 1579651486716197216}
   ShootSound: {fileID: 8300000, guid: 9aed422917078974dba8240a6461d9b7, type: 3}
-  ReloadSound: {fileID: 0}
+  ReloadSound: {fileID: 8300000, guid: bc59ee95ead9a66449fc86894f00b6f9, type: 3}
   isOut: 0
 --- !u!82 &1206794313185979142
 AudioSource:

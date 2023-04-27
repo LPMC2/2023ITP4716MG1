@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class MainGame : MonoBehaviour
@@ -24,19 +25,29 @@ public class MainGame : MonoBehaviour
     [SerializeField] private GameObject Target1;
     [SerializeField] private GameObject Target2;
     [Header("Game UI")]
-   
+    [SerializeField] private GameObject EnterUIObject;
+    [SerializeField] private GameObject ObjectiveUI;
+    [SerializeField] private float EndTime = 5f;
+    [SerializeField] private GameObject WinUI;
+    [SerializeField] private GameObject LoseUI;
     [SerializeField] private GameObject SiegeMenuUI;
     [SerializeField] private GameObject WorkBrenchName;
+    private CanvasGroup EnterUI;
     public CanvasGroup uiCanvasGroup;
     private FirstPersonController FpsController;
     private bool isChose = false;
     private int SiegeMode = 0;
-   
+    private bool isEnd = false;
+    private float endtimer;
+    private HealthBehaviour spawnerhealth;
+    private float initialHealth;
+    private bool isAttackable = false;
     // Start is called before the first frame update
     public int GetGameID()
     {
         return GameProcessID;
     }
+
     public void setCursor(bool BooleanDetect)
     {
         if(BooleanDetect == false)
@@ -53,8 +64,17 @@ public class MainGame : MonoBehaviour
     }
     void Start()
     {
-        setCursor(false);
+        EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
+        EnterUIObject.SetActive(true);
+        ObjectiveUI.SetActive(false);
+        endtimer = EndTime;
+        Time.timeScale = 0.0f;
+        EnterUI.alpha = 1.0f;
+        EnterUI.interactable = true;
+        EnterUI.blocksRaycasts = true;
         FpsController = Player.GetComponent<FirstPersonController>();
+        spawnerhealth = Target2.GetComponent<HealthBehaviour>();
+        initialHealth = spawnerhealth.GetInitialHealth();
         playerUI = GetComponent<PlayerUI>();
         WorkBrenchName.SetActive(false);
         SiegeMode1.SetActive(false);
@@ -71,6 +91,13 @@ public class MainGame : MonoBehaviour
         {
             playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
         }
+        
+    }
+    public void disableEnterUI()
+    {
+        EnterUI.alpha = 0f;
+        EnterUI.interactable = false;
+        EnterUI.blocksRaycasts = false;
         
     }
     // Update is called once per frame
@@ -120,7 +147,9 @@ public class MainGame : MonoBehaviour
                                     break;
                                 case 2:
                                 SiegeMode2.SetActive(true);
-                                    playerUI.UpdateText("Attack!");
+                                    playerUI.UpdateText("Attack the Spawner!");
+                                    isAttackable = true;
+                                   
                                     break;
 
                             }
@@ -137,25 +166,38 @@ public class MainGame : MonoBehaviour
                 switch (SiegeMode)
                 {
                     case 1:
-                        if(!Target1)
-                        playerUI.UpdateText("Game End!");
+                        if (!Target1)
+                        {
+                            playerUI.UpdateText("Game End!");
+                            winGame();
+                        }
                         break;
                     case 2:
-                        if(!Target2)
-                        playerUI.UpdateText("Game End!");
+                        if (!Target2)
+                        {
+                            winGame();
+                            playerUI.UpdateText("Game End!");
+                        }
                         break;
 
                 }
                 break;
         }
-        
+        if(isEnd == true)
+        {
+            ending();
+        }
+        if(isAttackable == false)
+        {
+            spawnerhealth.HealthSetter(initialHealth);
+        }
     }
     
     public void GetSiegeMenu()
     {
         if (isChose == false && GameProcessID ==2)
         {
-            
+            ObjectiveUI.SetActive(false);
             Time.timeScale = 0.0f;
                 uiCanvasGroup.alpha = 1.0f;
                 uiCanvasGroup.interactable = true;
@@ -167,13 +209,14 @@ public class MainGame : MonoBehaviour
             SiegeMenuUI.SetActive(true);
          if(Cursor.visible)
             {
-                Debug.Log("is visible");
+               
             }
           
         }
     }
     public void GamePause()
     {
+        ObjectiveUI.SetActive(false);
         setCursor(true);
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = false;
@@ -182,15 +225,32 @@ public class MainGame : MonoBehaviour
     }
     public void GameResume()
     {
+        ObjectiveUI.SetActive(true);
         setCursor(false);
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = true;
         Time.timeScale = 1.0f;
         
     }
+    public void loseGame()
+    {
+        ObjectiveUI.SetActive(false);
+        LoseUI.SetActive(true);
+        isEnd = true;
+        Target1.SetActive(false);
+        Target2.SetActive(false);
+        SiegeMode1.SetActive(false);
+        SiegeMode2.SetActive(false);
+    }
+    public void winGame()
+    {
+        ObjectiveUI.SetActive(false);
+        WinUI.SetActive(true);
+        isEnd = true;
+    }
     public void setMode1()
     {
-      
+        ObjectiveUI.SetActive(true);
         SiegeMode = 1;
         isChose = true;
         SiegeMenuUI.SetActive(false);
@@ -202,8 +262,8 @@ public class MainGame : MonoBehaviour
     }
     public void setMode2()
     {
-       
-       
+
+        ObjectiveUI.SetActive(true);
         SiegeMode = 2;
         isChose = true;
         SiegeMenuUI.SetActive(false);
@@ -213,5 +273,33 @@ public class MainGame : MonoBehaviour
         uiCanvasGroup.blocksRaycasts = false;
         setCursor(false);
     }
-
+    
+    private void ending()
+    {
+        
+        endtimer -= Time.deltaTime;
+        if(WinUI.activeSelf)
+        {
+            Animator animator = WinUI.GetComponent<Animator>();
+            animator.Play("UI_Animate");
+            Transform textfield = WinUI.transform.GetChild(0).gameObject.GetComponent<Transform>();
+            Text txt = textfield.gameObject.GetComponent<Text>();
+            txt.text = "Return in " + Mathf.Ceil(endtimer).ToString("0") + "s...";
+        }
+        if (LoseUI.activeSelf)
+        {
+            
+            Animator animator = LoseUI.GetComponent<Animator>();
+            animator.Play("Animate_Lose");
+            Transform textfield = LoseUI.transform.GetChild(0).gameObject.GetComponent<Transform>();
+            Text txt = textfield.gameObject.GetComponent<Text>();
+            txt.text = "Return in " + Mathf.Ceil(endtimer).ToString("0") + "s...";
+        }
+        if (endtimer <= 0)
+        {
+            LoadScene loadScene = GetComponent<LoadScene>();
+            loadScene.LoadMenu();
+            setCursor(true);
+        }
+    }
 }
