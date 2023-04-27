@@ -62,8 +62,9 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (audioSource != null)
+        if (gameObject != null)
         {
+<<<<<<< Updated upstream
             audioSource.PlayOneShot(HurtSound, 1);
         }
         health -= damage;
@@ -83,11 +84,32 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
             if (gameObject.CompareTag("Player"))
             {
                 Debug.Log("You died!");
-            }
-            else
+=======
+            if (audioSource != null)
             {
-                if(gameObject.CompareTag("Enemy"))
+                audioSource.PlayOneShot(HurtSound, 1);
+>>>>>>> Stashed changes
+            }
+            if (Invincible == false)
+            {
+                health -= damage;
+            }
+            AIController aiController = gameObject.GetComponent<AIController>();
+            if (aiController != null)
+            {
+
+
+            }
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall"))
+            {
+                UpdateHealthBar();
+            }
+
+            if (health <= 0)
+            {
+                if (gameObject.CompareTag("Player"))
                 {
+<<<<<<< Updated upstream
                     Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
                     spawnerObj.rmSpawnCounter();
                 }
@@ -99,17 +121,53 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                     MobAnimator.Play("Death");
                    
                     Destroy(gameObject, DeathTime);
+=======
+                    MainGame mainGame = GameObject.Find("MainGame").GetComponent<MainGame>();
+                    mainGame.loseGame();
+
+>>>>>>> Stashed changes
                 }
                 else
                 {
-                    Destroy(gameObject);
+                    if (gameObject.CompareTag("Enemy"))
+                    {
+                        if (transform.GetChild(0).gameObject.GetComponent<Spawner>() != null)
+                        {
+                            gameObject.SetActive(false);
+                        }
+                        if( SpawnerObject == null)
+                        {
+                            SpawnerObject = GameObject.Find("Monster Spawner");
+                        }
+                        if (SpawnerObject != null)
+                        {
+                            Spawner spawnerObj = SpawnerObject.transform.GetChild(0).gameObject.GetComponent<Spawner>();
+                            spawnerObj.rmSpawnCounter();
+                        }
+                        MobAnimator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+                        if (MobAnimator != null && gameObject.transform.GetChild(0).GetComponent<Spawner>() == null)
+                        {
+                            EnemyController enemyController = GetComponent<EnemyController>();
+                            enemyController.enabled = false;
+                            MobAnimator.Play("Death");
+                            enemyController.playDeathSound();
+                            Destroy(gameObject, DeathTime);
+                            gameObject.tag = "Untagged";
+                        }
+                        else if (gameObject.transform.GetChild(0).GetComponent<Spawner>() == null)
+                        {
+                            
+                            Destroy(gameObject);
+                        }
+                    }
+                   
                 }
             }
-        }
-        if (gameObject.CompareTag("Player"))
-        {
-            
-            lerpTimer = 0;
+            if (gameObject.CompareTag("Player"))
+            {
+
+                lerpTimer = 0;
+            }
         }
     }
 

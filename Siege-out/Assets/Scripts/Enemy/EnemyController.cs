@@ -88,14 +88,14 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         Destructable[] destructibles = FindObjectsOfType<Destructable>();
-        float closestDistance = agent.stoppingDistance;
+        float closestDistance = agent.stoppingDistance * agent.stoppingDistance;
         foreach (Destructable destructable in destructibles)
         {
-            float enemydistance = Vector3.Distance(transform.position, destructable.transform.position);
-
-            if (enemydistance <= closestDistance)
+            Vector3 toDestructible = destructable.transform.position - transform.position;
+            float dot = Vector3.Dot(toDestructible, transform.forward);
+            if (dot > 0 && dot * dot < closestDistance && toDestructible.sqrMagnitude < closestDistance)
             {
-                closestDistance = enemydistance;
+                closestDistance = toDestructible.sqrMagnitude;
                 nearestDestructible = destructable.gameObject;
             }
         }

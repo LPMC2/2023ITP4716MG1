@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
         SpawnCounter--;
         if(SpawnCounter < 0) { SpawnCounter = 0; }
     }
-    private List<GameObject> spawnedMonsters = new List<GameObject>(); // List to keep track of spawned monsters
+
 
     void Spawn()
     {
@@ -71,19 +71,14 @@ public class Spawner : MonoBehaviour
                             Vector3 spawnPosition = transform.position + Random.insideUnitSphere * 3f;
                             GameObject newMonster = Instantiate(monsterData.Monster, spawnPosition, Quaternion.identity) as GameObject;
                             Physics.IgnoreCollision(newMonster.GetComponent<Collider>(), GetComponent<Collider>());
-                            MonsterId monsterId = newMonster.GetComponent<MonsterId>();
+
                             if(newMonster != null)
                             {
                                 SpawnCounter++;
                             }
-                            if (monsterId != null)
-                            {
-                                IdList.Add(monsterId.GetID());
-                                
-                            }
 
-                            
-                            spawnedMonsters.Add(newMonster); // Add the spawned monster to the list
+
+
                             break;
                         }
                     }
@@ -92,6 +87,5 @@ public class Spawner : MonoBehaviour
         }
 
         // Check for destroyed monsters and remove them from the list
-        spawnedMonsters.RemoveAll(m => m == null);
     }
 }

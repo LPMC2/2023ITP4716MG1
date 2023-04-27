@@ -14,6 +14,7 @@ public class MainGame : MonoBehaviour
     [SerializeField] private GameObject SiegeMode1;
     [SerializeField] private GameObject SiegeMode2;
     [SerializeField] private GameObject Boss;
+
     private float GameTime;
     private int CurrentItemCount = 0;
     private PlayerUI playerUI;
@@ -53,7 +54,21 @@ public class MainGame : MonoBehaviour
     }
     void Start()
     {
+<<<<<<< Updated upstream
         setCursor(false);
+=======
+        Vector3 spawnPosition = new Vector3(-32.6105042f, 5.78000021f, -33.2821121f);
+        Instantiate(Target2, spawnPosition, Quaternion.identity);
+        EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
+        EnterUIObject.SetActive(true);
+        isEntering = true;
+        ObjectiveUI.SetActive(false);
+        endtimer = EndTime;
+        Time.timeScale = 0.0f;
+        EnterUI.alpha = 1.0f;
+        EnterUI.interactable = true;
+        EnterUI.blocksRaycasts = true;
+>>>>>>> Stashed changes
         FpsController = Player.GetComponent<FirstPersonController>();
         playerUI = GetComponent<PlayerUI>();
         WorkBrenchName.SetActive(false);
@@ -141,8 +156,16 @@ public class MainGame : MonoBehaviour
                         playerUI.UpdateText("Game End!");
                         break;
                     case 2:
+<<<<<<< Updated upstream
                         if(!Target2)
                         playerUI.UpdateText("Game End!");
+=======
+                        if (!Target2)
+                        {
+                            winGame();
+                            playerUI.UpdateText("Game End!");
+                        }
+>>>>>>> Stashed changes
                         break;
 
                 }
