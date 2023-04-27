@@ -14837,6 +14837,10 @@ PrefabInstance:
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
       value: isOpen
       objectReference: {fileID: 0}
+    - target: {fileID: 4297904285806887586, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
+      propertyPath: promptMessage
+      value: Press E to interact with the Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4297904286473157932, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -21501,7 +21505,7 @@ PrefabInstance:
       objectReference: {fileID: 828355625}
     - target: {fileID: 4297904285806887586, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
       propertyPath: promptMessage
-      value: Press E to interact with the Doror
+      value: Press E to interact with the Door
       objectReference: {fileID: 0}
     - target: {fileID: 4297904286473157932, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
       propertyPath: m_RootOrder

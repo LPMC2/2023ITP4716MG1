@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 1
-  promptMessage: Press E to interact with the Doror
+  promptMessage: Press E to interact with the Door
 --- !u!114 &4297904285806887585
 MonoBehaviour:
   m_ObjectHideFlags: 0
