@@ -65,6 +65,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   AnimateObject: {fileID: 8138007830506836749}
+  AttackSound: {fileID: 8300000, guid: a521123904df3af4cbdd03e104e839a2, type: 3}
+  DeathSound: {fileID: 8300000, guid: feb0f711b6f286141a37d51b30d2d698, type: 3}
 --- !u!114 &1566860698907547843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
   DeathTime: 5
   chipSpeed: 2
   HurtSound: {fileID: 8300000, guid: a521123904df3af4cbdd03e104e839a2, type: 3}
+  Invincible: 0
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
 --- !u!195 &3875073193988602743

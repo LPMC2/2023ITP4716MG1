@@ -19,7 +19,10 @@ public class PauseMenuBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            setMenuState();
+            if (mainGame.getEntering() == false)
+            {
+                setMenuState();
+            }
         }
     }
     public void setMenuState()

@@ -32,6 +32,9 @@ public class MainGame : MonoBehaviour
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private GameObject SiegeMenuUI;
     [SerializeField] private GameObject WorkBrenchName;
+    [SerializeField] private AudioClip WinSound;
+    [SerializeField] private AudioClip LoseSound;
+    private AudioSource audioSource;
     private CanvasGroup EnterUI;
     public CanvasGroup uiCanvasGroup;
     private FirstPersonController FpsController;
@@ -42,6 +45,7 @@ public class MainGame : MonoBehaviour
     private HealthBehaviour spawnerhealth;
     private float initialHealth;
     private bool isAttackable = false;
+    private bool isEntering = false;
     // Start is called before the first frame update
     public int GetGameID()
     {
@@ -62,10 +66,39 @@ public class MainGame : MonoBehaviour
             Cursor.visible = true;
         }
     }
+    public bool getEntering()
+    {
+        return isEntering;
+    }
+    private void DisableGun()
+    {
+        GunController[] gunControllers = PlayerCamera.GetComponentsInChildren<GunController>(false);
+
+        // Loop through each child GunController and disable its GameObject
+        foreach (GunController gunController in gunControllers)
+        {
+            gunController.gameObject.SetActive(false);
+        }
+
+    }
+    private void EnableGun()
+    {
+        // Get all the child GunController components
+        GunController[] gunControllers = PlayerCamera.GetComponentsInChildren<GunController>(true);
+
+        // Loop through each child GunController and enable its GameObject
+        foreach (GunController gunController in gunControllers)
+        {
+            gunController.gameObject.SetActive(true);
+        }
+
+    }
     void Start()
     {
+ 
         EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
         EnterUIObject.SetActive(true);
+        isEntering = true;
         ObjectiveUI.SetActive(false);
         endtimer = EndTime;
         Time.timeScale = 0.0f;
@@ -82,6 +115,7 @@ public class MainGame : MonoBehaviour
         CurrentItemCount = 0;
         GameProcessID = 0;
         playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
+        GamePause();
     }
     public void setCurrentItemCount(int count)
     {
@@ -98,7 +132,9 @@ public class MainGame : MonoBehaviour
         EnterUI.alpha = 0f;
         EnterUI.interactable = false;
         EnterUI.blocksRaycasts = false;
-        
+        LoadScene loadScene = GetComponent<LoadScene>();
+        loadScene.PlayEntry(); ;
+        isEntering = false;
     }
     // Update is called once per frame
     void Update()
@@ -173,7 +209,7 @@ public class MainGame : MonoBehaviour
                         }
                         break;
                     case 2:
-                        if (!Target2)
+                        if (Target2.activeInHierarchy == false)
                         {
                             winGame();
                             playerUI.UpdateText("Game End!");
@@ -221,7 +257,7 @@ public class MainGame : MonoBehaviour
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = false;
         Time.timeScale = 0f;
-       
+        DisableGun();
     }
     public void GameResume()
     {
@@ -230,12 +266,20 @@ public class MainGame : MonoBehaviour
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = true;
         Time.timeScale = 1.0f;
-        
+        EnableGun();
     }
     public void loseGame()
     {
+        
+        audioSource = GetComponent<AudioSource>();
+        if(audioSource != null)
+        {
+            audioSource.clip = LoseSound;
+            audioSource.Play();
+        }
         ObjectiveUI.SetActive(false);
         LoseUI.SetActive(true);
+        WinUI.SetActive(false);
         isEnd = true;
         Target1.SetActive(false);
         Target2.SetActive(false);
@@ -244,6 +288,13 @@ public class MainGame : MonoBehaviour
     }
     public void winGame()
     {
+       
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.clip = WinSound;
+            audioSource.Play();
+        }
         ObjectiveUI.SetActive(false);
         WinUI.SetActive(true);
         isEnd = true;
@@ -298,7 +349,10 @@ public class MainGame : MonoBehaviour
         if (endtimer <= 0)
         {
             LoadScene loadScene = GetComponent<LoadScene>();
-            loadScene.LoadMenu();
+            loadScene.setMode(2);
+            loadScene.setType(2);
+            loadScene.runScene();
+           
             setCursor(true);
         }
     }

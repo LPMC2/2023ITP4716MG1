@@ -172,6 +172,10 @@ public class GunController : MonoBehaviour
     }
     private void ShootDetect()
     {
+        if(isShoot == true)
+        {
+            fireCoolDown();
+        }
         if (Input.GetButton("Fire1") && ReloadCD <= 0 && ShootingCD <= 0 && RemainAmmo > 0 && !isShoot && !isReload)
         {
 
@@ -380,10 +384,29 @@ public class GunController : MonoBehaviour
         }
         yield return new WaitForSeconds(ShootingTime*0.9f);
         isShoot = false;
-        
+        fireTimer = 0f;
        
         //Update the Inventory UI
        
+    }
+    private float fireTimer = 0f;
+    private void fireCoolDown()
+    {
+        fireTimer += Time.deltaTime;
+        if(fireTimer >= ShootingTime * 2)
+        {
+            isShoot = false;
+            if (MuzzleFlash != null)
+            {
+                MuzzleFlash.Stop();
+            }
+            if (muzzleFlashLight != null)
+            {
+                muzzleFlashLight.SetActive(false);
+            }
+
+            fireTimer = 0f;
+        }
     }
     private void Aim()
     {

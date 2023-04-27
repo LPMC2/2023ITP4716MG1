@@ -100,6 +100,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   AnimateObject: {fileID: 8905475506353765811}
+  AttackSound: {fileID: 8300000, guid: 20fc84359d71d3743a8793aaf7db4e81, type: 3}
+  DeathSound: {fileID: 8300000, guid: 34fa05660df1ac0459ac482c607c641f, type: 3}
 --- !u!195 &3672682339476223114
 NavMeshAgent:
   m_ObjectHideFlags: 0

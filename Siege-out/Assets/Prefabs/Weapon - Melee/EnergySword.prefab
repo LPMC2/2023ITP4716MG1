@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackSpeed: 1
   AttackCD: 0.1
-  Damage: 50
+  Damage: 80
   hitboxSizeX: 2
   hitboxSizeY: 2
   maxDistance: 2

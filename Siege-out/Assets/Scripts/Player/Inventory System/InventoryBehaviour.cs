@@ -105,6 +105,8 @@ public class InventoryBehaviour : MonoBehaviour
     [SerializeField] private Sprite SlotSelect;
     [SerializeField] private Camera gunCamera;
     [SerializeField] private Text[] slotTexts = new Text[3];
+    [SerializeField] private AudioClip useSound;
+    private AudioSource audioSource;
     private int currentUsingId = 0;
     private Image crosshair;
     private float lastScrollTime = 0f;
@@ -259,7 +261,7 @@ public class InventoryBehaviour : MonoBehaviour
 
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
         camSlotTransforms[0] = canvas.transform.Find("SlotTracker/CamSlot1").transform;
         camSlotTransforms[1] = canvas.transform.Find("SlotTracker/CamSlot2").transform;
         camSlotTransforms[2] = canvas.transform.Find("SlotTracker/CamSlot3").transform;
@@ -344,6 +346,11 @@ public class InventoryBehaviour : MonoBehaviour
 
     public void EquipWeapon(int slot)
     {
+        if(audioSource != null && useSound != null)
+        {
+            audioSource.clip = useSound;
+            audioSource.Play();
+        }
         gunCamera.enabled = false;
         gunCamera.enabled = true;
         gunCamera.Render();

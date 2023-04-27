@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 400
   healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
-  healthbarOffset: {x: 0, y: 2, z: 0}
+  healthbarOffset: {x: 0, y: 2.5, z: 0}
   DeathTime: 2
   chipSpeed: 2
   HurtSound: {fileID: 8300000, guid: c173f1ed0b429554baeef2f83e509344, type: 3}
@@ -119,6 +119,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   AnimateObject: {fileID: 5414970101022817958}
+  AttackSound: {fileID: 8300000, guid: 20fc84359d71d3743a8793aaf7db4e81, type: 3}
+  DeathSound: {fileID: 8300000, guid: 34fa05660df1ac0459ac482c607c641f, type: 3}
 --- !u!195 &6539867965203667111
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -150,7 +150,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ShootingTime: 0.02
-  Damage: 3
+  Damage: 6
   Range: 50
   bulletCount: 1
   horizontalSpreadAngle: 1
@@ -170,8 +170,8 @@ MonoBehaviour:
   SwitchingCD: 0.1
   muzzleFlashLight: {fileID: 5559374552119153575}
   MuzzleFlash: {fileID: 8241924943209914552, guid: 362a819054f2ae447987b8975499a141, type: 3}
-  ShootSound: {fileID: 0}
-  ReloadSound: {fileID: 0}
+  ShootSound: {fileID: 8300000, guid: 75b7929f0e5d348489fe7276b522e5a1, type: 3}
+  ReloadSound: {fileID: 8300000, guid: 776cf48853457814584ee67401858aab, type: 3}
   isOut: 0
 --- !u!82 &-3425338397183917550
 AudioSource:

@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61f0bb794b64914eac1641b3df4457f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalAmmo: 20
+  TotalAmmo: 30
   AmmoCount: 2
   RemainAmmo: 2
   ReloadingTime: 4

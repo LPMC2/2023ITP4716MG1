@@ -24,6 +24,8 @@ public class EnemyControllerEditor : Editor
     SerializedProperty obstacleMask;
     SerializedProperty projectileOffset;
      SerializedProperty animateObject;
+      SerializedProperty AttackSound;
+       SerializedProperty DeathSound;
     private void OnEnable()
     {
         lookRadius = serializedObject.FindProperty("lookRadius");
@@ -41,6 +43,8 @@ public class EnemyControllerEditor : Editor
         obstacleMask = serializedObject.FindProperty("obstacleMask");
         projectileOffset = serializedObject.FindProperty("ProjectileOffset");
         animateObject = serializedObject.FindProperty("AnimateObject");
+        AttackSound = serializedObject.FindProperty("AttackSound");
+        DeathSound = serializedObject.FindProperty("DeathSound");
     }
 
     public override void OnInspectorGUI()
@@ -74,6 +78,8 @@ public class EnemyControllerEditor : Editor
             }
         }
         EditorGUILayout.PropertyField(animateObject);
+        EditorGUILayout.PropertyField(AttackSound);
+        EditorGUILayout.PropertyField(DeathSound);
         serializedObject.ApplyModifiedProperties();
     }
 }

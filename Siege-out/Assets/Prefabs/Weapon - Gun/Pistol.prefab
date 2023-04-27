@@ -102,7 +102,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ShootingTime: 0.75
-  Damage: 25
+  Damage: 30
   Range: 100
   bulletCount: 1
   horizontalSpreadAngle: 2

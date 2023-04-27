@@ -97,6 +97,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
             {
                 if(gameObject.CompareTag("Enemy"))
                 {
+                    if(gameObject.GetComponent<Spawner>() != null)
+                    {
+                        gameObject.SetActive(false);
+                    }
                     Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
                     spawnerObj.rmSpawnCounter();
                 }

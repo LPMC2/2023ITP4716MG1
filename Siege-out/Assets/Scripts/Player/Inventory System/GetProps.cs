@@ -10,9 +10,11 @@ public class GetProps : MonoBehaviour
     private PropType propType;
     [SerializeField]
     private int AddAmount = 0;
+    [SerializeField] private GameObject pickupSound;
     private float time = 0;
     private bool isNotVaild = false;
     private GameObject mainGameObject;
+
     MainGame mainGameScript;
     public enum PropType
     {
@@ -41,9 +43,14 @@ public class GetProps : MonoBehaviour
     {
         mainGameObject = GameObject.FindWithTag("MainGame");
         mainGameScript = mainGameObject.GetComponent<MainGame>();
+        
     }
 public void GetProp()
     {
+        if(pickupSound != null)
+        {
+            GameObject pickupSoundObj = Instantiate(pickupSound, transform.position, Quaternion.identity);
+        }
         PlayerUI playerUI = player.GetComponent<PlayerUI>();
         isNotVaild = false;
         switch (propType) 

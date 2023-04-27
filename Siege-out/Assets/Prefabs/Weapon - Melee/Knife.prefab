@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackSpeed: 0.8
   AttackCD: 0.2
-  Damage: 30
+  Damage: 35
   hitboxSizeX: 0.6
   hitboxSizeY: 0.8
   maxDistance: 2.5
@@ -90,7 +90,7 @@ MonoBehaviour:
       m_Calls: []
   Weapon: {fileID: 5201682038720778396}
   AttackMode: 1
-  SpeedMultiplier: 0.95
+  SpeedMultiplier: 0.99
 --- !u!95 &7609984584940341942
 Animator:
   serializedVersion: 3
