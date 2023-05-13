@@ -348,25 +348,28 @@ public class GunController : MonoBehaviour
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     HealthBehaviour healthBehaviour = hit.collider.GetComponent<HealthBehaviour>();
-                    if (!isPiercing || !hitEnemies.Contains(hit.collider.gameObject))
+                    if (healthBehaviour != null)
                     {
-                        healthBehaviour.TakeDamage(Damage);
-                        hitEnemies.Add(hit.collider.gameObject);
-                    }
-                    if (Gun.name == "RayFreezer")
-                    {
+                        if (!hitEnemies.Contains(hit.collider.gameObject))
+                        {
+                            healthBehaviour.TakeDamage(Damage);
+                            hitEnemies.Add(hit.collider.gameObject);
+                        }
+                        if (isPiercing == false)
+                        {
+                            
+                            hitEnemies.Clear();
+                            break;
+                        }
+                        else if (isPiercing)
+                        {
 
+                            continue;
+                        }
                     }
-                    if (!isPiercing || i == bulletCount - 1)
-                    {
-                        hitEnemies.Clear();
-                    }
-                    if (isPiercing == true)
-                    {
-                        continue;
-                    }
+
                 }
-               
+
 
             }
         }
@@ -384,6 +387,8 @@ public class GunController : MonoBehaviour
         }
         yield return new WaitForSeconds(ShootingTime*0.9f);
         isShoot = false;
+            hitEnemies.Clear();
+
         fireTimer = 0f;
        
         //Update the Inventory UI

@@ -107,7 +107,6 @@ public class MainGame : MonoBehaviour
         EnterUI.blocksRaycasts = true;
         FpsController = Player.GetComponent<FirstPersonController>();
         spawnerhealth = Target2.GetComponent<HealthBehaviour>();
-        initialHealth = spawnerhealth.GetInitialHealth();
         playerUI = GetComponent<PlayerUI>();
         WorkBrenchName.SetActive(false);
         SiegeMode1.SetActive(false);
@@ -139,8 +138,11 @@ public class MainGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        switch(GameProcessID)
+        if (spawnerhealth.GetInitialHealth() >= 1 && initialHealth <= 0)
+        {
+            initialHealth = spawnerhealth.GetInitialHealth();
+        }
+            switch (GameProcessID)
         {
             case 0:
                 isChose = false;
@@ -209,7 +211,7 @@ public class MainGame : MonoBehaviour
                         }
                         break;
                     case 2:
-                        if (Target2.activeInHierarchy == false)
+                        if (!Target2)
                         {
                             winGame();
                             playerUI.UpdateText("Game End!");
@@ -225,7 +227,8 @@ public class MainGame : MonoBehaviour
         }
         if(isAttackable == false)
         {
-            spawnerhealth.HealthSetter(initialHealth);
+
+                spawnerhealth.HealthSetter(initialHealth);
         }
     }
     

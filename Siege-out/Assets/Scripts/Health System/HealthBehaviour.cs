@@ -72,52 +72,63 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         }
         if (Invincible == false)
         {
+           
             health -= damage;
-        }
+           
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall"))
+            {
+                UpdateHealthBar();
+            }
+
+            if (health <= 0)
+            {
+                if (gameObject.CompareTag("Player"))
+                {
+                    MainGame mainGame = GameObject.Find("MainGame").GetComponent<MainGame>();
+                    mainGame.loseGame();
+
+                }
+                else
+                {
+                    if (gameObject.CompareTag("Enemy"))
+                    {
+                        if (gameObject.GetComponent<Spawner>() != null)
+                        {
+                            gameObject.SetActive(false);
+                        } else
+                        {
+                            gameObject.GetComponent<EnemyController>().enabled = false;
+                        }
+                        if (SpawnerObject != null)
+                        {
+                            Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
+                            spawnerObj.rmSpawnCounter();
+                        }
+                        MobAnimator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+                        if (MobAnimator != null && GetComponent<Spawner>() == null)
+                        {
+                            EnemyController enemyController = GetComponent<EnemyController>();
+                            enemyController.enabled = false;
+                            
+                            MobAnimator.Play("Death");
+                            enemyController.playDeathSound();
+                            Destroy(gameObject, DeathTime);
+                        }
+                        else
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+
+                }
+            }
         AIController aiController = gameObject.GetComponent<AIController>();
         if (aiController != null)
         {
             
            
         }
-        if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall")) 
-        {
-            UpdateHealthBar();
-        }
 
-        if (health <= 0)
-        {
-            if (gameObject.CompareTag("Player"))
-            {
-                MainGame mainGame = GameObject.Find("MainGame").GetComponent<MainGame>();
-                mainGame.loseGame();
-               
-            }
-            else
-            {
-                if(gameObject.CompareTag("Enemy"))
-                {
-                    if(gameObject.GetComponent<Spawner>() != null)
-                    {
-                        gameObject.SetActive(false);
-                    }
-                    Spawner spawnerObj = SpawnerObject.GetComponent<Spawner>();
-                    spawnerObj.rmSpawnCounter();
-                }
-                MobAnimator = transform.GetChild(0).gameObject.GetComponent<Animator>();
-                if (MobAnimator != null)
-                {
-                    EnemyController enemyController = GetComponent<EnemyController>();
-                    enemyController.enabled = false;
-                    MobAnimator.Play("Death");
-                    enemyController.playDeathSound();
-                    Destroy(gameObject, DeathTime);
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
-            }
         }
         if (gameObject.CompareTag("Player"))
         {
@@ -160,7 +171,6 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-
         if (gameObject.CompareTag("Player")) 
         {
             health = Mathf.Clamp(health, 0, initialHealth);
