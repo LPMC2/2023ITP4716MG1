@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 34420812}
   - component: {fileID: 34420811}
   - component: {fileID: 34420810}
+  - component: {fileID: 34420814}
   m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -472,6 +473,22 @@ Transform:
   m_Father: {fileID: 950973359}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &34420814
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34420809}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &93099566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4951,6 +4968,7 @@ GameObject:
   - component: {fileID: 705213668}
   - component: {fileID: 705213667}
   - component: {fileID: 705213666}
+  - component: {fileID: 705213670}
   m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Wall
@@ -5035,6 +5053,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: -0.049, y: 91.273, z: 0.999}
+--- !u!208 &705213670
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705213665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &726459834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5136,6 +5170,7 @@ GameObject:
   - component: {fileID: 730342404}
   - component: {fileID: 730342403}
   - component: {fileID: 730342402}
+  - component: {fileID: 730342406}
   m_Layer: 7
   m_Name: Cube
   m_TagString: Wall
@@ -5220,6 +5255,22 @@ Transform:
   m_Father: {fileID: 950973359}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &730342406
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730342401}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &732078452
 GameObject:
   m_ObjectHideFlags: 0
@@ -5408,7 +5459,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &753830315
 Transform:
@@ -5499,7 +5550,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
+  m_Size: {x: 9.999999, y: 2.22, z: 10}
   m_Center: {x: 0, y: 0, z: 0.0000009536743}
 --- !u!1 &755433024
 GameObject:
@@ -5873,6 +5924,7 @@ GameObject:
   - component: {fileID: 779615733}
   - component: {fileID: 779615732}
   - component: {fileID: 779615731}
+  - component: {fileID: 779615734}
   m_Layer: 7
   m_Name: SpwanerWall
   m_TagString: Wall
@@ -5957,6 +6009,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779615729}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &779615734
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779615729}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &793097935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6059,6 +6127,7 @@ GameObject:
   - component: {fileID: 828355622}
   - component: {fileID: 828355625}
   - component: {fileID: 828355626}
+  - component: {fileID: 828355627}
   m_Layer: 7
   m_Name: Door
   m_TagString: Wall
@@ -6174,6 +6243,22 @@ MonoBehaviour:
   MaxDurability: 1000
   Durability: 0
   DestroyedSound: {fileID: 0}
+--- !u!208 &828355627
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828355620}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &828889474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6688,6 +6773,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100012, guid: 272a1dd3343458d45888ea8668d6e2ea, type: 3}
   m_PrefabInstance: {fileID: 1718535435}
   m_PrefabAsset: {fileID: 0}
+--- !u!208 &862555263
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862555262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!65 &862555264
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7649,6 +7750,7 @@ GameObject:
   - component: {fileID: 962092074}
   - component: {fileID: 962092073}
   - component: {fileID: 962092072}
+  - component: {fileID: 962092075}
   m_Layer: 7
   m_Name: SpwanerWall (2)
   m_TagString: Untagged
@@ -7733,6 +7835,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962092070}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &962092075
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962092070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &980956260
 GameObject:
   m_ObjectHideFlags: 0
@@ -14015,6 +14133,7 @@ GameObject:
   - component: {fileID: 1733805046}
   - component: {fileID: 1733805045}
   - component: {fileID: 1733805044}
+  - component: {fileID: 1733805047}
   m_Layer: 7
   m_Name: SpwanerWall (1)
   m_TagString: Wall
@@ -14099,6 +14218,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733805042}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1733805047
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733805042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1737494903
 GameObject:
   m_ObjectHideFlags: 0
@@ -16040,6 +16175,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100012, guid: 272a1dd3343458d45888ea8668d6e2ea, type: 3}
   m_PrefabInstance: {fileID: 93099566}
   m_PrefabAsset: {fileID: 0}
+--- !u!208 &1968837536
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968837535}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!65 &1968837537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18497,6 +18648,10 @@ PrefabInstance:
       propertyPath: InitialInventorySlot.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 133648485786823773, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.157
+      objectReference: {fileID: 0}
     - target: {fileID: 133648485786823775, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -18556,6 +18711,10 @@ PrefabInstance:
     - target: {fileID: 133648485797610911, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 133648485798610367, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
+      propertyPath: m_Height
+      value: 3.13
       objectReference: {fileID: 0}
     - target: {fileID: 5524829210111024154, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: promptText
