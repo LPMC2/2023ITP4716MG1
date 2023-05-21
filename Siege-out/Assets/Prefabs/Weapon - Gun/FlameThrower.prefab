@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1729427183101083604}
   - component: {fileID: 5439732953678822370}
   - component: {fileID: 5865258621661551009}
+  - component: {fileID: 8048873724316054137}
   m_Layer: 11
   m_Name: FlameThrower
   m_TagString: Untagged
@@ -82,6 +83,10 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: -0.0125, y: -1.1, z: 1.75}
   BulletSpreadMultiplier: 0.9
+  recoilAngle: 0.1
+  recoilSpeed: 25
+  maxRecoilAngle: 0.5
+  currentRecoilAngle: 0
   SpeedMultiplier: 0.65
   hitFX: {fileID: 0}
   Gun: {fileID: 2829946225544818338}
@@ -187,6 +192,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8048873724316054137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275135114355239407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06ceb3bbbc169240bfecb882ad3a766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 0}
+  step: 0.01
+  maxStepDistance: 0.06
+  swayPos: {x: 0, y: 0, z: 0}
+  rotationStep: 4
+  maxRotationStep: 5
+  smooth: 10
+  speedCurve: 2
+  travelLimit: {x: 0.025, y: 0.025, z: 0.025}
+  bobLimit: {x: 0.01, y: 0.01, z: 0.01}
+  bobPosition: {x: 0, y: 0, z: 0}
+  bobExaggeration: 1
+  multiplier: {x: 1, y: 1, z: 1}
 --- !u!95 &8098487938002123673
 Animator:
   serializedVersion: 3

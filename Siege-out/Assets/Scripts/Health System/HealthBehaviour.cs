@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class HealthBehaviour : MonoBehaviour, IDamageable
 {
@@ -21,6 +22,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     [Header("Player Only Settings")]
     public Image frontHealthBar;
     public Image backHealthBar;
+    [SerializeField] private GameObject HeartSymbol;
     private GameObject SpawnerObject;
     private Animator MobAnimator;
     private AudioSource audioSource;
@@ -74,7 +76,15 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         {
            
             health -= damage;
-           
+            if (gameObject.CompareTag("Player"))
+            {
+                Animator heartAnimator = HeartSymbol.GetComponent<Animator>();
+                if (heartAnimator != null)
+                {
+                    float speedMultiplier = Mathf.Clamp(1.0f / (health / initialHealth), 1.0f, 2.5f);
+                    heartAnimator.SetFloat("Speed", speedMultiplier);
+                }
+            }
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall"))
             {
                 UpdateHealthBar();
@@ -108,8 +118,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                         if (MobAnimator != null && GetComponent<Spawner>() == null)
                         {
                             EnemyController enemyController = GetComponent<EnemyController>();
+                            NavMeshAgent enemyAIController = GetComponent<NavMeshAgent>();
                             enemyController.enabled = false;
-                            
+                            enemyAIController.enabled = false;
+
                             MobAnimator.Play("Death");
                             enemyController.playDeathSound();
                             Destroy(gameObject, DeathTime);
@@ -197,7 +209,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
-            backHealthBar.color = Color.red;
+            backHealthBar.color = new Color(0.5f, 0, 0, 1);
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;

@@ -51,7 +51,10 @@ public class MainGame : MonoBehaviour
     {
         return GameProcessID;
     }
-
+    public bool getIsEnd()
+    {
+        return isEnd;
+    }
     public void setCursor(bool BooleanDetect)
     {
         if(BooleanDetect == false)

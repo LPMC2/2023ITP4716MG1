@@ -20,9 +20,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private int RemainAmmo;
     [SerializeField] private float ReloadingTime;
     [SerializeField] private UnityEvent ReloadFunction;
-    [Header("Gun Attack Settings")]
- 
 
+    [Header("Gun Attack Settings")]
     [SerializeField] private float ShootingTime;
 
     [SerializeField] private float Damage;
@@ -33,10 +32,29 @@ public class GunController : MonoBehaviour
     [SerializeField] private bool isPiercing = false;
     [SerializeField] private UnityEvent<GameObject> HitFunction;
     [SerializeField] private UnityEvent ShootFunction;
+
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
     [SerializeField] private float BulletSpreadMultiplier = 1f;
     private Vector3 OriginalPosition;
+
+    [Header("Recoil Settings")]
+    [SerializeField]
+    private float recoilAngle = 5f;
+    // The speed at which the camera rotates back to its original position
+    [SerializeField]
+    private float recoilSpeed = 10f;
+    // The maximum recoil rotation angle
+    [SerializeField]
+    private float maxRecoilAngle = 20f;
+    private bool isRecoiling = false;
+    // The current recoil angle
+#if UNITY_EDITOR
+[ReadOnly]
+#endif
+    [SerializeField] private float currentRecoilAngle = 0f;
+    private Transform cameraTransform;
+    private GameObject cameraObject;
     [Header("Other Settings")]
     [SerializeField] private float SpeedMultiplier = 1f;
     [SerializeField] private GameObject hitFX;
@@ -58,7 +76,7 @@ public class GunController : MonoBehaviour
     private bool isShoot = false;
     private bool isReload = false;
     private bool isAim = false;
-
+    private SwayNBobScript SNBScript;
     private AudioSource audioSource;
     private HashSet<GameObject> hitEnemies = new HashSet<GameObject>();
     public float GetDamage()
@@ -90,8 +108,13 @@ public class GunController : MonoBehaviour
     {
         return ShootingTime;
     }
+    public bool getActiveState()
+    {
+        return isActive;
+    }
     private void Start()
     {
+        cameraTransform = transform.parent;
         Player = GameObject.Find("FPSController");
         Inventory = Player.GetComponent<InventoryBehaviour>();
         GetSound();
@@ -99,6 +122,7 @@ public class GunController : MonoBehaviour
         OriginalPosition = transform.localPosition;
         PlayerMotor playerMotor = Player.GetComponent<PlayerMotor>();
         playerMotor.setSpeed(SpeedMultiplier);
+        SNBScript = GetComponent<SwayNBobScript>();
     }
     private void GetSound()
     {
@@ -114,9 +138,20 @@ public class GunController : MonoBehaviour
 
     }
     private void Update()
-
     {
-        if(isOut == false && RemainAmmo <=0 && TotalAmmo <= 0)
+        if (!isRecoiling)
+        {
+            currentRecoilAngle = Mathf.Lerp(currentRecoilAngle, 0f, recoilSpeed * Time.deltaTime);
+        }
+        // Rotate the camera back to its original position if the camera is recoiling, but clamp the angle to the current recoil angle
+        else
+        {
+            currentRecoilAngle = Mathf.Clamp(currentRecoilAngle, 0f, maxRecoilAngle);
+            currentRecoilAngle = Mathf.Lerp(currentRecoilAngle, 0f, recoilSpeed * Time.deltaTime);
+            isRecoiling = currentRecoilAngle > 0f; // Set the flag to false if the recoil angle has reached 0
+        }
+        cameraTransform.Rotate(Vector3.left, currentRecoilAngle);
+        if (isOut == false && RemainAmmo <=0 && TotalAmmo <= 0)
         {
             isOut = true;
         } else if(isOut == true)
@@ -204,6 +239,11 @@ public class GunController : MonoBehaviour
             }
             
             StartCoroutine(StartReload());
+            if(ReloadCD == 0)
+            {
+                ReloadFunction.Invoke();
+                SNBScript.setPos(OriginalPosition);
+            }
             ReloadCD += Time.deltaTime;
 
             if (ReloadCD >= ReloadingTime)
@@ -261,7 +301,7 @@ public class GunController : MonoBehaviour
     }
     IEnumerator StartReload()
     {
-        ReloadFunction.Invoke();
+        
         Animator gunAnimator = Gun.GetComponent<Animator>();
         if (gunAnimator != null)
         {
@@ -277,7 +317,23 @@ public class GunController : MonoBehaviour
 
     }
 
-
+    private void recoilMove()
+    {
+        if (cameraTransform != null)
+        {
+            if (!isRecoiling)
+            {
+                currentRecoilAngle += recoilAngle;
+                currentRecoilAngle = Mathf.Clamp(currentRecoilAngle, 0f, maxRecoilAngle); // Clamp the angle to the maximum value
+                isRecoiling = true;
+            }
+            else // Add the recoil angle to the current recoil angle again if the camera is already recoiling
+            {
+                currentRecoilAngle += recoilAngle;
+                currentRecoilAngle = Mathf.Clamp(currentRecoilAngle, 0f, maxRecoilAngle); // Clamp the angle to the maximum value
+            }
+        }
+    }
    
 
     private IEnumerator Shoot()
@@ -298,7 +354,7 @@ public class GunController : MonoBehaviour
            
             audioSource.PlayOneShot(ShootSound, 1);
         }
-        
+        recoilMove();
         UpdateInv();
 
         Vector3 raycastOrigin = Camera.main.transform.position + Vector3.up * 0.1f;
@@ -359,7 +415,10 @@ public class GunController : MonoBehaviour
                         {
                             
                             hitEnemies.Clear();
-                            break;
+                            if (bulletCount < 2)
+                            {
+                                break;
+                            }
                         }
                         else if (isPiercing)
                         {
@@ -424,6 +483,10 @@ public class GunController : MonoBehaviour
             {
                 
                 transform.localPosition = Vector3.Lerp(transform.localPosition, AimPosition, Time.deltaTime * 5f);
+                if (SNBScript != null)
+                {
+                    SNBScript.setPos(AimPosition);
+                }
                 if (isAim == false)
                 {
                     horizontalSpreadAngle *= BulletSpreadMultiplier;
@@ -435,6 +498,10 @@ public class GunController : MonoBehaviour
             else
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, OriginalPosition, Time.deltaTime * 5f);
+                if (SNBScript != null)
+                {
+                    SNBScript.setPos(OriginalPosition);
+                }
                 if (isAim == true)
                 {
                     horizontalSpreadAngle /= BulletSpreadMultiplier;

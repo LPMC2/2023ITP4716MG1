@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8611356977426518949}
   - component: {fileID: 8611356977426518948}
   - component: {fileID: 1206794313185979142}
+  - component: {fileID: -8451916272237849449}
   m_Layer: 11
   m_Name: MachineGun
   m_TagString: Untagged
@@ -116,6 +117,10 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: 0.25, y: -2.08, z: 1.86}
   BulletSpreadMultiplier: 0.3
+  recoilAngle: 4
+  recoilSpeed: 1.5
+  maxRecoilAngle: 120
+  currentRecoilAngle: 0
   SpeedMultiplier: 0.4
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 6918557245949558577}
@@ -221,6 +226,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8451916272237849449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611356977426518939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06ceb3bbbc169240bfecb882ad3a766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 0}
+  step: 0.01
+  maxStepDistance: 0.06
+  swayPos: {x: 0, y: 0, z: 0}
+  rotationStep: 4
+  maxRotationStep: 5
+  smooth: 10
+  speedCurve: 2
+  travelLimit: {x: 0.025, y: 0.025, z: 0.025}
+  bobLimit: {x: 0.01, y: 0.01, z: 0.01}
+  bobPosition: {x: 0, y: 0, z: 0}
+  bobExaggeration: 1
+  multiplier: {x: 1, y: 1, z: 1}
 --- !u!1001 &2403524628727074959
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -41,6 +41,10 @@ public class PlayerMotor : MonoBehaviour
         speedMultiplier = speedM;
         speedMultiplier = speed - (speed * speedMultiplier);
     }
+    public bool getGrounded()
+    {
+        return isGrounded;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

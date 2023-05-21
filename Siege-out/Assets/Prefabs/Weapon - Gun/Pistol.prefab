@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1316749435118010104}
   - component: {fileID: 1316749435118010105}
   - component: {fileID: -577965170409371455}
+  - component: {fileID: -2829813411746891001}
   m_Layer: 11
   m_Name: Pistol
   m_TagString: Untagged
@@ -105,8 +106,8 @@ MonoBehaviour:
   Damage: 30
   Range: 100
   bulletCount: 1
-  horizontalSpreadAngle: 2
-  verticalSpreadAngle: 2
+  horizontalSpreadAngle: 6
+  verticalSpreadAngle: 6
   isPiercing: 0
   HitFunction:
     m_PersistentCalls:
@@ -115,7 +116,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   AimPosition: {x: -0.0262, y: -0.351, z: 0.5}
-  BulletSpreadMultiplier: 0.5
+  BulletSpreadMultiplier: 0.1
+  recoilAngle: 7.5
+  recoilSpeed: 5
+  maxRecoilAngle: 60
+  currentRecoilAngle: 0
   SpeedMultiplier: 0.95
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
   Gun: {fileID: 1240287873935565395}
@@ -221,6 +226,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2829813411746891001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316749435118010086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06ceb3bbbc169240bfecb882ad3a766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 0}
+  step: 0.01
+  maxStepDistance: 0.06
+  swayPos: {x: 0, y: 0, z: 0}
+  rotationStep: 4
+  maxRotationStep: 5
+  smooth: 10
+  speedCurve: 0.15
+  travelLimit: {x: 0.025, y: 0.025, z: 0.025}
+  bobLimit: {x: 0.01, y: 0.01, z: 0.01}
+  bobPosition: {x: 0, y: 0, z: 0}
+  bobExaggeration: 0.63
+  multiplier: {x: 1, y: 1, z: 1}
 --- !u!1001 &1265573172795330111
 PrefabInstance:
   m_ObjectHideFlags: 0
