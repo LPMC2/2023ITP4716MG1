@@ -131,6 +131,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
                             Destroy(gameObject);
                         }
                     }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
 
                 }
             }
