@@ -24,7 +24,7 @@ public class FollowPlayer : MonoBehaviour
         player.Rotate(Vector3.up * inputX);
     }
     // Update is called once per frame
-    private Vector3 offset = new Vector3(0, 0, 0);
+    [SerializeField] private Vector3 offset = new Vector3(0, 0, 0);
     void UpdateCameraPosition()
     {
         transform.position = player.transform.position + offset;

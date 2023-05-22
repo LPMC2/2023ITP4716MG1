@@ -27,7 +27,7 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, distance, mask)) 
         {
-            if(hitInfo.collider.GetComponent<Interactable>() != null)
+            if(hitInfo.collider.GetComponent<Interactable>() != null && hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
             {
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 playerUI.UpdateText(interactable.promptMessage);
