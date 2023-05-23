@@ -71,6 +71,7 @@ MonoBehaviour:
   Invincible: 0
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
+  HeartSymbol: {fileID: 0}
 --- !u!114 &-7652981702255938716
 MonoBehaviour:
   m_ObjectHideFlags: 0

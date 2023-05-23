@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private AudioClip AttackSound;
     [SerializeField] private AudioClip DeathSound;
     private AudioSource audioSource;
+    private float closestDistance;
     public enum AttackType
     {
         Melee,
@@ -65,6 +66,7 @@ public class EnemyController : MonoBehaviour
         {
             enemyAnimator = AnimateObject.GetComponent<Animator>();
         }
+        InvokeRepeating("DetectDestructables", 0f, 1f);
     }
     public void setAttackData(float switchDamage, float switchAttackCD, float switchPreAttackCD)
     {
@@ -96,11 +98,10 @@ public class EnemyController : MonoBehaviour
             audioSource.Play();
         }
     }
-    // Update is called once per frame
-    void Update()
+    private void DetectDestructables()
     {
         Destructable[] destructibles = FindObjectsOfType<Destructable>();
-        float closestDistance = agent.stoppingDistance;
+        closestDistance = agent.stoppingDistance;
         foreach (Destructable destructable in destructibles)
         {
             float enemydistance = Vector3.Distance(transform.position, destructable.transform.position);
@@ -109,9 +110,14 @@ public class EnemyController : MonoBehaviour
             {
                 closestDistance = enemydistance;
                 nearestDestructible = destructable.gameObject;
-             
+
             }
         }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= lookRadius)
         {
@@ -158,7 +164,7 @@ public class EnemyController : MonoBehaviour
             }
 
             // Wait until the animation clip ends
-            yield return new WaitForSeconds(enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(enemyAnimator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
         }
     }
     void FaceTarget()
