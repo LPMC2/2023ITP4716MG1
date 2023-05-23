@@ -242,14 +242,14 @@ MonoBehaviour:
   step: 0.01
   maxStepDistance: 0.06
   swayPos: {x: 0, y: 0, z: 0}
-  rotationStep: 4
-  maxRotationStep: 5
+  rotationStep: 5
+  maxRotationStep: 10
   smooth: 10
   speedCurve: 2
   travelLimit: {x: 0.025, y: 0.025, z: 0.025}
-  bobLimit: {x: 0.01, y: 0.01, z: 0.01}
+  bobLimit: {x: 0.02, y: 0.02, z: 0.02}
   bobPosition: {x: 0, y: 0, z: 0}
-  bobExaggeration: 1
+  bobExaggeration: 3
   multiplier: {x: 1, y: 1, z: 1}
 --- !u!1001 &2403524628727074959
 PrefabInstance:
