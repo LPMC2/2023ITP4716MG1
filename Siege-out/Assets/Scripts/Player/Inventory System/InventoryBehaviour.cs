@@ -506,12 +506,12 @@ public class InventoryBehaviour : MonoBehaviour
                 if (i == currentUsingId)
                 {
                     image.sprite = SlotSelect;
-                    image.transform.localScale = new Vector3(1.19f, 1.2f, 1.2f);
+                    image.transform.localScale = new Vector3(1.32f, 1.32f, 1.32f);
                 }
                 else
                 {
                     image.sprite = SlotNormal;
-                    image.transform.localScale = new Vector3(1.2524f, 1.2524f, 1.2524f);
+                    image.transform.localScale = new Vector3(1f, 1f, 1f);
                 }
             }
             int weaponId = Inventory[i, 0];

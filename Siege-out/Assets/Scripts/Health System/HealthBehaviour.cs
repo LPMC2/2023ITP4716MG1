@@ -22,7 +22,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     [Header("Player Only Settings")]
     public Image frontHealthBar;
     public Image backHealthBar;
-    [SerializeField] private GameObject HeartSymbol;
+
     private GameObject SpawnerObject;
     private Animator MobAnimator;
     private AudioSource audioSource;
@@ -76,15 +76,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
         {
            
             health -= damage;
-            if (gameObject.CompareTag("Player"))
-            {
-                Animator heartAnimator = HeartSymbol.GetComponent<Animator>();
-                if (heartAnimator != null)
-                {
-                    float speedMultiplier = Mathf.Clamp(1.0f / (health / initialHealth), 1.0f, 2.5f);
-                    heartAnimator.SetFloat("Speed", speedMultiplier);
-                }
-            }
+
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall"))
             {
                 UpdateHealthBar();
