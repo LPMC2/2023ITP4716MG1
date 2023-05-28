@@ -57,6 +57,9 @@ public class LoadScene : MonoBehaviour
                     case 2:
                         SceneManager.LoadScene("UIScene");
                         break;
+                    case 3:
+                        SceneManager.LoadScene("Training");
+                        break;
                 }
                
             

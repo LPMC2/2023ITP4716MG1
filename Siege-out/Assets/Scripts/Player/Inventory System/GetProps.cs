@@ -30,7 +30,7 @@ public class GetProps : MonoBehaviour
         {
             if(propType == PropType.Ammo)
             {
-                ShowMessage("No Vaild Weapon Type!");
+                ShowMessage("Not Vaild Type!");
             }
             
         }

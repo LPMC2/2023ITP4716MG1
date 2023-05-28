@@ -8,17 +8,27 @@ using UnityEngine;
 [CustomEditor(typeof(Spawner))]
 public class SpawnerEditor : Editor
 {
-    private SerializedProperty spawnTimeProperty;
+    private SerializedProperty maxSpawnTimeProperty;
+    private SerializedProperty minSpawnTimeProperty;
+    private SerializedProperty maxSpawnRadiusProperty;
+    private SerializedProperty minSpawnRadiusProperty;
     private SerializedProperty spawnCountLimitProperty;
     private SerializedProperty spawnAmountProperty;
+    private SerializedProperty stayTimeProperty;
     private SerializedProperty monstersProperty;
+        private SerializedProperty targetProperty;
 
     private void OnEnable()
     {
-        spawnTimeProperty = serializedObject.FindProperty("SpawnTime");
+        minSpawnTimeProperty = serializedObject.FindProperty("minSpawnTime");
+        maxSpawnTimeProperty = serializedObject.FindProperty("maxSpawnTime");
+        minSpawnRadiusProperty = serializedObject.FindProperty("minSpawnRadius");
+        maxSpawnRadiusProperty = serializedObject.FindProperty("maxSpawnRadius");
         spawnCountLimitProperty = serializedObject.FindProperty("SpawnCountLimit");
         spawnAmountProperty = serializedObject.FindProperty("SpawnAmout");
+        stayTimeProperty = serializedObject.FindProperty("StayTime");
         monstersProperty = serializedObject.FindProperty("monsters");
+        targetProperty = serializedObject.FindProperty("TargetObject");
     }
 
     public override void OnInspectorGUI()
@@ -26,10 +36,18 @@ public class SpawnerEditor : Editor
        
         serializedObject.Update();
         Spawner spawner = (Spawner)target;
-
-        EditorGUILayout.PropertyField(spawnTimeProperty);
+         EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PropertyField(minSpawnTimeProperty);
+        EditorGUILayout.PropertyField(maxSpawnTimeProperty);
+         EditorGUILayout.EndHorizontal();
+         EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PropertyField(minSpawnRadiusProperty);
+        EditorGUILayout.PropertyField(maxSpawnRadiusProperty);
+         EditorGUILayout.EndHorizontal();
         EditorGUILayout.PropertyField(spawnCountLimitProperty);
         EditorGUILayout.PropertyField(spawnAmountProperty);
+        EditorGUILayout.PropertyField(stayTimeProperty);
+        EditorGUILayout.PropertyField(targetProperty);
         EditorGUILayout.PropertyField(monstersProperty);
         for (int i = 0; i < monstersProperty.arraySize; i++)
         {

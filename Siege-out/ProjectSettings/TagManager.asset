@@ -13,6 +13,7 @@ TagManager:
   - Ice
   - TargetWall
   - MainGame
+  - Dummy
   layers:
   - Default
   - TransparentFX

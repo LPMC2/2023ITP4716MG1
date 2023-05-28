@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 391d35c6f0e46c04b97ed14a9bbb0313
+guid: 7adffb39de3dff24e9dec7ef682baa16
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
@@ -7,23 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #10
-    second: {fileID: 2100000, guid: 1cad2b56c97bdb6488ab9743917bfad1, type: 2}
+      name: Material #29
+    second: {fileID: 2100000, guid: 38638d51f910f1f4d8a6194d11c33b63, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #7
-    second: {fileID: 2100000, guid: d6bffa008ff72d34eb18fe1d6f276c23, type: 2}
+      name: Material #30
+    second: {fileID: 2100000, guid: edd88890f3832364cb97925c3970ccda, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #8
-    second: {fileID: 2100000, guid: 1cad2b56c97bdb6488ab9743917bfad1, type: 2}
+      name: Material #32
+    second: {fileID: 2100000, guid: bbf77938e50e2a8469b02ad660d977d2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material #9
-    second: {fileID: 2100000, guid: f9eeff46d621c2c4e970e4087c69ae77, type: 2}
+      name: Material #33
+    second: {fileID: 2100000, guid: 5a00598b4b9b5774b8bff0ce31617709, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #34
+    second: {fileID: 2100000, guid: 8fde9a75b5df1f345b35265c37e2578d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -54,7 +59,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 15
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -105,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.1
+    globalScale: 15
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

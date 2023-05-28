@@ -34,6 +34,8 @@ public class MainGame : MonoBehaviour
     [SerializeField] private GameObject WorkBrenchName;
     [SerializeField] private AudioClip WinSound;
     [SerializeField] private AudioClip LoseSound;
+    [Header("Settings")]
+    [SerializeField] private bool isMain = true;
     private AudioSource audioSource;
     private CanvasGroup EnterUI;
     public CanvasGroup uiCanvasGroup;
@@ -46,6 +48,8 @@ public class MainGame : MonoBehaviour
     private float initialHealth;
     private bool isAttackable = false;
     private bool isEntering = false;
+    private int score = 0;
+    private GameObject weapon;
     // Start is called before the first frame update
     public int GetGameID()
     {
@@ -73,6 +77,10 @@ public class MainGame : MonoBehaviour
     {
         return isEntering;
     }
+    public GameObject getPlayer()
+    {
+        return Player;
+    }
     private void DisableGun()
     {
         GunController[] gunControllers = PlayerCamera.GetComponentsInChildren<GunController>(false);
@@ -98,36 +106,78 @@ public class MainGame : MonoBehaviour
     }
     void Start()
     {
- 
-        EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
-        EnterUIObject.SetActive(true);
+        if (EnterUIObject != null)
+        {
+            EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
+            EnterUIObject.SetActive(true);
+        }
         isEntering = true;
-        ObjectiveUI.SetActive(false);
+        if (ObjectiveUI != null)
+        {
+            ObjectiveUI.SetActive(false);
+        }
         endtimer = EndTime;
+       
         Time.timeScale = 0.0f;
-        EnterUI.alpha = 1.0f;
-        EnterUI.interactable = true;
-        EnterUI.blocksRaycasts = true;
-        FpsController = Player.GetComponent<FirstPersonController>();
-        spawnerhealth = Target2.GetComponent<HealthBehaviour>();
+        if (EnterUI != null)
+        {
+            EnterUI.alpha = 1.0f;
+            EnterUI.interactable = true;
+            EnterUI.blocksRaycasts = true;
+        }
+        if (Player != null)
+        {
+            FpsController = Player.GetComponent<FirstPersonController>();
+        }
+        if (PlayerCamera != null)
+        {
+            PlayerCamera = Player.transform.GetChild(0).gameObject;
+        }
+        if (Target2 != null)
+        {
+            spawnerhealth = Target2.GetComponent<HealthBehaviour>();
+        }
         playerUI = GetComponent<PlayerUI>();
-        WorkBrenchName.SetActive(false);
-        SiegeMode1.SetActive(false);
-        SiegeMode2.SetActive(false);
+        if (WorkBrenchName != null)
+        {
+            WorkBrenchName.SetActive(false);
+        }
+        if (SiegeMode1 != null)
+        {
+            SiegeMode1.SetActive(false);
+        }
+        if (SiegeMode2 != null)
+        {
+            SiegeMode2.SetActive(false);
+        }
         CurrentItemCount = 0;
         GameProcessID = 0;
-        playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
+        if (isMain)
+        {
+            playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
+            
+        } else
+        {
+            playerUI.UpdateText("Score: " + score);
+        }
         GamePause();
     }
     public void setCurrentItemCount(int count)
     {
        
-        CurrentItemCount += count;
-        if (playerUI)
-        {
-            playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
-        }
         
+        if (isMain)
+        {
+            CurrentItemCount += count;
+            if (playerUI)
+            {
+                playerUI.UpdateText("Material(s) Required to Collect: " + (RequiredItemCount - CurrentItemCount));
+            }
+        }
+        else
+        {
+            playerUI.UpdateText("Score: " + score);
+        }
     }
     public void disableEnterUI()
     {
@@ -138,103 +188,148 @@ public class MainGame : MonoBehaviour
         loadScene.PlayEntry(); ;
         isEntering = false;
     }
+    void Training()
+    {
+        weapon = PlayerCamera.transform.GetChild(1).gameObject;
+        if(weapon != null)
+        {
+            GunController gunController = weapon.GetComponent<GunController>();
+            if(gunController != null)
+            {
+                if (gunController.GetRange() != 999)
+                {
+                    gunController.setRange(999);
+                }
+                if (gunController.GetBulletCount() == 1 && gunController.GetHorAngle() != 0.05f && gunController.GetVerAngle() != 0.05f)
+                {
+                    gunController.setSpreadAngle(0.05f, 0.05f);
+                }
+                else
+                {
+                    if (gunController.GetRemainAmmo() != 999)
+                    {
+                        gunController.SetRemainAmmo(999);
+                    }
+                }
+                if (gunController.GetTotalAmmo() != 999)
+                {
+                    gunController.SetTotalAmmo(999);
+
+                    gunController.UpdateInv();
+                }
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        if (spawnerhealth.GetInitialHealth() >= 1 && initialHealth <= 0)
+        if (isMain == false)
         {
-            initialHealth = spawnerhealth.GetInitialHealth();
+            Training();
         }
-            switch (GameProcessID)
+        if (isMain)
         {
-            case 0:
-                isChose = false;
-                SiegeMenuUI.SetActive(false);
-                WordString = "";
-                GameProcessID++;
-                break;
-            case 1:
-                if(CurrentItemCount >= RequiredItemCount)
-                {
-                    playerUI.UpdateText("Go to the Construction Work Brench");
-                    WorkBrenchName.SetActive(true);
-                    CurrentItemCount = 0;
-                    RequiredItemCount = 1;
-                    WordString = "||||||||||";
-                    Boss.SetActive(true);
+            if (spawnerhealth.GetInitialHealth() >= 1 && initialHealth <= 0)
+            {
+                initialHealth = spawnerhealth.GetInitialHealth();
+            }
+            switch (GameProcessID)
+            {
+                case 0:
+                    isChose = false;
+                    SiegeMenuUI.SetActive(false);
+                    WordString = "";
                     GameProcessID++;
-                    
-                }
-                break;
-            case 2:
-                if(CurrentItemCount >= RequiredItemCount)
-                {
-
-                    if (isChose == true)
+                    break;
+                case 1:
+                    if (CurrentItemCount >= RequiredItemCount)
                     {
-                        GameTime += Time.deltaTime;
-                        if (GameTime >= 6f && WordString.Length > 0)
-                        {
-                            WordString = WordString.Remove(WordString.Length - 1);
-                            GameTime = 0;
-                        }
-                        if (WordString.Length == 0)
-                        {
-                            switch(SiegeMode)
-                            {
-                                case 1:
-                                SiegeMode1.SetActive(true);
-                                    playerUI.UpdateText("Break the Wall and Escape!");
-                                    break;
-                                case 2:
-                                SiegeMode2.SetActive(true);
-                                    playerUI.UpdateText("Attack the Spawner!");
-                                    isAttackable = true;
-                                   
-                                    break;
-
-                            }
-                            
-                            GameProcessID++;
-                        } else
-                        playerUI.UpdateText("Creating Siege Machine\n " + WordString);
+                        playerUI.UpdateText("Go to the Construction Work Brench");
+                        WorkBrenchName.SetActive(true);
+                        CurrentItemCount = 0;
+                        RequiredItemCount = 1;
+                        WordString = "||||||||||";
+                        Boss.SetActive(true);
+                        GameProcessID++;
 
                     }
-                }
-                break;
+                    break;
+                case 2:
+                    if (CurrentItemCount >= RequiredItemCount)
+                    {
 
-            case 3:
-                switch (SiegeMode)
-                {
-                    case 1:
-                        if (!Target1)
+                        if (isChose == true)
                         {
-                            playerUI.UpdateText("Game End!");
-                            winGame();
-                        }
-                        break;
-                    case 2:
-                        if (!Target2)
-                        {
-                            winGame();
-                            playerUI.UpdateText("Game End!");
-                        }
-                        break;
+                            GameTime += Time.deltaTime;
+                            if (GameTime >= 6f && WordString.Length > 0)
+                            {
+                                WordString = WordString.Remove(WordString.Length - 1);
+                                GameTime = 0;
+                            }
+                            if (WordString.Length == 0)
+                            {
+                                switch (SiegeMode)
+                                {
+                                    case 1:
+                                        SiegeMode1.SetActive(true);
+                                        playerUI.UpdateText("Break the Wall and Escape!");
+                                        break;
+                                    case 2:
+                                        SiegeMode2.SetActive(true);
+                                        playerUI.UpdateText("Attack the Spawner!");
+                                        isAttackable = true;
 
-                }
-                break;
-        }
-        if(isEnd == true)
-        {
-            ending();
-        }
-        if(isAttackable == false)
-        {
+                                        break;
+
+                                }
+
+                                GameProcessID++;
+                            }
+                            else
+                                playerUI.UpdateText("Creating Siege Machine\n " + WordString);
+
+                        }
+                    }
+                    break;
+
+                case 3:
+                    switch (SiegeMode)
+                    {
+                        case 1:
+                            if (!Target1)
+                            {
+                                playerUI.UpdateText("Game End!");
+                                winGame();
+                            }
+                            break;
+                        case 2:
+                            if (!Target2)
+                            {
+                                winGame();
+                                playerUI.UpdateText("Game End!");
+                            }
+                            break;
+
+                    }
+                    break;
+            }
+            if (isEnd == true)
+            {
+                ending();
+            }
+            if (isAttackable == false)
+            {
 
                 spawnerhealth.HealthSetter(initialHealth);
+            }
         }
+
     }
-    
+    public void addScore(int Score)
+    {
+        score += Score;
+        setCurrentItemCount(score);
+    }
     public void GetSiegeMenu()
     {
         if (isChose == false && GameProcessID ==2)
@@ -258,8 +353,17 @@ public class MainGame : MonoBehaviour
     }
     public void GamePause()
     {
-        ObjectiveUI.SetActive(false);
+        if (ObjectiveUI == null)
+        {
+            ObjectiveUI = GameObject.Find("ObjectiveField");
+        }
+            ObjectiveUI.SetActive(false);
+        
         setCursor(true);
+        if(PlayerCamera == null)
+        {
+            PlayerCamera = GameObject.Find("FirstPersonCharacter");
+        }
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = false;
         Time.timeScale = 0f;
@@ -267,7 +371,10 @@ public class MainGame : MonoBehaviour
     }
     public void GameResume()
     {
-        ObjectiveUI.SetActive(true);
+        if (ObjectiveUI != null)
+        {
+            ObjectiveUI.SetActive(true);
+        }
         setCursor(false);
         FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
         followPlayer.enabled = true;

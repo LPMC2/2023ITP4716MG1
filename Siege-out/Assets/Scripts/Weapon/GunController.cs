@@ -95,6 +95,22 @@ public class GunController : MonoBehaviour
     {
         return AmmoCount;
     }
+    public int GetBulletCount()
+    {
+        return bulletCount;
+    }
+    public float GetRange()
+    {
+        return Range;
+    }
+    public float GetHorAngle()
+    {
+        return horizontalSpreadAngle;
+    }
+    public float GetVerAngle()
+    {
+        return verticalSpreadAngle;
+    }
     public void SetTotalAmmo(int Ch_TotalAmmo)
     {
         TotalAmmo = Ch_TotalAmmo;
@@ -103,6 +119,15 @@ public class GunController : MonoBehaviour
     public void SetRemainAmmo(int Ch_RemainAmmo)
     {
         RemainAmmo = Ch_RemainAmmo;
+    }
+    public void setSpreadAngle(float hor, float ver)
+    {
+        horizontalSpreadAngle = hor;
+        verticalSpreadAngle = ver;
+    }
+    public void setRange(float range)
+    {
+        Range = range;
     }
   public float GetShootingTime()
     {
@@ -401,6 +426,23 @@ public class GunController : MonoBehaviour
                     }
 
                 }
+                if (hit.collider.CompareTag("Dummy"))
+                {
+                    
+                    HitScore hitScore = hit.collider.GetComponent<HitScore>();
+                    if (hitScore != null)
+                    {
+                        if (hitScore.enabled)
+                        {
+                            hitScore.Hit();
+                        }
+                        if (hitFX != null)
+                        {
+                            GameObject fx = Instantiate(hitFX, hit.point, Quaternion.identity);
+                            fx.transform.rotation = Quaternion.LookRotation(hit.normal);
+                        }
+                    }
+                }
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     HealthBehaviour healthBehaviour = hit.collider.GetComponent<HealthBehaviour>();
@@ -523,10 +565,12 @@ public class GunController : MonoBehaviour
             }
         }
     }
-    private void UpdateInv()
+    public void UpdateInv()
     {
-
-        Inventory.UpdateSlotTexts(RemainAmmo, TotalAmmo);
+        if (Inventory != null)
+        {
+            Inventory.UpdateSlotTexts(RemainAmmo, TotalAmmo);
+        }
     }
 
 }
