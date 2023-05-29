@@ -150,7 +150,7 @@ MonoBehaviour:
   ReloadFunction:
     m_PersistentCalls:
       m_Calls: []
-  ShootingTime: 0.02
+  ShootingTime: 0.03
   Damage: 6
   Range: 50
   bulletCount: 1
@@ -171,6 +171,8 @@ MonoBehaviour:
   currentRecoilAngle: 0
   SpeedMultiplier: 0.7
   hitFX: {fileID: 0}
+  ignoreAnimation: 0
+  ignoreAudio: 0
   Gun: {fileID: 8551341407869777067}
   SwitchingCD: 0.1
   muzzleFlashLight: {fileID: 5559374552119153575}

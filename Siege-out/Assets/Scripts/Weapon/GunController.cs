@@ -30,9 +30,10 @@ public class GunController : MonoBehaviour
     [SerializeField] private float horizontalSpreadAngle = 1f;
     [SerializeField] private float verticalSpreadAngle = 1f;
     [SerializeField] private bool isPiercing = false;
+
     [SerializeField] private UnityEvent<GameObject> HitFunction;
     [SerializeField] private UnityEvent ShootFunction;
-
+    
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
     [SerializeField] private float BulletSpreadMultiplier = 1f;
@@ -58,6 +59,8 @@ public class GunController : MonoBehaviour
     [Header("Other Settings")]
     [SerializeField] private float SpeedMultiplier = 1f;
     [SerializeField] private GameObject hitFX;
+    [SerializeField] private bool ignoreAnimation = false;
+    [SerializeField] private bool ignoreAudio = false;
     public GameObject Gun;
     [SerializeField] private float SwitchingCD;
     [SerializeField] private GameObject muzzleFlashLight;
@@ -328,12 +331,30 @@ public class GunController : MonoBehaviour
         Animator gunAnimatorRecoil = Gun.GetComponent<Animator>();
         if (gunAnimatorRecoil != null)
         {
-            gunAnimatorRecoil.GetComponent<Animator>().Play("GunRecoil");
+            if (ignoreAnimation == false)
+            {
+                gunAnimatorRecoil.GetComponent<Animator>().Play("GunRecoil");
+            } else
+            {
+                if (gunAnimatorRecoil.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
+                {
+                    gunAnimatorRecoil.GetComponent<Animator>().Play("GunRecoil");
+                }
+            }
         }
         yield return new WaitForSeconds(ShootingTime);
         if (gunAnimatorRecoil != null)
         {
-            gunAnimatorRecoil.GetComponent<Animator>().Play("Recoil_idle");
+            if (ignoreAnimation == false)
+            {
+                gunAnimatorRecoil.GetComponent<Animator>().Play("Recoil_idle");
+            } else
+            {
+                if (gunAnimatorRecoil.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
+                {
+                    gunAnimatorRecoil.GetComponent<Animator>().Play("Recoil_idle");
+                }
+            }
         }
     }
     IEnumerator StartReload()
@@ -388,8 +409,17 @@ public class GunController : MonoBehaviour
         }
         if (audioSource != null)
         {
-           
-            audioSource.PlayOneShot(ShootSound, 1);
+           if(ignoreAudio == true) 
+            {
+            if(audioSource.isPlaying == false)
+                {
+                    audioSource.PlayOneShot(ShootSound, 1);
+                }
+            } else
+            {
+                audioSource.PlayOneShot(ShootSound, 1);
+            }
+            
         }
         recoilMove();
         UpdateInv();

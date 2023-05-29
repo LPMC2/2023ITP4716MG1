@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d53a2df5e4706af4b8bbbb2328543de2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1706c980484708647a537194eb5f8489, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -951,12 +951,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: cb886baaf2a3c8f409c1cdb8febe7035, type: 3}
     - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
+      propertyPath: WeaponId.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: WeaponId.Array.data[2]
       value: 
       objectReference: {fileID: 8551341407582578297, guid: 80acb09ce3830e54a9dd0d1d83520ae4, type: 3}
     - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
+      propertyPath: WeaponId.Array.data[8]
+      value: 
+      objectReference: {fileID: 589287088324061939, guid: 45dc0d6a44f43b345804f821fdb50df4, type: 3}
+    - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: DropWeaponId.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: DropWeaponId.Array.data[7]
@@ -965,7 +973,7 @@ PrefabInstance:
     - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: DropWeaponId.Array.data[8]
       value: 
-      objectReference: {fileID: 6201836693226119906, guid: 30d7eda8624cca040a0135c0d5df21df, type: 3}
+      objectReference: {fileID: 7864091889304054130, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
     - target: {fileID: 133648485786433185, guid: 50778de14fed7aa4ab769f928c5ffbab, type: 3}
       propertyPath: InitialInventorySlot.Array.size
       value: 1
