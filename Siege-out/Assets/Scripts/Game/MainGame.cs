@@ -406,21 +406,24 @@ public class MainGame : MonoBehaviour
     }
     public void GamePause()
     {
-        if (ObjectiveUI == null)
+        if (isEnd == false)
         {
-            ObjectiveUI = GameObject.Find("ObjectiveField");
-        }
+            if (ObjectiveUI == null)
+            {
+                ObjectiveUI = GameObject.Find("ObjectiveField");
+            }
             ObjectiveUI.SetActive(false);
-        
-        setCursor(true);
-        if(PlayerCamera == null)
-        {
-            PlayerCamera = GameObject.Find("FirstPersonCharacter");
+
+            setCursor(true);
+            if (PlayerCamera == null)
+            {
+                PlayerCamera = GameObject.Find("FirstPersonCharacter");
+            }
+            FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
+            followPlayer.enabled = false;
+            Time.timeScale = 0f;
+            DisableGun();
         }
-        FollowPlayer followPlayer = PlayerCamera.GetComponent<FollowPlayer>();
-        followPlayer.enabled = false;
-        Time.timeScale = 0f;
-        DisableGun();
     }
     public void GameResume()
     {
