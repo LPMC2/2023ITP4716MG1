@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class MainGame : MonoBehaviour
@@ -34,6 +35,7 @@ public class MainGame : MonoBehaviour
     [SerializeField] private GameObject WorkBrenchName;
     [SerializeField] private AudioClip WinSound;
     [SerializeField] private AudioClip LoseSound;
+    [SerializeField] private GameObject TimeUI;
     [Header("Settings")]
     [SerializeField] private bool isMain = true;
     private AudioSource audioSource;
@@ -50,6 +52,9 @@ public class MainGame : MonoBehaviour
     private bool isEntering = false;
     private int score = 0;
     private GameObject weapon;
+    private float TimeLeft = 10f;
+    private int reqScore = 100;
+    private PlayerUI timeUIScore;
     // Start is called before the first frame update
     public int GetGameID()
     {
@@ -72,6 +77,14 @@ public class MainGame : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+    public void setReqScore(int rScore)
+    {
+        reqScore = rScore;
+        GameObject rScoreObj = ObjectiveUI.transform.GetChild(3).gameObject;
+        PlayerUI rScoreUI = rScoreObj.GetComponent<PlayerUI>();
+        rScoreUI.UpdateText("Required Score: " + reqScore);
+
     }
     public bool getEntering()
     {
@@ -106,6 +119,10 @@ public class MainGame : MonoBehaviour
     }
     void Start()
     {
+        if(TimeUI != null)
+        {
+            timeUIScore = TimeUI.GetComponent<PlayerUI>();
+        }
         if (EnterUIObject != null)
         {
             EnterUI = EnterUIObject.GetComponent<CanvasGroup>();
@@ -188,6 +205,10 @@ public class MainGame : MonoBehaviour
         loadScene.PlayEntry(); ;
         isEntering = false;
     }
+    public void setTime(float time)
+    {
+        TimeLeft = time;
+    }
     void Training()
     {
         weapon = PlayerCamera.transform.GetChild(1).gameObject;
@@ -200,15 +221,15 @@ public class MainGame : MonoBehaviour
                 {
                     gunController.setRange(999);
                 }
-                if (gunController.GetBulletCount() == 1 && gunController.GetHorAngle() != 0.05f && gunController.GetVerAngle() != 0.05f)
+                if (gunController.GetBulletCount() == 1 && gunController.GetSpreadMul() != 0.01f)
                 {
-                    gunController.setSpreadAngle(0.05f, 0.05f);
+                    gunController.setSpreadMul(0.01f);
                 }
                 else
                 {
                     if (gunController.GetRemainAmmo() != 999)
                     {
-                        gunController.SetRemainAmmo(999);
+                        gunController.SetRemainAmmo(1000);
                     }
                 }
                 if (gunController.GetTotalAmmo() != 999)
@@ -218,6 +239,33 @@ public class MainGame : MonoBehaviour
                     gunController.UpdateInv();
                 }
             }
+        }
+        if(TimeUI != null && TimeLeft >= 0 && isEnd == false)
+        {
+            TimeLeft -= Time.deltaTime;
+            
+            timeUIScore.UpdateText("Time Left: " + Mathf.Round(TimeLeft) + "s");
+            if (TimeLeft <= 10f)
+            {
+                TextMeshProUGUI timeUiText = TimeUI.GetComponent<TextMeshProUGUI>();
+                timeUiText.color = Color.red;
+            } else
+            {
+                TextMeshProUGUI timeUiText = TimeUI.GetComponent<TextMeshProUGUI>();
+                timeUiText.color = Color.white;
+            }
+            if(TimeLeft <= 0)
+            {
+                loseGame();
+            }
+            if(score >= reqScore && TimeLeft > 0)
+            {
+                winGame();
+            }
+        }
+        if(isEnd == true)
+        {
+            score = 0;
         }
     }
     // Update is called once per frame
@@ -313,22 +361,27 @@ public class MainGame : MonoBehaviour
                     }
                     break;
             }
-            if (isEnd == true)
-            {
-                ending();
-            }
+
             if (isAttackable == false)
             {
 
                 spawnerhealth.HealthSetter(initialHealth);
             }
         }
-
+        if (isEnd == true)
+        {
+            ending();
+        }
     }
     public void addScore(int Score)
     {
         score += Score;
         setCurrentItemCount(score);
+        GameObject scoreObj = ObjectiveUI.transform.GetChild(2).gameObject;
+        PlayerUI scoreUi = scoreObj.GetComponent<PlayerUI>();
+        scoreUi.UpdateText("+" + Score);
+        Animator scoreAni = ObjectiveUI.GetComponent<Animator>();
+        scoreAni.Play("fadein_up");
     }
     public void GetSiegeMenu()
     {
@@ -394,10 +447,16 @@ public class MainGame : MonoBehaviour
         LoseUI.SetActive(true);
         WinUI.SetActive(false);
         isEnd = true;
-        Target1.SetActive(false);
-        Target2.SetActive(false);
-        SiegeMode1.SetActive(false);
-        SiegeMode2.SetActive(false);
+        if (Target1 != null && Target2 != null)
+        {
+            Target1.SetActive(false);
+            Target2.SetActive(false);
+        }
+        if (SiegeMode1 != null && SiegeMode2 != null)
+        {
+            SiegeMode1.SetActive(false);
+            SiegeMode2.SetActive(false);
+        }
     }
     public void winGame()
     {

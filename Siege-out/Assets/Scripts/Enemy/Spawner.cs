@@ -47,6 +47,13 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         SpawnCounter = 0;
+        if (TargetObject == null)
+        {
+            InvokeRepeating("Spawn", 0f, Random.Range(minSpawnTime, maxSpawnTime));
+        }
+    }
+    public void startSpawn()
+    {
         InvokeRepeating("Spawn", 0f, Random.Range(minSpawnTime, maxSpawnTime));
     }
     public void setMinSpSpeed(float min)

@@ -316,44 +316,45 @@ public class InventoryBehaviour : MonoBehaviour
     // Load the Inventory array from PlayerPrefs
     public void LoadInventory(string fileName)
     {
-        // Check if the file exists
-        if (!File.Exists(fileName))
-        {
-            Debug.LogError("Inventory file not found: " + fileName);
-            return;
-        }
+            Inventory = new int[1, 3] { { 0, 0, 0 }};
+    //// Check if the file exists
+    //if (!File.Exists(fileName))
+    //{
+    //    Debug.LogError("Inventory file not found: " + fileName);
+    //    return;
+    //}
 
-        // Read the inventory data from the text file
-        string[] inventoryData = File.ReadAllLines(fileName);
+    //// Read the inventory data from the text file
+    //string[] inventoryData = File.ReadAllLines(fileName);
 
-        // Parse the inventory data and populate the Inventory array
-        int numRows = inventoryData.Length;
-        int numCols = inventoryData[0].Split(' ').Length;
+    //// Parse the inventory data and populate the Inventory array
+    //int numRows = inventoryData.Length;
+    //int numCols = inventoryData[0].Split(' ').Length;
 
-        Inventory = new int[numRows, numCols];
+    //Inventory = new int[numRows, numCols];
 
-        for (int i = 0; i < numRows; i++)
-        {
-            string[] rowStrArray = inventoryData[i].Split(' ');
-            for (int j = 0; j < numCols; j++)
-            {
-                int value;
-                bool success = int.TryParse(rowStrArray[j], out value);
-                if (success)
-                {
-                    Inventory[i, j] = value;
-                }
-                else
-                {
-                    Debug.LogWarning("Invalid value in inventory file at row " + i.ToString() + ",column " + j.ToString() + ": " + rowStrArray[j]);
-                }
-            }
-        }
+    //for (int i = 0; i < numRows; i++)
+    //{
+    //    string[] rowStrArray = inventoryData[i].Split(' ');
+    //    for (int j = 0; j < numCols; j++)
+    //    {
+    //        int value;
+    //        bool success = int.TryParse(rowStrArray[j], out value);
+    //        if (success)
+    //        {
+    //            Inventory[i, j] = value;
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning("Invalid value in inventory file at row " + i.ToString() + ",column " + j.ToString() + ": " + rowStrArray[j]);
+    //        }
+    //    }
+    //}
 
-        // Debug log the file path and content of the Inventory array
-        string inventoryStr = string.Join("\n", inventoryData);
-        Debug.Log("Inventory loaded from file:\n" + fileName + "\n" + inventoryStr);
-    }
+    //// Debug log the file path and content of the Inventory array
+    //string inventoryStr = string.Join("\n", inventoryData);
+    //Debug.Log("Inventory loaded from file:\n" + fileName + "\n" + inventoryStr);
+}
     public void setInitialInv(int chId)
     {
         InitialInventorySlot[0] = chId;

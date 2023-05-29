@@ -111,6 +111,14 @@ public class GunController : MonoBehaviour
     {
         return verticalSpreadAngle;
     }
+    public float GetSpreadMul()
+    {
+        return BulletSpreadMultiplier;
+    }
+    public bool getIsAim()
+    {
+        return isAim;
+    }
     public void SetTotalAmmo(int Ch_TotalAmmo)
     {
         TotalAmmo = Ch_TotalAmmo;
@@ -124,6 +132,10 @@ public class GunController : MonoBehaviour
     {
         horizontalSpreadAngle = hor;
         verticalSpreadAngle = ver;
+    }
+    public void setSpreadMul(float newSpreadMul)
+    {
+        BulletSpreadMultiplier = newSpreadMul;
     }
     public void setRange(float range)
     {
