@@ -5186,7 +5186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.29599
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5194,23 +5194,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.863945
+      value: 81.83
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99810183
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.061586045
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5218,7 +5218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 7.062
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5253326377046342564, guid: 33807bcdfb8cfc742817ee9252dae0fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -37277,6 +37277,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.0009822891
       objectReference: {fileID: 0}
+    - target: {fileID: 848638604, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 848638605, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 848638605, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 848638607, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 674d6f12ce5d5e24d80412eab707d4d0, type: 3}
     - target: {fileID: 943915205, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
       propertyPath: m_Size
       value: 0.50650066
@@ -37313,6 +37329,22 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1166941861, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166941862, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166941862, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166941864, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 01cd6ed17fab2c9418d191e87e8feb8b, type: 3}
     - target: {fileID: 1197195326, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 487.4605
