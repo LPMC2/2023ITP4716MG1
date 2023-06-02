@@ -38,7 +38,10 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
     {
         damage = damageAmount;
     }
-
+    public void setInvincible(bool state)
+    {
+        Invincible = state;
+    }
     public float GetHealth()
     {
         return health;
@@ -77,8 +80,13 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
            
             health -= damage;
 
-            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall"))
+            if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall") || healthBarPrefab != null)
             {
+                if(gameObject.CompareTag("Enemy"))
+                {
+                   EnemyController enemyController =  gameObject.GetComponent<EnemyController>();
+                    enemyController.setAggro(PlayerManager.instance.player);
+                }
                 UpdateHealthBar();
             }
 
@@ -184,8 +192,9 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
             health = Mathf.Clamp(health, 0, initialHealth);
             UpdateHealthUI();
         }
-        if (healthBarUI != null && gameObject.CompareTag("Enemy"))
+        if (healthBarUI != null && (gameObject.CompareTag("Enemy") || gameObject.CompareTag("Siege")))
         {
+
             healthBarSlider.value = Mathf.Lerp(healthBarSlider.value, health, lerpSpeed * Time.deltaTime);
             healthBarUI.transform.LookAt(healthBarUI.transform.position + GameObject.FindWithTag("Player").transform.rotation * Vector3.forward,
             GameObject.FindWithTag("Player").transform.rotation * Vector3.up);

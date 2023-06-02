@@ -33,7 +33,14 @@ namespace PathCreation.Examples
             AttackWall,
             AttackSpawner
         }
-
+        public void setDamage(float newDamage)
+        {
+            Damage = newDamage;
+        }
+        public float getDamage()
+        {
+            return Damage;
+        }
         private void Start()
         {
             pathFollower = GetComponent<PathFollower>();

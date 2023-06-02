@@ -41,7 +41,9 @@ public class MainGame : MonoBehaviour
     private AudioSource audioSource;
     private CanvasGroup EnterUI;
     public CanvasGroup uiCanvasGroup;
+#pragma warning disable CS0436 // Type conflicts with imported type
     private FirstPersonController FpsController;
+#pragma warning restore CS0436 // Type conflicts with imported type
     private bool isChose = false;
     private int SiegeMode = 0;
     private bool isEnd = false;
@@ -144,7 +146,9 @@ public class MainGame : MonoBehaviour
         }
         if (Player != null)
         {
+#pragma warning disable CS0436 // Type conflicts with imported type
             FpsController = Player.GetComponent<FirstPersonController>();
+#pragma warning restore CS0436 // Type conflicts with imported type
         }
         if (PlayerCamera != null)
         {
@@ -309,7 +313,7 @@ public class MainGame : MonoBehaviour
                         if (isChose == true)
                         {
                             GameTime += Time.deltaTime;
-                            if (GameTime >= 6f && WordString.Length > 0)
+                            if (GameTime >= 1f && WordString.Length > 0)
                             {
                                 WordString = WordString.Remove(WordString.Length - 1);
                                 GameTime = 0;
@@ -341,6 +345,10 @@ public class MainGame : MonoBehaviour
                     break;
 
                 case 3:
+                    if(!SiegeMode1 || !SiegeMode2)
+                    {
+                        loseGame();
+                    }
                     switch (SiegeMode)
                     {
                         case 1:
@@ -461,9 +469,22 @@ public class MainGame : MonoBehaviour
             SiegeMode2.SetActive(false);
         }
     }
+    private void Invincible()
+    {
+        {
+            if (Player != null)
+            {
+                HealthBehaviour playerHealthBehaviour = Player.GetComponent<HealthBehaviour>();
+                if (playerHealthBehaviour != null)
+                {
+                    playerHealthBehaviour.setInvincible(true);
+                }
+            }
+        }
+    }
     public void winGame()
     {
-       
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource != null)
         {

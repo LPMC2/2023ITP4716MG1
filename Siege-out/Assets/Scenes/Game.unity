@@ -3788,7 +3788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146205629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55, y: 3, z: -922}
+  m_LocalPosition: {x: 56.5, y: 3, z: -922}
   m_LocalScale: {x: 0.51956, y: 0.51956, z: 0.51956}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21695,6 +21695,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6409432526867523355, guid: 4858647fdfcb4334884831280c2e1591, type: 3}
   m_PrefabInstance: {fileID: 1045144365}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &868399284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868399283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9963e530a8565df44a76ba02fd59d2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2500
+  healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
+  healthbarOffset: {x: 0, y: 4, z: 0}
+  DeathTime: 0.1
+  chipSpeed: 2
+  HurtSound: {fileID: 8300000, guid: 699fa3825f38ada4ba2807c058b53bef, type: 3}
+  Invincible: 0
+  frontHealthBar: {fileID: 0}
+  backHealthBar: {fileID: 0}
 --- !u!208 &868399288
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -22182,6 +22203,10 @@ PrefabInstance:
     - target: {fileID: 6452495737926767613, guid: d0d431d12a28cbf4c962d7f80e23c440, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452495737926767613, guid: d0d431d12a28cbf4c962d7f80e23c440, type: 3}
+      propertyPath: m_TagString
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 6452495737926767615, guid: d0d431d12a28cbf4c962d7f80e23c440, type: 3}
       propertyPath: m_Size.x
@@ -29210,7 +29235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4297904286473157932, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.20634
+      value: -0.20412
       objectReference: {fileID: 0}
     - target: {fileID: 4297904286473157932, guid: fa0156422f6a8f64382aa51dd13d3976, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29423,6 +29448,10 @@ PrefabInstance:
     - target: {fileID: 6409432526867523355, guid: 4858647fdfcb4334884831280c2e1591, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409432526867523355, guid: 4858647fdfcb4334884831280c2e1591, type: 3}
+      propertyPath: m_TagString
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 6409432526867523357, guid: 4858647fdfcb4334884831280c2e1591, type: 3}
       propertyPath: speed
@@ -31567,6 +31596,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6452495737926767613, guid: d0d431d12a28cbf4c962d7f80e23c440, type: 3}
   m_PrefabInstance: {fileID: 903603625}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1234156576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234156575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9963e530a8565df44a76ba02fd59d2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1000
+  healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
+  healthbarOffset: {x: 0, y: 4.17, z: 0}
+  DeathTime: 0.1
+  chipSpeed: 2
+  HurtSound: {fileID: 8300000, guid: 699fa3825f38ada4ba2807c058b53bef, type: 3}
+  Invincible: 0
+  frontHealthBar: {fileID: 0}
+  backHealthBar: {fileID: 0}
 --- !u!208 &1234156580
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -32829,6 +32879,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1378358517}
     m_Modifications:
+    - target: {fileID: 3780823062352175682, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
+      propertyPath: MaxDurability
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3780823062352175687, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -32910,7 +32964,6 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 3780823062352175682, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
     - {fileID: 7983930933832377627, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
     - {fileID: 7983930933235640910, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
     - {fileID: 7983930934444844362, guid: bf0531152c1be8b4781839dcf24564d3, type: 3}
@@ -53176,7 +53229,8 @@ PrefabInstance:
       value: "Tips:\n1. You can get weapon from hidden area, \ninteract them to pick
         up\n2. There are Ammo and Medit Kit placed around,\ninteract them to get
         it\n3. Some obstacles can be destroyed though \nyou or enemies attacking
-        it.\n4. Interact with the red round button\nto open the door."
+        it.\n4. Interact with the red round button\nto open the door.\n5. There are
+        hidden boxes(in the scene) that can modify the Siege Machine."
       objectReference: {fileID: 0}
     - target: {fileID: 1833932992, guid: 86b04106c1a62a9419308baf22b2311d, type: 3}
       propertyPath: m_margin.z
@@ -63961,17 +64015,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 506797194179444456, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
+      propertyPath: m_Size.x
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 506797194179444456, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
+      propertyPath: m_Size.y
+      value: 2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 506797194179444456, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
+      propertyPath: m_Size.z
+      value: 2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 506797194179444456, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 555631480609963716, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
       propertyPath: m_RootOrder
       value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 555631480609963716, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.64
+      value: 49.32
       objectReference: {fileID: 0}
     - target: {fileID: 555631480609963716, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.34
+      value: 5.61
       objectReference: {fileID: 0}
     - target: {fileID: 555631480609963716, guid: 4cb0d87708004554a8faac320f7ec3e7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -64153,7 +64223,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 500065321860149756, guid: f49973d59cb4bde4bb2f6b3a7a0a0b26, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 500065321860149756, guid: f49973d59cb4bde4bb2f6b3a7a0a0b26, type: 3}
       propertyPath: m_ReceiveGI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 500065321860149756, guid: f49973d59cb4bde4bb2f6b3a7a0a0b26, type: 3}
+      propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 500065321860149756, guid: f49973d59cb4bde4bb2f6b3a7a0a0b26, type: 3}
@@ -65892,7 +65970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7864091889304054128, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.004
+      value: 6.73
       objectReference: {fileID: 0}
     - target: {fileID: 7864091889304054128, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -65930,8 +66008,102 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item-Minigun
       objectReference: {fileID: 0}
+    - target: {fileID: 7864091889304054141, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864091889304054141, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
+      propertyPath: m_Center.x
+      value: -0.08
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 240510018e4e1fb4bbef69cd6baeeecb, type: 3}
+--- !u!1001 &8112852850738505329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8112852851201170849, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: siegeModel1
+      value: 
+      objectReference: {fileID: 1234156575}
+    - target: {fileID: 8112852851201170849, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: siegeModel2
+      value: 
+      objectReference: {fileID: 868399283}
+    - target: {fileID: 8112852851201170851, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: promptMessage
+      value: 'Press E to pickup the Siege modifier
+
+        Type: Damage
+
+        (Can
+        Only apply one modifier)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_RootOrder
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.43439
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.43439
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.43439
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 54.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170853, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112852851201170877, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
+      propertyPath: m_Name
+      value: Prop-ExtraMaterial1 (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 279b591497972264fb53004ce75b9cd2, type: 3}
 --- !u!1001 &8161515710461160741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66152,6 +66324,92 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a2ce551eb523f4dbded79258f58646, type: 3}
+--- !u!1001 &8409687324084561948
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8409687323903830785, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: promptMessage
+      value: 'Press E to pickup the Siege modifier
+
+        Type: Resistance
+
+        (Can
+        Only apply one modifier)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_RootOrder
+      value: 73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.46958
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.46958
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.46958
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -32.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.359
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830787, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409687323903830791, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: siegeModel1
+      value: 
+      objectReference: {fileID: 1234156575}
+    - target: {fileID: 8409687323903830791, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: siegeModel2
+      value: 
+      objectReference: {fileID: 868399283}
+    - target: {fileID: 8409687323903830795, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: m_Name
+      value: Prop-ExtraMaterial1 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
 --- !u!1001 &8467345478400345692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66363,3 +66621,105 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8488593123847438125, guid: d9905bc59570f19478335355ee92d7ad, type: 3}
   m_PrefabInstance: {fileID: 206058327468030961}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8803272626107197895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_RootOrder
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.44523552
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.44523552
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.44523552
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 36.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 89.618
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 867446849785017100, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 915555566897247008, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 915555566897247008, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_Size.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 915555566897247008, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_Size.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 915555566897247008, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_Center.y
+      value: -0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717887616728068923, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: m_Name
+      value: Prop-ExtraMaterial1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598872789461267082, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: siegeModel1
+      value: 
+      objectReference: {fileID: 1234156575}
+    - target: {fileID: 5598872789461267082, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: siegeModel2
+      value: 
+      objectReference: {fileID: 868399283}
+    - target: {fileID: 5720833594942153762, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: promptMessage
+      value: 'Press E to pickup the Siege modifier
+
+        Type: Speed
+
+        (Can
+        Only apply one modifier)'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}

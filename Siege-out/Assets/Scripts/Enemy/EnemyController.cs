@@ -56,10 +56,21 @@ public class EnemyController : MonoBehaviour
     }
     Transform target;
     NavMeshAgent agent;
+    private GameObject Siege1;
+    private GameObject Siege2;
     // Start is called before the first frame update
     void Start()
     {
+        Siege1 = GameObject.Find("Siege-Mode1");
+        Siege2 = GameObject.Find("Siege-Mode2");
         audioSource = GetComponent<AudioSource>();
+        if(Siege1 != null && Siege1.activeSelf == true)
+        {
+            target = Siege1.transform;
+        } else if (Siege1 != null && Siege2.activeSelf == true)
+        {
+            target = Siege2.transform;
+        } else
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         if (AnimateObject != null)
@@ -67,6 +78,10 @@ public class EnemyController : MonoBehaviour
             enemyAnimator = AnimateObject.GetComponent<Animator>();
         }
         InvokeRepeating("DetectDestructables", 0f, 1f);
+    }
+    public void setAggro(GameObject originTarget)
+    {
+        target = originTarget.transform;
     }
     public void setAttackData(float switchDamage, float switchAttackCD, float switchPreAttackCD)
     {
@@ -117,7 +132,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(target == null)
+        {
+            target = PlayerManager.instance.player.transform;
+        }
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= lookRadius)
         {
