@@ -227,8 +227,10 @@ public void GetProp()
             case 1:
                 if (healthBehaviour1 != null && healthBehaviour2 != null)
                 {
-                    healthBehaviour1.SetHealth(healthBehaviour1.GetInitialHealth() * multiplier);
-                    healthBehaviour2.SetHealth(healthBehaviour2.GetInitialHealth() * multiplier);
+                    
+                    healthBehaviour1.HealthSetter(healthBehaviour1.GetHealth() * multiplier);
+                    healthBehaviour2.HealthSetter(healthBehaviour2.GetHealth() * multiplier);
+                  
                 }
                 break;
             case 2:
