@@ -123,6 +123,8 @@ MonoBehaviour:
   currentRecoilAngle: 0
   SpeedMultiplier: 0.4
   hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
+  ignoreAnimation: 0
+  ignoreAudio: 0
   Gun: {fileID: 6918557245949558577}
   SwitchingCD: 1.5
   muzzleFlashLight: {fileID: 4401445908718220362}

@@ -58,9 +58,11 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     private GameObject Siege1;
     private GameObject Siege2;
+    HealthBehaviour healthBehaviour;
     // Start is called before the first frame update
     void Start()
     {
+        healthBehaviour = GetComponent<HealthBehaviour>();
         Siege1 = GameObject.Find("Siege-Mode1");
         Siege2 = GameObject.Find("Siege-Mode2");
         audioSource = GetComponent<AudioSource>();
@@ -150,8 +152,10 @@ public class EnemyController : MonoBehaviour
             {
                 if (AnimateObject != null)
                 {
-                    
-                    StartCoroutine(PlayWalkAnimation());
+                    if (!enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                    {
+                        StartCoroutine(PlayWalkAnimation());
+                    }
                 }
             }
         }
@@ -173,7 +177,7 @@ public class EnemyController : MonoBehaviour
                 float distance = Vector3.Distance(target.position, transform.position);
                 if (distance > agent.stoppingDistance)
                 {
-                    HealthBehaviour healthBehaviour = GetComponent<HealthBehaviour>();
+                    
                     if (healthBehaviour.GetHealth() > 0)
                     {
                         enemyAnimator.Play("Walk");
@@ -182,7 +186,7 @@ public class EnemyController : MonoBehaviour
             }
 
             // Wait until the animation clip ends
-            yield return new WaitForSeconds(enemyAnimator.GetCurrentAnimatorStateInfo(0).length + 0.1f);
+            yield return new WaitForSeconds(enemyAnimator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
     void FaceTarget()
@@ -281,26 +285,35 @@ public class EnemyController : MonoBehaviour
                 if (projectileScript != null)
                 {
                     projectileScript.SetTarget(target.gameObject, gameObject);
-                    projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(),ProjectileSpeed);
-                    rb.transform.LookAt(target.position);
+                    projectileScript.InitializeProjectile(gameObject.GetComponent<EnemyController>(), ProjectileSpeed);
                     projectileScript.setDestructable(nearestDestructible);
                     projectileScript.SetDamage(damage);
                     projectileScript.SetAOE(isAreaDamage, AOERadius);
                     projectileScript.SetObstacleMask(obstacleMask);
-                    // Calculate the distance to the target
+
+                    // Calculate the direction and distance to the target
+                    Vector3 direction = (target.position - transform.position).normalized;
                     float distance = Vector3.Distance(rb.position, target.position);
 
-                    // Calculate the modified speed and angle
+                    // Calculate the height difference between the projectile and the target
+                    float heightDifference = target.position.y - rb.position.y;
+
+                    // Calculate the modified speed and angle based on the distance and height difference
                     float modifiedSpeed = ProjectileSpeed * Mathf.Clamp(distance / 10f, 0.5f, 2f);
-                    float modifiedAngle = AttackAngleMultiplier * Mathf.Clamp(distance / 10f, 0.5f, 2f);
+                    float modifiedAngle = AttackAngleMultiplier * Mathf.Clamp(distance / 10f, 0.5f, 2f) + Mathf.Atan(heightDifference / distance) * Mathf.Rad2Deg;
+
+                    // Set the speed and rotation of the projectile
                     projectileScript.SetSpeed(ProjectileSpeed);
+                    rb.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                    rb.transform.Rotate(modifiedAngle, 0, 0);
+
                     // Apply the force to the rigidbody
-                    rb.AddForce(transform.forward * modifiedSpeed, ForceMode.Impulse);
-                    rb.AddForce(transform.up * modifiedAngle, ForceMode.Impulse);
+                    Vector3 force = direction * modifiedSpeed + Vector3.up * Mathf.Tan(modifiedAngle * Mathf.Deg2Rad) * modifiedSpeed;
+                    rb.AddForce(force, ForceMode.Impulse);
                 }
             }
 
-            
+
 
         }
         // Wait for the attack animation to complete before exiting the coroutine

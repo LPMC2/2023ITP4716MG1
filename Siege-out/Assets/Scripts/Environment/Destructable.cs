@@ -28,7 +28,6 @@ public class Destructable : MonoBehaviour
 
                 foreach (Transform child in shattered.transform)
                 {
-
                     MeshCollider meshCollider = child.GetComponent<MeshCollider>();
                     if (meshCollider)
                     {
@@ -41,7 +40,7 @@ public class Destructable : MonoBehaviour
                     Rigidbody rb = child.GetComponent<Rigidbody>();
                     if (rb)
                     {
-                        rb.AddForce(hit.transform.forward * force * 10, ForceMode.Impulse);
+                        rb.AddForce(child.forward * force * 10, ForceMode.Impulse);
                     }
                 }
             }
@@ -49,8 +48,8 @@ public class Destructable : MonoBehaviour
             isDestroyed = true;
             PlaySoundAndDestroy();
             Destroy(gameObject);
-            
-        } else
+        }
+        else
         {
             if (isGun == true)
             {
@@ -62,6 +61,7 @@ public class Destructable : MonoBehaviour
             }
         }
     }
+
     public void takeDamage(float damage)
     {
         Durability -= damage;
@@ -73,7 +73,6 @@ public class Destructable : MonoBehaviour
 
                 foreach (Transform child in shattered.transform)
                 {
-
                     MeshCollider meshCollider = child.GetComponent<MeshCollider>();
                     if (meshCollider)
                     {
@@ -86,7 +85,7 @@ public class Destructable : MonoBehaviour
                     Rigidbody rb = child.GetComponent<Rigidbody>();
                     if (rb)
                     {
-                        rb.AddForce(transform.forward * damage * 10, ForceMode.Impulse);
+                        rb.AddForce(child.forward * damage * 10, ForceMode.Impulse);
                     }
                 }
             }

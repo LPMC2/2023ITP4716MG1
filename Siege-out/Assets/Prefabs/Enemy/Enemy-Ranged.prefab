@@ -85,12 +85,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 200
   attackType: 1
-  projectileType: 1
+  projectileType: 0
   damage: 20
   preAttackCD: 0.6
   attackCD: 1.2
   projectileObject: {fileID: 8412791854856054736, guid: 802b792517f9d2943ad371df91430860, type: 3}
-  ProjectileSpeed: 20
+  ProjectileSpeed: 2000
   AttackAngleMultiplier: 1.5
   maxTime: 10
   ProjectileOffset: {x: 0, y: 1.25, z: 0.2}

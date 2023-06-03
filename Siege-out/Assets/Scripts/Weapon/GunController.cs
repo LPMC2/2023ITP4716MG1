@@ -37,6 +37,7 @@ public class GunController : MonoBehaviour
     [Header("Aim Settings")]
     [SerializeField] private Vector3 AimPosition;
     [SerializeField] private float BulletSpreadMultiplier = 1f;
+    [SerializeField] private bool removeAimSymbol = true;
     private Vector3 OriginalPosition;
 
     [Header("Recoil Settings")]
@@ -575,7 +576,10 @@ public class GunController : MonoBehaviour
                 {
                     horizontalSpreadAngle *= BulletSpreadMultiplier;
                     verticalSpreadAngle *= BulletSpreadMultiplier;
-                    Inventory.setCrossHairState(false);
+                    if (removeAimSymbol == true)
+                    {
+                        Inventory.setCrossHairState(false);
+                    }
                     isAim = true;
                 }
             }

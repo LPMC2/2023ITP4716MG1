@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &5036623905058929593
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789807922004503267}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28485ae1065b59346a57a981d637e0f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1602356838708707427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,7 +45,6 @@ GameObject:
   - component: {fileID: 762085509216768220}
   - component: {fileID: -5982323319572816626}
   - component: {fileID: 744993755552222777}
-  - component: {fileID: 7609984584940341942}
   - component: {fileID: -9078957459166606317}
   - component: {fileID: 2993939787745310718}
   m_Layer: 11
@@ -44,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201682038720778396}
   m_LocalRotation: {x: 0.15200675, y: 0.6292949, z: -0.088676155, w: -0.7569799}
-  m_LocalPosition: {x: 1.268, y: -0.956, z: 1.818}
+  m_LocalPosition: {x: 1, y: -0.956, z: 1.818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 125580386858070105}
@@ -92,25 +110,6 @@ MonoBehaviour:
   Weapon: {fileID: 5201682038720778396}
   AttackMode: 1
   SpeedMultiplier: 0.99
---- !u!95 &7609984584940341942
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5201682038720778396}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 28485ae1065b59346a57a981d637e0f3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &-9078957459166606317
 AudioSource:
   m_ObjectHideFlags: 0
@@ -222,14 +221,16 @@ MonoBehaviour:
   mover: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
-  rotationStep: 4
-  maxRotationStep: 5
+  swayPos: {x: 0, y: 0, z: 0}
+  rotationStep: 5
+  maxRotationStep: 10
   smooth: 10
-  speedCurve: 2
-  travelLimit: {x: 1, y: 1, z: 1}
-  bobLimit: {x: 1, y: 1, z: 1}
-  bobExaggeration: 1
-  multiplier: {x: 2, y: 2, z: 2}
+  speedCurve: 0.15
+  travelLimit: {x: 0.025, y: 0.025, z: 0.025}
+  bobLimit: {x: 0.02, y: 0.02, z: 0.02}
+  bobPosition: {x: 0, y: 0, z: 0}
+  bobExaggeration: 3
+  multiplier: {x: 1, y: 1, z: 1}
 --- !u!1001 &447157975293040562
 PrefabInstance:
   m_ObjectHideFlags: 0

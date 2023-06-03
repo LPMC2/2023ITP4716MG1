@@ -24,7 +24,7 @@ public class TimedDestroy : MonoBehaviour {
 			
 			int n = Random.Range(1, HitSounds.Length);
 			audioSource.clip = HitSounds[n];
-			audioSource.PlayOneShot(audioSource.clip);
+			audioSource.PlayOneShot(audioSource.clip, 0.1f);
 		}
 		yield return new WaitForSeconds(_destroyDelay);
 		Destroy (gameObject);

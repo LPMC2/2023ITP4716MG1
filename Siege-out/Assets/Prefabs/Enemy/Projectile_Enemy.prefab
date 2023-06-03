@@ -180,6 +180,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2d1a34be58f32604eb327003daad3e33, type: 2}
+    - target: {fileID: 3694291798196942607, guid: df0521088fc817246886bf008ef8346f, type: 3}
       propertyPath: m_Parameters.numCornerVertices
       value: 2
       objectReference: {fileID: 0}

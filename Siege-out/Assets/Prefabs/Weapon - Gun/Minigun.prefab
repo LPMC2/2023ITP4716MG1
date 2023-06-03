@@ -117,14 +117,15 @@ MonoBehaviour:
       m_Calls: []
   AimPosition: {x: 0.745, y: -0.35, z: 1.36}
   BulletSpreadMultiplier: 0.8
+  removeAimSymbol: 0
   recoilAngle: 1
   recoilSpeed: 2
   maxRecoilAngle: 45
   currentRecoilAngle: 0
   SpeedMultiplier: 0.3
-  hitFX: {fileID: 182464, guid: 02c26ea0f215012408a97e249ddb3e1e, type: 3}
+  hitFX: {fileID: 8897298400683712475, guid: 46279e3031de7374bac0253dfbb87b48, type: 3}
   ignoreAnimation: 1
-  ignoreAudio: 1
+  ignoreAudio: 0
   Gun: {fileID: 354931895115323601}
   SwitchingCD: 1.5
   muzzleFlashLight: {fileID: 500755798432789155}

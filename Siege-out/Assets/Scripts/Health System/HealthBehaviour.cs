@@ -82,7 +82,7 @@ public class HealthBehaviour : MonoBehaviour, IDamageable
 
             if (gameObject.CompareTag("Enemy") || gameObject.CompareTag("TargetWall") || healthBarPrefab != null)
             {
-                if(gameObject.CompareTag("Enemy"))
+                if(gameObject.CompareTag("Enemy") && gameObject.GetComponent<EnemyController>() != null)
                 {
                    EnemyController enemyController =  gameObject.GetComponent<EnemyController>();
                     enemyController.setAggro(PlayerManager.instance.player);

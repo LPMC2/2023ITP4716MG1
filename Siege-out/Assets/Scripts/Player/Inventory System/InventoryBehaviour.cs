@@ -438,6 +438,20 @@ public class InventoryBehaviour : MonoBehaviour
                             foreach (Transform child in slotTracker.transform)
                             {
                                 child.gameObject.layer = LayerMask.NameToLayer("Default");
+                                MeshRenderer meshRenderer = child.gameObject.GetComponent<MeshRenderer>();
+                                if (meshRenderer != null)
+                                {
+                                    meshRenderer.receiveShadows = false;
+                                }
+                                foreach (Transform childs in child.transform)
+                                {
+                                    childs.gameObject.layer = LayerMask.NameToLayer("Default");
+                                    MeshRenderer meshRenderer1 = childs.gameObject.GetComponent<MeshRenderer>();
+                                    if (meshRenderer1 != null)
+                                    {
+                                        meshRenderer1.receiveShadows = false;
+                                    }
+                                }
                             }
                             slotTracker.transform.SetParent(camSlotTransforms[2]);
                             slotTracker.transform.localPosition = new Vector3(position.x, position.y, position.z);
