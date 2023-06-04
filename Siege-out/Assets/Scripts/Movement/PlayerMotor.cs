@@ -15,7 +15,9 @@ public class PlayerMotor : MonoBehaviour
     private float speedMultiplier = 1f;
     [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private AudioClip[] FootstepSounds;
+#pragma warning disable IDE0044 // Add readonly modifier
     private float footstepTimer = 0.0f;
+#pragma warning restore IDE0044 // Add readonly modifier
     [SerializeField] private float footstepDelay = 0.5f;
     [SerializeField] private AudioClip JumpSound;         
     [SerializeField] private AudioClip LandSound;
@@ -98,8 +100,10 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -2f;
         controller.Move(playerVelocity * Time.deltaTime);
     }
-   
+
+#pragma warning disable IDE0044 // Add readonly modifier
     private bool isPlayingFootstep = false;
+#pragma warning restore IDE0044 // Add readonly modifier
     private void PlayFootStepSound()
     {
         if (!controller.isGrounded)

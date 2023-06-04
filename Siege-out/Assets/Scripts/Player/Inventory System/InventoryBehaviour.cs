@@ -514,7 +514,7 @@ public class InventoryBehaviour : MonoBehaviour
         {
             LoadInventory("Assets/Resources/InventoryData.txt");
         }
-        Debug.Log(Inventory.GetLength(0));
+        
         audioSource = GetComponent<AudioSource>();
         for (int i = 0; i < Inventory.GetLength(0); i++)
         {

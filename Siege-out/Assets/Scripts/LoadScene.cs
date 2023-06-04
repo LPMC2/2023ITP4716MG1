@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     private float Animatetime = 1f;
-    private float timer = 0f;
+
     private int mode = 0;
     [SerializeField] private int animationType = 0;
     [SerializeField] private GameObject UI;
