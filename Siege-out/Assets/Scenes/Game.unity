@@ -21489,7 +21489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9963e530a8565df44a76ba02fd59d2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2500
+  health: 1000
   healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
   healthbarOffset: {x: 0, y: 4, z: 0}
   DeathTime: 0.1
@@ -31781,7 +31781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9963e530a8565df44a76ba02fd59d2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 300
   healthBarPrefab: {fileID: 7817960711757863714, guid: 77d2475df3545e74aaab4921445e8d4c, type: 3}
   healthbarOffset: {x: 0, y: 4.17, z: 0}
   DeathTime: 0.1
@@ -67988,6 +67988,10 @@ PrefabInstance:
       propertyPath: siegeModel2
       value: 
       objectReference: {fileID: 868399283}
+    - target: {fileID: 8409687323903830791, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
+      propertyPath: modiferMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8409687323903830795, guid: 70adcc6ed35bb46489648a773ad949a9, type: 3}
       propertyPath: m_Name
       value: Prop-ExtraMaterial1 (1)
@@ -68332,6 +68336,10 @@ PrefabInstance:
       propertyPath: siegeModel2
       value: 
       objectReference: {fileID: 868399283}
+    - target: {fileID: 5598872789461267082, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
+      propertyPath: modiferMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5720833594942153762, guid: de00552f6285fa64aaa3db483ed54a0b, type: 3}
       propertyPath: promptMessage
       value: 'Press E to pickup the Siege modifier

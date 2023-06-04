@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61f0bb794b64914eac1641b3df4457f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalAmmo: 1000
+  TotalAmmo: 0
   AmmoCount: 1000
   RemainAmmo: 1000
   ReloadingTime: 4
@@ -103,7 +103,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ShootingTime: 0.01
-  Damage: 10
+  Damage: 4
   Range: 100
   bulletCount: 1
   horizontalSpreadAngle: 5
